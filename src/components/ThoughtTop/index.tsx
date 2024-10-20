@@ -39,7 +39,7 @@ const ThoughtTop = () => {
     }, [])
     return (
         <Box sx={container}>
-            <h1>Shared Ideas</h1>
+            <h1>検索足跡一覧</h1>
             <hr/>
             <List>
                 {thoughts.map((thought) => {
@@ -53,7 +53,7 @@ const ThoughtTop = () => {
                                 </Box>
                                 <Box>
                                     <Edit sx={{mr: "10px", mb: "-5px"}} />
-                                    Keywords : {searchKeywords.join(", ")}
+                                    検索キーワード : {searchKeywords.join(", ")}
                                 </Box>
                             </ListItemButton>
                         </Link>

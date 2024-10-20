@@ -77,13 +77,38 @@ const initialCurrentSearch = [
 ]
 
 const initialSearchPurpose = [
-    {
-        "key":"064dc89c-a0fb-46d2-b0ab-217cc292cb79",
-        "title":"Bing API Usage",
-        "searchResult":[],
-        "createdAt":1729347481884,
-        "updatedAt":1729347481884
-    }
+	{
+		"key": "064dc89c-a0fb-46d2-b0ab-217cc292cb79",
+		"title": "Bing API Usage",
+		"searchResult": [
+			{
+				"keyword": "Bing API 使い方",
+				"resultIndex": 0,
+				"url": "https://techblog.raccoon.ne.jp/archives/1617156256.html",
+				"title": "Bing API 使い方",
+				"snippet": "Bing Search APIの実行するためには以下を行い、API keyを発行する必要があります。. それでは、もう少し詳細な手順をみていきましょう！. 1. Azureへの登録. Bing Search APIを使用するためには、Azureへの登録が必要です。. アカウントを持っていない方は、 https://azure ...",
+				"searchAt": 1729422802588
+			},
+			{
+				"keyword": "Bing API 使い方",
+				"resultIndex": 1,
+				"url": "https://urashita.com/archives/8183",
+				"title": "Bing API 使い方",
+				"snippet": "今回、マイクロソフトのBingの検索結果を、Bing Search APIを使ってプログラム的に取得する方法をまとめました。. Googleの検索結果を取得する方法については、以下の記事をご覧ください。. Google Custom Search API (カスタムサーチAPI)を使ってプログラムで検索結果 ...",
+				"searchAt": 1729422903217
+			},
+			{
+				"keyword": "Bing Search API の使い方を教えて",
+				"resultIndex": 0,
+				"url": "https://chatgpt.com/",
+				"title": "Bing Search API の使い方を教えて",
+				"snippet": "Bing Search API は、マイクロソフトの Azure プラットフォームを通じて提供されているサービスで、Web 検索機能をアプリケーションに組み込むことができます。以下に Bing Search API の基本的な使い方を説明します。\n\n### 1. Azure アカウントの作成\n- まず、Bing Search API を使用するためには Azure アカウントが必要です。アカウントを持っていない場合は、Azure の公式サイトにアクセスして新しいアカウントを作成します。\n\n### 2. Azure ポータルで Bing Search リソースを作成\n- Azure ポータル（portal.azure.com）にログインし、「+ リソースの作成」から「Bing Search v7」を検索し、適切なリソースを作成します。\n\n### 3. API キーの取得\n- 作成した Bing Search リソースの「キーとエンドポイント」セクションで、API キー（サブスクリプションキー）を取得します。このキーは API リクエストを認証するために必要です。\n\n### 4. API の利用\n- Bing Search API は通常 HTTP リクエストを使用して情報を取得します。以下は基本的な使い方の例です。\n\n#### 使用例: Web 検索\n```python\nimport requests\n\nsubscription_key = 'YOUR_SUBSCRIPTION_KEY'\nsearch_term = 'example search'\nurl = f'https://api.bing.microsoft.com/v7.0/search'\n\nheaders = {\n    'Ocp-Apim-Subscription-Key': subscription_key,\n}\n\nparams = {\n    'q': search_term,\n    'textDecorations': True,\n    'textFormat': 'HTML',\n}\n\nresponse = requests.get(url, headers=headers, params=params)\nresponse.raise_for_status()\nsearch_results = response.json()\n\nprint(search_results)\n```\n\n### 5. レスポンスの処理\n- レスポンスは JSON フォーマットで返されますので、Python などのプログラミング言語で JSON を扱い、必要な情報を取得・処理します。\n\n### 6. トラフィック管理と課金\n- 各プランには、月間の呼び出し回数制限や課金オプションがありますので、Azure の料金設定についても確認し、自身のニーズに合ったプランを選択してください。\n\n### 公式ドキュメントの参照\n- さらに詳細な情報は、公式ドキュメント（Microsoft Azure の Bing Search API ドキュメント）を参照することで確認できます。\n\nこのステップを踏むことで、アプリケーションに Bing Search API を統合し、Web 検索機能を実装できます。",
+				"searchAt": 1729423005356
+			}
+		],
+		"createdAt": 1729347481884,
+		"updatedAt": 1729347481884
+	}
 ]
 
 const initialSearchThought = [{
@@ -430,19 +455,19 @@ const Top = () => {
     return (
         <Box sx={container}>
             <Box sx={containerSection}>
-                <h1>Search <Button size="small" variant="contained" onClick={insertInitialValue}>Insert Initial Value (Recommended for first user)</Button></h1>
+                <h1>検索する <Button size="small" variant="contained" onClick={insertInitialValue}>初期値を入力する (お試しで見てみたい人向け)</Button></h1>
                 <TextField
                     value={searchText}
                     onChange={onChangeSearchInput}
-                    placeholder="Input Search Word"
+                    placeholder="検索キーワードを入力"
                     sx={textField}
                 />
                 <Box sx={purposeSection}>
-                    <h3>Input Purpose</h3>
+                    <h3>目的を入力する</h3>
                     <Box>
                         <TextField
                             value={inputPurpose}
-                            placeholder="Input Search Purpose"
+                            placeholder="検索目的を入力"
                             onChange={onChangeInputPurpose}
                             sx={textFieldSmall}
                         />
@@ -450,13 +475,13 @@ const Top = () => {
                             onClick={onClickSearchInput}
                             sx={{mt: "10px"}}
                         >
-                            Add Purpose
+                            目的を追加する
                         </Button>
                     </Box>
                     <Box>
                         <TextField
                             value={filterText}
-                            placeholder="Filter Search Purpose"
+                            placeholder="検索目的をフィルタする"
                             sx={textFieldSmall}
                             onChange={onChangeFilterText}
                         />
@@ -464,7 +489,7 @@ const Top = () => {
                             sx={{mt: "10px"}}
                             onClick={onClickFilterText}
                         >
-                            Filter Purpose
+                            目的をフィルターする
                         </Button>
                     </Box>
                     <Select
@@ -483,7 +508,7 @@ const Top = () => {
                             </MenuItem>
                             )
                         })
-                        : <MenuItem>No Purpose found</MenuItem>
+                        : <MenuItem>目的は選択されていません</MenuItem>
                         }
                     </Select>
                 </Box>
@@ -512,15 +537,15 @@ const Top = () => {
                         ChatGPT
                     </Button>
                 </Box>
-                <Link to="/usage">Usage</Link>
+                <Link to="/usage">使い方</Link>
             </Box>
             <Box sx={containerSection}>
-                <h1 style={{marginBottom: "0px"}}>Search Result</h1>
+                <h1 style={{marginBottom: "0px"}}>検索結果</h1>
                 <Box>
                     <Tabs value={currentTab} onChange={onChangeTab}>
-                        <Tab label={`Bing Search ${searchResult.length}`}/>
-                        <Tab label={`Idea Search ${currentThoughts.length}`} />
-                        <Tab label={`ChatGPT Search ${openAiResult.length}`} />
+                        <Tab label={`Bing検索 ${searchResult.length}`}/>
+                        <Tab label={`検索足跡検索 ${currentThoughts.length}`} />
+                        <Tab label={`ChatGPT検索 ${openAiResult.length}`} />
                     </Tabs>
                 </Box>
                 { currentTab === 0 ?
@@ -570,7 +595,7 @@ const Top = () => {
                             : <></>
                         }
                         </>
-                        : <p>No Search Result</p>
+                        : <p>検索結果はありません</p>
                     }
                     </>
                     :
@@ -588,12 +613,12 @@ const Top = () => {
                                                 {thought.purpose.title}
                                             </a>
                                         </h4>
-                                        <p>{thought.searches.find((s) => s.memo)?.memo ?? "No memo found"}</p>
+                                        <p>{thought.searches.find((s) => s.memo)?.memo ?? "メモはありません"}</p>
                                     </Box>
                                 )
                             }) }
                         </Box>
-                        : <p>No Idea Result</p>
+                        : <p>検索足跡はありません</p>
                         }
                     </>
                     :

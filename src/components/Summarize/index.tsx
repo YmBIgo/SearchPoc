@@ -153,14 +153,14 @@ const Summarize = () => {
     return (
         <>
             <h1 style={{marginBottom: "10px"}}>
-                [Summarize Idea] Purpose : {purpose.title}
+                [検索足跡をまとめる] 目的 : {purpose.title}
             </h1>
             <p>
-                Select Search Results which you think is useful or valid.
+                役に立った検索履歴を選択してください
             </p>
             <Box sx={container}>
                 <Box sx={containerSection}>
-                    <h3>Search Histories</h3>
+                    <h3>検索履歴</h3>
                     <List>
                         {purpose.searchResult.map((sr) => {
                             const date = new Date(sr?.searchAt ?? Date.now()).toISOString()
@@ -172,10 +172,10 @@ const Summarize = () => {
                                     <Box sx={searchHistoryListItemRight}>
                                         <h3 style={{marginBottom: "5px"}}>
                                             <InsertDriveFileIcon sx={{color: "#888", mr: "10px", mb: "-5px"}}/>
-                                            Title : {sr.title}
+                                            タイトル : {sr.title}
                                             <br/><br/>
                                             <SearchIcon sx={{mr: "10px", mb: "-8px"}}/>
-                                            Search Query : {sr.keyword}
+                                            検索ワード : {sr.keyword}
                                             <br/>
                                         </h3>
                                         <span>@{date}</span>
@@ -183,12 +183,12 @@ const Summarize = () => {
                                             <AccordionSummary
                                             expandIcon={<ArrowDropDownIcon />}
                                             >
-                                                Show Details
+                                                詳細を見る
                                             </AccordionSummary>
                                             <AccordionDetails>
                                                 Url : <a href={sr.url} target="_blank">{sr.url}</a>
                                                 <br/><br/>
-                                                Snippet : {
+                                                スニペット : {
                                                     sr.url.startsWith("https://chatgpt.com")
                                                     ? sr.snippet.slice(0, 500)
                                                     : sr.snippet.slice(0, 100)
@@ -202,24 +202,24 @@ const Summarize = () => {
                     </List>
                 </Box>
                 <Box sx={containerSection}>
-                    <h3>Selected Idea</h3>
+                    <h3>選択された検索足跡</h3>
                     <List>
                         {selectedSearchResult.map((ssr) => {
                             return (
                                 <ListItemButton sx={searchResultItem}>
                                     <Box>
                                         <InsertDriveFileIcon sx={{color: "#888", mr: "10px", mb: "-5px"}}/>
-                                        Title : {ssr.title}
+                                        タイトル : {ssr.title}
                                     </Box>
                                     <Box>
                                         <SearchIcon sx={{mr: "10px", mb: "-8px"}}/>
-                                        Search Query : {ssr.keyword}
+                                        検索キーワード : {ssr.keyword}
                                     </Box>
                                     <Box sx={sendTextFieldArea}>
                                         <TextField
                                             sx={sendTextField}
                                             onChange={(e) => onChangeSearchMemo(e, ssr)}
-                                            placeholder="Input memo if needed..."
+                                            placeholder="必要ならメモを入力しましょう"
                                         />
                                     </Box>
                                 </ListItemButton>
@@ -233,7 +233,7 @@ const Summarize = () => {
                 variant="contained"
                 onClick={onClickSend}
             >
-                Send
+                送信する
             </Button>
         </>
     )

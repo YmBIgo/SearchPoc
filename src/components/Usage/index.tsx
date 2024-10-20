@@ -9,28 +9,25 @@ const Usage = () => {
         <Box sx={contaner}>
             <h1>What is it ?</h1>
             <hr/>
-            <p>This is a Search Engine that can save and review your search ideas.</p>
-            <br/>
+            <p>これは、検索履歴を保存し共有できる検索エンジンです。</p>
             <h1>Usage</h1>
             <hr/>
-            <h3>1 : Search</h3>
+            <h3>1 : 検索する</h3>
             <p>
-                Before search, you have to write or select why you search (The Purpose).
+                検索する前に、あなたがなぜ検索するかを選択か入力する必要があります（目的）
                 <br/>
-                But it does't take your time too much, just write small memo here.
+                これにはそこまで時間はかかりません。簡単なメモを残しましょう。
             </p>
-            <h3>2 : Summarize your Search</h3>
+            <h3>2 : 検索結果をまとめる</h3>
             <p>
-                When your search is done, you have to summarize your search by clicking summarize button in the header.
-                <br/>
-                And in this page, What you have to do is just select what you think useful for your search, and click send button.
+                検索が済んだら、クリックした検索結果一覧から、妥当だった検索結果を選びメモを残す作業をしてもらいます。
             </p>
-            <h3>3 : Share your Ideas though search</h3>
+            <h3>3 : 検索足跡が検索結果に出てくる</h3>
             <p>
-                Your search summarized result can be searched next time, so you don't have to search same thing.
+                あなたがまとめた検索足跡は次の検索の時に出てきますので、同じ内容を再び検索する必要はなくなります。
             </p>
             <hr/>
-            <h1>I am now making function that can share your ideas with other engineers.</h1>
+            <h1>現在のように個人で完結せず。エンジニア間で検索足跡をシェアできる機能を作ろうとしています。</h1>
             <p>Kazuya Kurihara @2024/10/20</p>
         </Box>
     )

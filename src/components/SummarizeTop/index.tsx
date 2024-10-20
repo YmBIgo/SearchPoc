@@ -31,7 +31,7 @@ const SummarizeTop = () => {
     }, [])
     return (
         <Box sx={container}>
-            <h1>Select Purpose which you want to summarize</h1>
+            <h1>まとめたい検索目的を選んでください</h1>
             <hr/>
             <List>
                 {purposes.map((p) => {

@@ -43,8 +43,8 @@ const ThoughtComponent = () => {
     if (!thought) return <CircularProgress/>
     return (
         <Box sx={container}>
-            <h1>Idea : {thought.purpose.title}</h1>
-            <h3>How to solve it ?</h3>
+            <h1>検索足跡 : {thought.purpose.title}</h1>
+            <h3>どうやって解決するの？</h3>
             <hr/>
             <List>
                 {thought.searches.map((search) => {
@@ -52,7 +52,7 @@ const ThoughtComponent = () => {
                         <ListItemButton sx={searchResultItem}>
                             <Box>
                                 <InsertDriveFileIcon sx={{color: "#888", mr: "10px", mb: "-5px"}}/>
-                                Title :
+                                タイトル :
                                 { search.url.startsWith("https://chatgpt.com")
                                     ? <>{search.title}</>
                                     : <a href={search.url} target="_blank">{search.title}</a>
@@ -60,11 +60,11 @@ const ThoughtComponent = () => {
                             </Box>
                             <Box>
                                 <SearchIcon sx={{mr: "10px", mb: "-8px"}}/>
-                                Search Query : {search.keyword}
+                                検索キーワード : {search.keyword}
                             </Box>
                             <Box>
                                 <EditIcon sx={{mr: "10px",mb: "-5px"}}/>
-                                Memo : {search.memo}
+                                メモ : {search.memo}
                             </Box>
                             { search.url.startsWith("https://chatgpt.com") &&
                                 <Box>

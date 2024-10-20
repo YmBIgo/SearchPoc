@@ -23,19 +23,19 @@ const Header = () => {
                 <MenuIcon />
             </IconButton>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                <Link to="/" style={{color: "white"}} id="searchEngine2">Search Engine Poc</Link>
+                <Link to="/" style={{color: "white"}} id="searchEngine2">検索エンジンPoc</Link>
             </Typography>
             <Button color="inherit">
-                <Link to="/usage" style={{color: "white"}}>Usage</Link>
+                <Link to="/usage" style={{color: "white"}}>使い方</Link>
             </Button>
             <Button color="inherit">
-                <Link to="/thoughts" style={{color: "white"}}>Ideas</Link>
+                <Link to="/thoughts" style={{color: "white"}}>検索足跡</Link>
             </Button>
             <Button color="inherit">
-                <Link to="/summarize" style={{color: "white"}}>Summarize</Link>
+                <Link to="/summarize" style={{color: "white"}}>まとめる</Link>
             </Button>
             <Button color="inherit">
-                <Link to="/" style={{color: "white"}}>Search</Link>
+                <Link to="/" style={{color: "white"}}>検索する</Link>
             </Button>
             </Toolbar>
         </AppBar>
