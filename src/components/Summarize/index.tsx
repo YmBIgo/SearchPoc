@@ -160,7 +160,7 @@ const Summarize = () => {
             </p>
             <Box sx={container}>
                 <Box sx={containerSection}>
-                    <h3>検索履歴</h3>
+                    <h3>検索履歴 {selectedSearchResult.length}/{purpose.searchResult.length} 選択中</h3>
                     <List>
                         {purpose.searchResult.map((sr) => {
                             const date = new Date(sr?.searchAt ?? Date.now()).toISOString()
@@ -175,7 +175,10 @@ const Summarize = () => {
                                             タイトル : {sr.title}
                                             <br/><br/>
                                             <SearchIcon sx={{mr: "10px", mb: "-8px"}}/>
-                                            検索ワード : {sr.keyword}
+                                            { sr.url.startsWith("https://chatgpt.com/")
+                                            ? <>ChatGPT</>
+                                            : <>検索キーワード</>
+                                            } : {sr.keyword}
                                             <br/>
                                         </h3>
                                         <span>@{date}</span>
@@ -213,7 +216,10 @@ const Summarize = () => {
                                     </Box>
                                     <Box>
                                         <SearchIcon sx={{mr: "10px", mb: "-8px"}}/>
-                                        検索キーワード : {ssr.keyword}
+                                        { ssr.url.startsWith("https://chatgpt.com/")
+                                        ? <>ChatGPT</>
+                                        : <>検索キーワード</>
+                                        } : {ssr.keyword}
                                     </Box>
                                     <Box sx={sendTextFieldArea}>
                                         <TextField

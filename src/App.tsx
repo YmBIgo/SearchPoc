@@ -43,7 +43,7 @@ export default App
   <script defer>
     // this hack should be fixed...
     window.addEventListener("load", () => {
-      setTimeout(() => document.getElementById("searchEngine2")?.click(), 1000)
+      setTimeout(() => document.getElementById("searchEngine2")?.click(), 1500)
     })
   </script>
 */

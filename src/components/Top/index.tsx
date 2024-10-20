@@ -34,7 +34,7 @@ const containerSection = {
     border: "1px solid black",
     width: "49%",
     padding: "10px 15px",
-    height: "calc(100vh - 150px)",
+    height: "calc(100vh - 120px)",
     overflow: "scroll",
     borderRadius: "10px"
 }
@@ -168,7 +168,7 @@ const initialSearchThought = [{
 		"title": "Enable internet access for VPC-connected Lambda functions",
 		"snippet": "By default, Lambda functions run in a Lambda-managed VPC that has internet access. To access resources in a VPC in your account, you can add a VPC configuration to a function. This restricts the function to resources within that VPC, unless the VPC has internet access. This page explains how to provide internet access to VPC-connected Lambda ...",
 		"searchAt": 1729379026709,
-		"memo": "Official document, a little bit long for Japanese..."
+		"memo": "Official English document is a little bit long for Japanese..."
 	}, {
 		"keyword": "lambda internet access",
 		"resultIndex": 12,
@@ -325,9 +325,9 @@ const Top = () => {
     const [openAiResult, setOpenAiResult] = useState<SearchResult[]>([])
     const [thoughts, setThoughts] = useState<Thought[]>([])
     const [currentTab, setCurrentTab] = useState<number>(0)
-    const currentThoughts = query
+    const currentThoughts = searchText
     ? thoughts.filter((t) => {
-        return t.purpose.title.toLowerCase().includes(query.toLocaleLowerCase())
+        return t.purpose.title.toLowerCase().includes(searchText.toLocaleLowerCase())
     })
     : []
     // left side event
@@ -455,7 +455,7 @@ const Top = () => {
     return (
         <Box sx={container}>
             <Box sx={containerSection}>
-                <h1>検索する <Button size="small" variant="contained" onClick={insertInitialValue}>初期値を入力する (お試しで見てみたい人向け)</Button></h1>
+                <h1>検索する <Button size="small" variant="contained" onClick={insertInitialValue}>お試しデータを追加する</Button></h1>
                 <TextField
                     value={searchText}
                     onChange={onChangeSearchInput}
