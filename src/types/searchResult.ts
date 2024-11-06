@@ -5,5 +5,6 @@ export type SearchResult = {
     url: string;
     snippet: string;
     searchAt?: number;
-    memo?: string
+    cachedUrl?: string;
+    memo?: string;
 }

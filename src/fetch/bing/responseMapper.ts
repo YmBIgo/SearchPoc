@@ -17,6 +17,7 @@ export class ResponseMapper {
                 resultIndex: index,
                 title: String(d.name),
                 url: String(d.url),
+                cachedUrl: String(d.cachedPageUrl),
                 snippet: String(d.snippet),
             }
         }) as SearchResult[]

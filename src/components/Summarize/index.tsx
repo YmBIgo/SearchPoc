@@ -182,6 +182,9 @@ const Summarize = () => {
                                             <br/>
                                         </h3>
                                         <span>@{date}</span>
+                                        <span>
+                                        Url : <a href={sr.url} target="_blank">{sr.url}</a>
+                                        </span>
                                         <Accordion>
                                             <AccordionSummary
                                             expandIcon={<ArrowDropDownIcon />}
@@ -189,8 +192,6 @@ const Summarize = () => {
                                                 詳細を見る
                                             </AccordionSummary>
                                             <AccordionDetails>
-                                                Url : <a href={sr.url} target="_blank">{sr.url}</a>
-                                                <br/><br/>
                                                 スニペット : {
                                                     sr.url.startsWith("https://chatgpt.com")
                                                     ? sr.snippet.slice(0, 500)
@@ -220,6 +221,9 @@ const Summarize = () => {
                                         ? <>ChatGPT</>
                                         : <>検索キーワード</>
                                         } : {ssr.keyword}
+                                    </Box>
+                                    <Box>
+                                        URL：{ssr.url}
                                     </Box>
                                     <Box sx={sendTextFieldArea}>
                                         <TextField

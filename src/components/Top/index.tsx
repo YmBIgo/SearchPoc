@@ -1,640 +1,609 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 import {
-    Box,
-    TextField,
-    Select,
-    MenuItem,
-    Button,
-    SelectChangeEvent,
-    Tabs,
-    Tab
-} from "@mui/material"
+  Box,
+  TextField,
+  Select,
+  MenuItem,
+  Button,
+  SelectChangeEvent,
+  Tabs,
+  Tab,
+} from "@mui/material";
 
-import { fetchBing } from "../../fetch/bing"
-import { Purpose, isPurposeArrayType } from "../../types/purpose"
-import { CURRENT_SEARCH_PURPOSE, SEARCH_PURPOSES, SEARCH_THOUGHTS } from "../../const/localstorage"
-import { SearchResult } from "../../types/searchResult"
-import { initLocalStorage } from "../../helper/localstorage"
-import { UUIDGeneratorNode2 } from "../../helper/random"
-import { Thought, isThoughtArrayType } from "../../types/thought"
-import { Link } from "react-router-dom"
-import { fetchOpenAi } from "../../fetch/chatgpt"
-import Markdown from "react-markdown"
+import { fetchBing } from "../../fetch/bing";
+import { Purpose, isPurposeArrayType } from "../../types/purpose";
+import {
+  CURRENT_SEARCH_PURPOSE,
+  SEARCH_PURPOSES,
+  SEARCH_THOUGHTS,
+} from "../../const/localstorage";
+import { SearchResult } from "../../types/searchResult";
+import { initLocalStorage } from "../../helper/localstorage";
+import { UUIDGeneratorNode2 } from "../../helper/random";
+import { Thought, isThoughtArrayType } from "../../types/thought";
+import { Link } from "react-router-dom";
+import { fetchOpenAi } from "../../fetch/chatgpt";
+import Markdown from "react-markdown";
 
 const container = {
-    display: "flex",
-    flexFlow: "row",
-    gap: "2%",
-    marginTop: "10px"
-}
+  display: "flex",
+  flexFlow: "row",
+  gap: "2%",
+  marginTop: "10px",
+};
 const containerSection = {
-    display: "flex",
-    flexFlow: "column",
-    gap: "15px",
-    border: "1px solid black",
-    width: "49%",
-    padding: "10px 15px",
-    height: "calc(100vh - 120px)",
-    overflow: "scroll",
-    borderRadius: "10px"
-}
+  display: "flex",
+  flexFlow: "column",
+  gap: "15px",
+  border: "1px solid black",
+  width: "49%",
+  padding: "10px 15px",
+  height: "calc(100vh - 120px)",
+  overflow: "scroll",
+  borderRadius: "10px",
+};
 const textField = {
-    width: "90%",
-}
+  width: "90%",
+};
 const textFieldSmall = {
-    width: "60%"
-}
+  width: "60%",
+};
 const purposeSection = {
-    display: "flex",
-    flexFlow: "column",
-    gap: "10px",
-    border: "1px solid #CCC",
-    padding: "10px",
-    borderRadius: "10px"
-}
+  display: "flex",
+  flexFlow: "column",
+  gap: "10px",
+  border: "1px solid #CCC",
+  padding: "10px",
+  borderRadius: "10px",
+};
 // const purposeSearch = {
 //     display: "flex",
 //     alignItems: "center",
 //     gap: "10px"
 // }
 const searchPageSection = {
-    display: "flex",
-    gap: "3px"
-}
+  display: "flex",
+  gap: "3px",
+};
 const searchButtons = {
-    display: "flex",
-    gap: "2%"
-}
+  display: "flex",
+  gap: "2%",
+};
 
 const initialCurrentSearch = [
-    {
-        "key":"cb875532-5e6c-4f0d-9004-8742b81c4170",
-        "title":"React Router How to add Dynamic Path",
-        "searchResult":[],
-        "createdAt":1729379775574,
-        "updatedAt":1729379775574
-    }
-]
+  {
+    key: "cb875532-5e6c-4f0d-9004-8742b81c4170",
+    title: "React Router How to add Dynamic Path",
+    searchResult: [],
+    createdAt: 1729379775574,
+    updatedAt: 1729379775574,
+  },
+];
 
 const initialSearchPurpose = [
-	{
-		"key": "064dc89c-a0fb-46d2-b0ab-217cc292cb79",
-		"title": "Bing API Usage",
-		"searchResult": [
-			{
-				"keyword": "Bing API 使い方",
-				"resultIndex": 0,
-				"url": "https://techblog.raccoon.ne.jp/archives/1617156256.html",
-				"title": "Bing API 使い方",
-				"snippet": "Bing Search APIの実行するためには以下を行い、API keyを発行する必要があります。. それでは、もう少し詳細な手順をみていきましょう！. 1. Azureへの登録. Bing Search APIを使用するためには、Azureへの登録が必要です。. アカウントを持っていない方は、 https://azure ...",
-				"searchAt": 1729422802588
-			},
-			{
-				"keyword": "Bing API 使い方",
-				"resultIndex": 1,
-				"url": "https://urashita.com/archives/8183",
-				"title": "Bing API 使い方",
-				"snippet": "今回、マイクロソフトのBingの検索結果を、Bing Search APIを使ってプログラム的に取得する方法をまとめました。. Googleの検索結果を取得する方法については、以下の記事をご覧ください。. Google Custom Search API (カスタムサーチAPI)を使ってプログラムで検索結果 ...",
-				"searchAt": 1729422903217
-			},
-			{
-				"keyword": "Bing Search API の使い方を教えて",
-				"resultIndex": 0,
-				"url": "https://chatgpt.com/",
-				"title": "Bing Search API の使い方を教えて",
-				"snippet": "Bing Search API は、マイクロソフトの Azure プラットフォームを通じて提供されているサービスで、Web 検索機能をアプリケーションに組み込むことができます。以下に Bing Search API の基本的な使い方を説明します。\n\n### 1. Azure アカウントの作成\n- まず、Bing Search API を使用するためには Azure アカウントが必要です。アカウントを持っていない場合は、Azure の公式サイトにアクセスして新しいアカウントを作成します。\n\n### 2. Azure ポータルで Bing Search リソースを作成\n- Azure ポータル（portal.azure.com）にログインし、「+ リソースの作成」から「Bing Search v7」を検索し、適切なリソースを作成します。\n\n### 3. API キーの取得\n- 作成した Bing Search リソースの「キーとエンドポイント」セクションで、API キー（サブスクリプションキー）を取得します。このキーは API リクエストを認証するために必要です。\n\n### 4. API の利用\n- Bing Search API は通常 HTTP リクエストを使用して情報を取得します。以下は基本的な使い方の例です。\n\n#### 使用例: Web 検索\n```python\nimport requests\n\nsubscription_key = 'YOUR_SUBSCRIPTION_KEY'\nsearch_term = 'example search'\nurl = f'https://api.bing.microsoft.com/v7.0/search'\n\nheaders = {\n    'Ocp-Apim-Subscription-Key': subscription_key,\n}\n\nparams = {\n    'q': search_term,\n    'textDecorations': True,\n    'textFormat': 'HTML',\n}\n\nresponse = requests.get(url, headers=headers, params=params)\nresponse.raise_for_status()\nsearch_results = response.json()\n\nprint(search_results)\n```\n\n### 5. レスポンスの処理\n- レスポンスは JSON フォーマットで返されますので、Python などのプログラミング言語で JSON を扱い、必要な情報を取得・処理します。\n\n### 6. トラフィック管理と課金\n- 各プランには、月間の呼び出し回数制限や課金オプションがありますので、Azure の料金設定についても確認し、自身のニーズに合ったプランを選択してください。\n\n### 公式ドキュメントの参照\n- さらに詳細な情報は、公式ドキュメント（Microsoft Azure の Bing Search API ドキュメント）を参照することで確認できます。\n\nこのステップを踏むことで、アプリケーションに Bing Search API を統合し、Web 検索機能を実装できます。",
-				"searchAt": 1729423005356
-			}
-		],
-		"createdAt": 1729347481884,
-		"updatedAt": 1729347481884
-	}
-]
+  {
+    key: "539ca0d5-8b53-454a-a171-815e2bc64bfe",
+    title: "AWS lambda のインターネット接続",
+    searchResult: [],
+    createdAt: 1730903878876,
+    updatedAt: 1730903878876,
+  },
+];
 
-const initialSearchThought = [{
-	"key": "1e0c0df9-e842-42bf-a21d-6983b093c0a2",
-	"searches": [{
-		"keyword": "Bing API",
-		"resultIndex": 8,
-		"url": "https://learn.microsoft.com/en-us/bing/search-apis/bing-web-search/quickstarts/rest/python",
-		"title": "Quickstart: Use Python to call the Bing Web Search API",
-		"snippet": "search_term = \"Microsoft Bing Search Services\" Make a request. This code uses the requests library to call the Bing Web Search API and return the results as a JSON object. The API key is passed in the headers dictionary, and the search term and query parameters are passed in the params dictionary. For a complete list of options and parameters ...",
-		"searchAt": 1729346629714,
-		"memo": "URL is wrong in tutorial..."
-	}],
-	"purpose": {
-		"key": "aad55abf-5670-44d1-82cd-4d3267e91730",
-		"title": "Bing API not work",
-		"searchResult": [{
-			"keyword": "Bing API",
-			"resultIndex": 0,
-			"url": "https://www.microsoft.com/en-us/bing/apis/bing-web-search-api",
-			"title": "Web Search API | Microsoft Bing",
-			"snippet": "Learn how to use Bing Web Search API to bring intelligent search to your apps and access billions of web documents. Explore the features, benefits, and resources of Bing Web Search API and other Bing APIs.",
-			"searchAt": 1729346618348
-		}, {
-			"keyword": "Bing API",
-			"resultIndex": 1,
-			"url": "https://www.microsoft.com/en-us/bing/apis",
-			"title": "Bing Search APIs | Microsoft Bing",
-			"snippet": "Learn how to use Bing Search APIs to add search capabilities to your site or app for Web, Images, News, Videos, Entities, Visual Search, Custom Search, Autosuggest and Spell. Explore the features, pricing, documentation and support for Bing Search APIs.",
-			"searchAt": 1729346620931
-		}, {
-			"keyword": "Bing API",
-			"resultIndex": 9,
-			"url": "https://blogs.bing.com/Engineering-Blog/2017-11/Start-using-the-Bing-Search-APIs-in-under-5-minutes",
-			"title": "Start using the Bing Search APIs in under 5 minutes",
-			"snippet": "Learn how to integrate and evaluate Bing Search APIs in your development environment in under 5 minutes. Choose from six languages and follow the step-by-step instructions to access the vast knowledge of the web.",
-			"searchAt": 1729346624315
-		}, {
-			"keyword": "Bing API",
-			"resultIndex": 8,
-			"url": "https://learn.microsoft.com/en-us/bing/search-apis/bing-web-search/quickstarts/rest/python",
-			"title": "Quickstart: Use Python to call the Bing Web Search API",
-			"snippet": "search_term = \"Microsoft Bing Search Services\" Make a request. This code uses the requests library to call the Bing Web Search API and return the results as a JSON object. The API key is passed in the headers dictionary, and the search term and query parameters are passed in the params dictionary. For a complete list of options and parameters ...",
-			"searchAt": 1729346629714
-		}],
-		"createdAt": 1729346612616,
-		"updatedAt": 1729346612616
-	},
-	"createdAt": 1729346649318,
-	"updatedAt": 1729346649318
-}, {
-	"key": "78dd890f-7728-4451-96e4-9165d1f65784",
-	"searches": [{
-		"keyword": "lambda internet access",
-		"resultIndex": 0,
-		"url": "https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc-internet.html",
-		"title": "Enable internet access for VPC-connected Lambda functions",
-		"snippet": "By default, Lambda functions run in a Lambda-managed VPC that has internet access. To access resources in a VPC in your account, you can add a VPC configuration to a function. This restricts the function to resources within that VPC, unless the VPC has internet access. This page explains how to provide internet access to VPC-connected Lambda ...",
-		"searchAt": 1729379026709,
-		"memo": "Official English document is a little bit long for Japanese..."
-	}, {
-		"keyword": "lambda internet access",
-		"resultIndex": 12,
-		"url": "https://repost.aws/ja/knowledge-center/internet-access-lambda-function",
-		"title": "VPC の Lambda 関数へのインターネットアクセスを許可する | AWS re:Post",
-		"snippet": "例: lambda_vpc_basic_execution。 6. [保存] を選択します。 詳細については、「Lambda 実行ロール」と「IAM コンソールでの実行ロールの作成」を参照してください。 Amazon VPC に接続するように Lambda 関数を設定する. 1. Lambda コンソールで関数のページを開きます。 2.",
-		"searchAt": 1729379310210,
-		"memo": "Official Japanese document. easy to understand"
-	}],
-	"purpose": {
-		"key": "700982c7-cf52-4d2e-82df-3ce7ed51934f",
-		"title": "AWS lambda can not access Internet",
-		"searchResult": [{
-			"keyword": "lambda internet access",
-			"resultIndex": 0,
-			"url": "https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc-internet.html",
-			"title": "Enable internet access for VPC-connected Lambda functions",
-			"snippet": "By default, Lambda functions run in a Lambda-managed VPC that has internet access. To access resources in a VPC in your account, you can add a VPC configuration to a function. This restricts the function to resources within that VPC, unless the VPC has internet access. This page explains how to provide internet access to VPC-connected Lambda ...",
-			"searchAt": 1729379026709
-		}, {
-			"keyword": "lambda internet access",
-			"resultIndex": 1,
-			"url": "https://repost.aws/knowledge-center/internet-access-lambda-function",
-			"title": "Give internet access to a Lambda function in a VPC",
-			"snippet": "Configure your Lambda function to connect to your Amazon VPC. Open the Functions page in the Lambda console. Choose the name of the function that you want to connect to your Amazon VPC. Choose the Configuration tab. Choose VPC from the left navigation bar, and then choose Edit. Then, enter the following fields:",
-			"searchAt": 1729379036227
-		}, {
-			"keyword": "lambda internet access",
-			"resultIndex": 3,
-			"url": "https://nodogmablog.bryanhogan.net/2022/06/accessing-the-internet-from-vpc-connected-lambda-functions-using-a-nat-gateway/",
-			"title": "Accessing the Internet from VPC Connected Lambda ... - no dogma blog",
-			"snippet": "aws lambda update-function-configuration --function-name OpenBreweryDBQuery --vpc-config SubnetIds=subnet-44444,SecurityGroupIds=sg-11111. This will take a while…. Once it is complete, try to invoke the Lambda function, it won’t work! The Lambda function no longer has access to the internet, but it can access your VPC.",
-			"searchAt": 1729379092324
-		}, {
-			"keyword": "lambda internet access",
-			"resultIndex": 5,
-			"url": "https://medium.com/@nwosuonyedikachi/how-to-give-internet-access-to-aws-lambda-in-vpc-b6837f894c15",
-			"title": "How to give internet access to AWS Lambda in VPC",
-			"snippet": "Step 1: Create a Subnet and tagged it as your Public Subnet. Step 2: Create an Internet Gateway and attach it to the VPC. Step 3: Create a Route Table, Edit routes, attach the Internet Gateway to ...",
-			"searchAt": 1729379113896
-		}, {
-			"keyword": "lambda internet access",
-			"resultIndex": 7,
-			"url": "https://medium.com/@arunasilva86/how-to-use-vpc-networking-effectively-for-lambda-445abefdf8cf",
-			"title": "Things You Must Know When Configuring Lambda With VPC Resources Access",
-			"snippet": "Use case 1: When lambda need access to resource available only within your VPC. If your lambda wants to access resources available only within the VPC, you must attach the lambda to that VPC (or ...",
-			"searchAt": 1729379159927
-		}, {
-			"keyword": "lambda internet access",
-			"resultIndex": 8,
-			"url": "https://medium.com/analytics-vidhya/vpc-lambda-internet-access-f70a55dc7a39",
-			"title": "lambda inside VPC with internet access | by Asaf Adar - Medium",
-			"snippet": "The ENI assigned to a lambda function is associated only with a private IP address. Therefore, the lambda function will not have an internet connection and each public HTTP call will result in a ...",
-			"searchAt": 1729379177944
-		}, {
-			"keyword": "lambda internet access",
-			"resultIndex": 9,
-			"url": "https://stackoverflow.com/questions/52992085/why-cant-an-aws-lambda-function-inside-a-public-subnet-in-a-vpc-connect-to-the",
-			"title": "Why can't an AWS lambda function inside a public subnet in a VPC ...",
-			"snippet": "Lambda functions connected to a VPC public subnet cannot typically** access the internet. To access the internet from a public subnet you need a public IP or you need to route via a NAT that itself has a public IP. You also need an Internet Gateway (IGW). However: Lambda functions do not, and cannot, have public IP addresses, and",
-			"searchAt": 1729379191593
-		}, {
-			"keyword": "lambda internet access",
-			"resultIndex": 2,
-			"url": "https://qiita.com/mogeko6347/items/ec385a9168756d287999",
-			"title": "VPCを設定したLambdaからインターネットにアクセスしたい - Qiita",
-			"snippet": "Lambdaは、デフォルトの設定ではAWSが自動で設定したVPCに設置され、自由にインターネットへのアクセスができます。 ただし、なんらかの事情で（例えばVPC内のリソースにLambdaからアクセスしたい時など）自分のVPCにLambdaを設置したい場合は、",
-			"searchAt": 1729379218393
-		}, {
-			"keyword": "lambda internet access",
-			"resultIndex": 1,
-			"url": "https://medium.com/@philippholly/aws-lambda-enable-outgoing-internet-access-within-vpc-8dd250e11e12",
-			"title": "AWS Lambda: Enable Outgoing Internet Access within VPC",
-			"snippet": "Lambda function: VPC settings. 3. Create a NAT Gateway in one of your initial VPC subnets with internet access in route table. In my case I chose the “subnet-dvel-001”. !!!",
-			"searchAt": 1729379252027
-		}, {
-			"keyword": "lambda internet access",
-			"resultIndex": 0,
-			"url": "https://stackoverflow.com/questions/61554862/lambda-in-a-vpc-not-able-to-access-internet",
-			"title": "Lambda in a VPC not able to access internet - Stack Overflow",
-			"snippet": "Lambda in a VPC does not have access to internet. You need to setup internet gateway in public subnet and NAT gateway in private subnet with your lambda to be able to access internet. From docs: Connect your function to private subnets to access private resources. If your function needs internet access, use NAT.",
-			"searchAt": 1729379268376
-		}, {
-			"keyword": "lambda internet access",
-			"resultIndex": 8,
-			"url": "https://www.reddit.com/r/aws/comments/76x68c/nat_gateway_for_lambda_public_internet_access/",
-			"title": "NAT Gateway for Lambda public internet access inside VPC is ... - Reddit",
-			"snippet": "Just for internet access for a Lambda function inside a VPC! This sets really bad practices for small developers and startups who simply cannot afford these NAT gateways and as a result, all of their infrastructure ends up being exposed outside of VPC, Lambda functions are connecting through RDS via public IP, etc... the list goes on and on. ...",
-			"searchAt": 1729379284824
-		}, {
-			"keyword": "lambda internet access",
-			"resultIndex": 10,
-			"url": "https://stackoverflow.com/questions/42527331/aws-lambda-in-vpc-doesnt-have-internet-access-behind-nat",
-			"title": "AWS Lambda in VPC doesn't have internet access behind NAT",
-			"snippet": "If you open that CIDR block from \"0.0.0.0/16\" to \"0.0.0.0/0\", Lambda can access the internet. I'm not that knowledgeable about NAT, but it seems that the NAT traffic is blocked by that ACL rule. Share. Improve this answer. Follow edited Mar 1, 2017 at 17:03. answered Mar 1 ...",
-			"searchAt": 1729379296510
-		}, {
-			"keyword": "lambda internet access",
-			"resultIndex": 12,
-			"url": "https://repost.aws/ja/knowledge-center/internet-access-lambda-function",
-			"title": "VPC の Lambda 関数へのインターネットアクセスを許可する | AWS re:Post",
-			"snippet": "例: lambda_vpc_basic_execution。 6. [保存] を選択します。 詳細については、「Lambda 実行ロール」と「IAM コンソールでの実行ロールの作成」を参照してください。 Amazon VPC に接続するように Lambda 関数を設定する. 1. Lambda コンソールで関数のページを開きます。 2.",
-			"searchAt": 1729379310210
-		}],
-		"createdAt": 1729379008643,
-		"updatedAt": 1729379008643
-	},
-	"createdAt": 1729379374459,
-	"updatedAt": 1729379374459
-}, {
-	"key": "d806a51d-d482-4246-b864-b773651ed598",
-	"searches": [{
-		"keyword": "React Router Dynamic Path",
-		"resultIndex": 1,
-		"url": "https://medium.com/@ritikkhndelwal/react-router-dom-tutorial-dynamic-routing-made-easy-a75ba2c258f8",
-		"title": "Dynamic Routing Made Easy: A React-router-dom Tutorial",
-		"snippet": "First of all the biggest change is the :id, this code make’s this path dynamic, ... And in the next blog we will go more deeper to explore more features provided by the react-router-dom. I hope ...",
-		"searchAt": 1729379789356,
-		"memo": ":id and useParams() imported from react-router-dom"
-	}],
-	"purpose": {
-		"key": "cb875532-5e6c-4f0d-9004-8742b81c4170",
-		"title": "React Router How to add Dynamic Path",
-		"searchResult": [{
-			"keyword": "React Router Dynamic Path",
-			"resultIndex": 1,
-			"url": "https://medium.com/@ritikkhndelwal/react-router-dom-tutorial-dynamic-routing-made-easy-a75ba2c258f8",
-			"title": "Dynamic Routing Made Easy: A React-router-dom Tutorial",
-			"snippet": "First of all the biggest change is the :id, this code make’s this path dynamic, ... And in the next blog we will go more deeper to explore more features provided by the react-router-dom. I hope ...",
-			"searchAt": 1729379789356
-		}],
-		"createdAt": 1729379775574,
-		"updatedAt": 1729379775574
-	},
-	"createdAt": 1729379837823,
-	"updatedAt": 1729379837823
-}]
-
+const initialSearchThought = [
+  {
+    key: "f8bb3385-ea44-4687-a58d-d7c20e071d89",
+    searches: [
+      {
+        keyword: "Bing API",
+        resultIndex: 0,
+        url: "https://www.microsoft.com/en-us/bing/apis/bing-web-search-api",
+        title: "Bing API",
+        snippet:
+          "Learn how to use Bing Web Search API to bring intelligent search to your apps and access billions of web documents. Explore the features, benefits, and resources of Bing Web Search API and other Bing APIs.",
+        searchAt: 1730903922807,
+        cachedUrl:
+          "http://cc.bingj.com/cache.aspx?q=Bing+API&d=5055834114702335&mkt=ja-JP&setlang=ja-JP&w=PNJ4-0BG42f7IL8-V_HeOfozjrJC4GHO",
+        memo: "URL が正しい",
+      },
+      {
+        keyword: "Bing API",
+        resultIndex: 1,
+        url: "https://techblog.raccoon.ne.jp/archives/1617156256.html",
+        title: "Bing API",
+        snippet:
+          "Bing Search APIとはMicrosoftの提供する検索エンジンであるBingでの検索結果を取得するためのAPIです。ブラウザからの検索のようにウェブページだけではなく画像やニュースの情報も取得することができます。API利用手順APIを利用する",
+        searchAt: 1730903929040,
+        cachedUrl:
+          "http://cc.bingj.com/cache.aspx?q=Bing+API&d=4613886267442778&mkt=ja-JP&setlang=ja-JP&w=gEQZZU3R-w0yJ22_imePNniBLFBJB0yq",
+        memo: "URL が正しい",
+      },
+    ],
+    purpose: {
+      key: "0abb4138-8faa-426e-9c01-5aae0d6e6c54",
+      title: "Bing API を使う",
+      searchResult: [
+        {
+          keyword: "Bing API",
+          resultIndex: 0,
+          url: "https://www.microsoft.com/en-us/bing/apis/bing-web-search-api",
+          title: "Bing API",
+          snippet:
+            "Learn how to use Bing Web Search API to bring intelligent search to your apps and access billions of web documents. Explore the features, benefits, and resources of Bing Web Search API and other Bing APIs.",
+          searchAt: 1730903922807,
+          cachedUrl:
+            "http://cc.bingj.com/cache.aspx?q=Bing+API&d=5055834114702335&mkt=ja-JP&setlang=ja-JP&w=PNJ4-0BG42f7IL8-V_HeOfozjrJC4GHO",
+        },
+        {
+          keyword: "Bing API",
+          resultIndex: 1,
+          url: "https://techblog.raccoon.ne.jp/archives/1617156256.html",
+          title: "Bing API",
+          snippet:
+            "Bing Search APIとはMicrosoftの提供する検索エンジンであるBingでの検索結果を取得するためのAPIです。ブラウザからの検索のようにウェブページだけではなく画像やニュースの情報も取得することができます。API利用手順APIを利用する",
+          searchAt: 1730903929040,
+          cachedUrl:
+            "http://cc.bingj.com/cache.aspx?q=Bing+API&d=4613886267442778&mkt=ja-JP&setlang=ja-JP&w=gEQZZU3R-w0yJ22_imePNniBLFBJB0yq",
+        },
+      ],
+      createdAt: 1730903858190,
+      updatedAt: 1730903858190,
+    },
+    createdAt: 1730904077354,
+    updatedAt: 1730904077354,
+  },
+  {
+    key: "9433b017-ce09-49f0-9f56-f61f33758c91",
+    searches: [
+      {
+        keyword: "aws lambda internet",
+        resultIndex: 0,
+        url: "https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/configuration-vpc-internet.html",
+        title: "aws lambda internet",
+        snippet:
+          "このページでは、VPC に接続された Lambda 関数にインターネットアクセスを提供する方法について説明します。 [VPC ワークフローの作成] は、サブネット、NAT ゲートウェイ、インターネットゲートウェイ、ルートテーブルエントリなど、Lambda 関数がプライベートサブネットからパブリックインターネットにアクセスするために必要なすべての VPC リソースを作成します。 Amazon VPC コンソール (https://console.aws.amazon.com/vpc/) を開きます。 ダッシュボードで、 [VPC を作成] を選択します。 [Resources to create] (作成するリソース) で、 [VPC and more] (VPC など) を選択します。",
+        searchAt: 1730903889291,
+        cachedUrl:
+          "http://cc.bingj.com/cache.aspx?q=aws+lambda+internet&d=4996984466519234&mkt=ja-JP&setlang=ja-JP&w=hKUwXF6rrP_gXbT6j_Ii_7MDBZ-iPFR0",
+      },
+      {
+        keyword: "aws lambda internet",
+        resultIndex: 1,
+        url: "https://repost.aws/ja/knowledge-center/internet-access-lambda-function",
+        title: "aws lambda internet",
+        snippet:
+          "プライベート サブネット からのインターネットアクセスには、ネットワークアドレス変換 (NAT) が必要です。 Amazon VPC に接続された Lambda 関数にインターネットアクセスを提供するには、そのアウトバウンドトラフィックをパブリック サブネット の NAT ゲートウェイ または NATインスタンス にルーティングします。 詳細については、「インターネットゲートウェイを使用してインターネットに接続する」を参照してください。 セットアップ例については、「例: プライベートサブネットにサーバーがある VPC および NAT」 を参照してください。",
+        searchAt: 1730903892159,
+        cachedUrl:
+          "http://cc.bingj.com/cache.aspx?q=aws+lambda+internet&d=4808611492921494&mkt=ja-JP&setlang=ja-JP&w=uaKL8dlqBvmKtAac4rDnOATsk5H9L2wL",
+      },
+      {
+        keyword: "aws lambda internet",
+        resultIndex: 0,
+        url: "https://chatgpt.com/",
+        title: "aws lambda internet",
+        snippet:
+          "AWS Lambda can access the internet based on whether the function is running inside a Virtual Private Cloud (VPC) and the configuration of that VPC. Here's how internet access works with AWS Lambda:\n\n1. **Not in a VPC:**\n   - By default, AWS Lambda functions have access to the internet if they are not running inside a specific VPC.\n   - This configuration is suitable for most functions that need internet access but do not need access to resources within a VPC, such as databases or other internal services.\n\n2. **Inside a VPC:**\n   - If a Lambda function is associated with a VPC, by default, it does not have internet access. This is because VPCs are, by design, isolated from the internet.\n   - To give a Lambda function internet access while inside a VPC, you need to configure a few elements:\n     - **NAT Gateway/Instance:** Set up a NAT (Network Address Translation) Gateway or NAT Instance in a public subnet. This allows outbound-only access to the internet for resources within private subnets of the VPC.\n     - **Route Table:** Update the route tables for the private subnets where the Lambda function runs to route internet-bound traffic to the NAT Gateway or Instance.\n     - **Security Groups and Network ACLs:** Ensure the security groups and network ACLs are configured to allow necessary traffic. For outbound access, the security group should allow traffic to the internet.\n\n3. **DNS Resolution:**\n   - Ensure that your Lambda function has appropriate DNS settings if it's running in a VPC. This often means enabling DNS resolution within the VPC settings so that internet-facing domain names can be resolved correctly.\n\nRemember that outbound internet access might incur additional costs, particularly when using a NAT Gateway or NAT Instance. The choice between using a NAT Gateway and a NAT Instance often comes down to factors like scalability, cost, and management overhead.",
+        searchAt: 1730903906024,
+        cachedUrl: "",
+      },
+    ],
+    purpose: {
+      key: "539ca0d5-8b53-454a-a171-815e2bc64bfe",
+      title: "AWS lambda のインターネット接続",
+      searchResult: [
+        {
+          keyword: "aws lambda internet",
+          resultIndex: 0,
+          url: "https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/configuration-vpc-internet.html",
+          title: "aws lambda internet",
+          snippet:
+            "このページでは、VPC に接続された Lambda 関数にインターネットアクセスを提供する方法について説明します。 [VPC ワークフローの作成] は、サブネット、NAT ゲートウェイ、インターネットゲートウェイ、ルートテーブルエントリなど、Lambda 関数がプライベートサブネットからパブリックインターネットにアクセスするために必要なすべての VPC リソースを作成します。 Amazon VPC コンソール (https://console.aws.amazon.com/vpc/) を開きます。 ダッシュボードで、 [VPC を作成] を選択します。 [Resources to create] (作成するリソース) で、 [VPC and more] (VPC など) を選択します。",
+          searchAt: 1730903889291,
+          cachedUrl:
+            "http://cc.bingj.com/cache.aspx?q=aws+lambda+internet&d=4996984466519234&mkt=ja-JP&setlang=ja-JP&w=hKUwXF6rrP_gXbT6j_Ii_7MDBZ-iPFR0",
+        },
+        {
+          keyword: "aws lambda internet",
+          resultIndex: 1,
+          url: "https://repost.aws/ja/knowledge-center/internet-access-lambda-function",
+          title: "aws lambda internet",
+          snippet:
+            "プライベート サブネット からのインターネットアクセスには、ネットワークアドレス変換 (NAT) が必要です。 Amazon VPC に接続された Lambda 関数にインターネットアクセスを提供するには、そのアウトバウンドトラフィックをパブリック サブネット の NAT ゲートウェイ または NATインスタンス にルーティングします。 詳細については、「インターネットゲートウェイを使用してインターネットに接続する」を参照してください。 セットアップ例については、「例: プライベートサブネットにサーバーがある VPC および NAT」 を参照してください。",
+          searchAt: 1730903892159,
+          cachedUrl:
+            "http://cc.bingj.com/cache.aspx?q=aws+lambda+internet&d=4808611492921494&mkt=ja-JP&setlang=ja-JP&w=uaKL8dlqBvmKtAac4rDnOATsk5H9L2wL",
+        },
+        {
+          keyword: "aws lambda internet",
+          resultIndex: 0,
+          url: "https://chatgpt.com/",
+          title: "aws lambda internet",
+          snippet:
+            "AWS Lambda can access the internet based on whether the function is running inside a Virtual Private Cloud (VPC) and the configuration of that VPC. Here's how internet access works with AWS Lambda:\n\n1. **Not in a VPC:**\n   - By default, AWS Lambda functions have access to the internet if they are not running inside a specific VPC.\n   - This configuration is suitable for most functions that need internet access but do not need access to resources within a VPC, such as databases or other internal services.\n\n2. **Inside a VPC:**\n   - If a Lambda function is associated with a VPC, by default, it does not have internet access. This is because VPCs are, by design, isolated from the internet.\n   - To give a Lambda function internet access while inside a VPC, you need to configure a few elements:\n     - **NAT Gateway/Instance:** Set up a NAT (Network Address Translation) Gateway or NAT Instance in a public subnet. This allows outbound-only access to the internet for resources within private subnets of the VPC.\n     - **Route Table:** Update the route tables for the private subnets where the Lambda function runs to route internet-bound traffic to the NAT Gateway or Instance.\n     - **Security Groups and Network ACLs:** Ensure the security groups and network ACLs are configured to allow necessary traffic. For outbound access, the security group should allow traffic to the internet.\n\n3. **DNS Resolution:**\n   - Ensure that your Lambda function has appropriate DNS settings if it's running in a VPC. This often means enabling DNS resolution within the VPC settings so that internet-facing domain names can be resolved correctly.\n\nRemember that outbound internet access might incur additional costs, particularly when using a NAT Gateway or NAT Instance. The choice between using a NAT Gateway and a NAT Instance often comes down to factors like scalability, cost, and management overhead.",
+          searchAt: 1730903906024,
+          cachedUrl: "",
+        },
+      ],
+      createdAt: 1730903878876,
+      updatedAt: 1730903878876,
+    },
+    createdAt: 1730904085938,
+    updatedAt: 1730904085938,
+  },
+];
 
 const Top = () => {
-    // left side states
-    const [searchText, setSearchText] = useState("")
-    const [purposes, setPurposes] = useState<Purpose[]>([])
-    const [searchPurposes, setSearchPurposes] = useState<Purpose[]>([])
-    const [inputPurpose, setInputPurpose] = useState("")
-    const [filterText, setFilterText] = useState("")
-    const [selectedPurpose, setSelectedPurpose] = useState("")
-    const [query, setQuery] = useState("")
-    const [offset, setOffset] = useState(0)
-    const [initDefaultLocalStorage, setInitDefaultLocalStorage] = useState(true)
-    const currentPurpose = purposes.find((p) => p.key === selectedPurpose)
-    // right side states
-    const [searchResult, setSearchResult] = useState<SearchResult[]>([])
-    const [openAiResult, setOpenAiResult] = useState<SearchResult[]>([])
-    const [thoughts, setThoughts] = useState<Thought[]>([])
-    const [currentTab, setCurrentTab] = useState<number>(0)
-    const currentThoughts = searchText
+  // left side states
+  const [searchText, setSearchText] = useState("");
+  const [purposes, setPurposes] = useState<Purpose[]>([]);
+  const [searchPurposes, setSearchPurposes] = useState<Purpose[]>([]);
+  const [inputPurpose, setInputPurpose] = useState("");
+  const [filterText, setFilterText] = useState("");
+  const [selectedPurpose, setSelectedPurpose] = useState("");
+  const [query, setQuery] = useState("");
+  const [offset, setOffset] = useState(0);
+  const [initDefaultLocalStorage, setInitDefaultLocalStorage] = useState(true);
+  const currentPurpose = purposes.find((p) => p.key === selectedPurpose);
+  // right side states
+  const [searchResult, setSearchResult] = useState<SearchResult[]>([]);
+  const [openAiResult, setOpenAiResult] = useState<SearchResult[]>([]);
+  const [thoughts, setThoughts] = useState<Thought[]>([]);
+  const [currentTab, setCurrentTab] = useState<number>(0);
+  const currentThoughts = searchText
     ? thoughts.filter((t) => {
-        return t.purpose.title.toLowerCase().includes(searchText.toLocaleLowerCase())
-    })
-    : []
-    // left side event
-    const onChangeSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchText(e.target.value)
+        return t.purpose.title
+          .toLowerCase()
+          .includes(searchText.toLocaleLowerCase());
+      })
+    : [];
+  // left side event
+  const onChangeSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchText(e.target.value);
+  };
+  const onClickSearchInput = (/*e: React.MouseEvent<HTMLButtonElement>*/) => {
+    if (!inputPurpose) return;
+    const genUuid = String(UUIDGeneratorNode2());
+    const now = Date.now();
+    const addInputPurpose: Purpose = {
+      key: genUuid,
+      title: inputPurpose,
+      searchResult: [],
+      createdAt: now,
+      updatedAt: now,
+    };
+    const newPurpose = [...purposes, addInputPurpose];
+    localStorage.setItem(SEARCH_PURPOSES, JSON.stringify(newPurpose));
+    localStorage.setItem(
+      CURRENT_SEARCH_PURPOSE,
+      JSON.stringify([addInputPurpose])
+    );
+    setInputPurpose("");
+    setPurposes(newPurpose);
+    setFilterText("");
+    setSearchPurposes(newPurpose);
+  };
+  const onChangeInputPurpose = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputPurpose(e.target.value);
+  };
+  const onChangeSelectPurpose = (e: SelectChangeEvent<string>) => {
+    setSelectedPurpose(e.target.value);
+  };
+  const onChangeFilterText = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFilterText(e.target.value);
+  };
+  const onClickFilterText = () => {
+    if (!filterText) {
+      setSearchPurposes(purposes);
+      return;
     }
-    const onClickSearchInput = (/*e: React.MouseEvent<HTMLButtonElement>*/) => {
-        if (!inputPurpose) return
-        const genUuid = String(UUIDGeneratorNode2())
-        const now = Date.now()
-        const addInputPurpose: Purpose = {
-            key: genUuid,
-            title: inputPurpose,
-            searchResult: [],
-            createdAt: now,
-            updatedAt: now
-        }
-        const newPurpose = [...purposes, addInputPurpose]
-        localStorage.setItem(SEARCH_PURPOSES, JSON.stringify(newPurpose))
-        localStorage.setItem(CURRENT_SEARCH_PURPOSE, JSON.stringify([addInputPurpose]))
-        setInputPurpose("")
-        setPurposes(newPurpose)
-        setFilterText("")
-        setSearchPurposes(newPurpose)
+    setSearchPurposes(
+      purposes.filter((p) =>
+        p.title.toLowerCase().includes(filterText.toLowerCase())
+      )
+    );
+  };
+  const getSearchResult = async (offset: number = 0) => {
+    if (!searchText || !selectedPurpose) return;
+    const bingResult = await fetchBing(searchText, offset);
+    setSearchResult(bingResult);
+    setCurrentTab(0);
+    setOffset(offset);
+  };
+  const getSearchOpenAi = async () => {
+    if (!searchText || !selectedPurpose) return;
+    const fetchOpenAiResult = await fetchOpenAi("true", searchText, searchText);
+    setOpenAiResult(fetchOpenAiResult);
+    setCurrentTab(2);
+    onClickUrl(
+      "https://chatgpt.com/",
+      0,
+      fetchOpenAiResult[0].snippet,
+      searchText,
+      "",
+      fetchOpenAiResult[0].keyword,
+    );
+  };
+  const insertInitialValue = () => {
+    try {
+      localStorage.setItem(
+        SEARCH_PURPOSES,
+        JSON.stringify(initialSearchPurpose)
+      );
+      localStorage.setItem(
+        CURRENT_SEARCH_PURPOSE,
+        JSON.stringify(initialCurrentSearch)
+      );
+      localStorage.setItem(
+        SEARCH_THOUGHTS,
+        JSON.stringify(initialSearchThought)
+      );
+    } catch (e) {
+      console.log(e);
+      initLocalStorage(SEARCH_PURPOSES);
+      initLocalStorage(CURRENT_SEARCH_PURPOSE);
+      initLocalStorage(SEARCH_THOUGHTS);
     }
-    const onChangeInputPurpose = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setInputPurpose(e.target.value)
+    setInitDefaultLocalStorage(true);
+  };
+  // right side event
+  const onChangeTab = (_: React.SyntheticEvent, newValue: number) => {
+    setCurrentTab(newValue);
+  };
+  const onClickUrl = (
+    url: string,
+    resultIndex: number,
+    snippet: string,
+    query1: string,
+    cachedUrl: string,
+    pageTitle: string
+  ) => {
+    if (!currentPurpose) return;
+    const now = Date.now();
+    const clickedSearch = {
+      keyword: query1,
+      resultIndex,
+      url,
+      title: pageTitle,
+      snippet,
+      searchAt: now,
+      cachedUrl,
+    };
+    const updatedCurrentPurpose = {
+      ...currentPurpose,
+      searchResult: [...(currentPurpose?.searchResult ?? []), clickedSearch],
+    };
+    const updatedPurpose = purposes.map((p) => {
+      if (p.key === selectedPurpose) return updatedCurrentPurpose;
+      return p;
+    });
+    setPurposes(updatedPurpose);
+    try {
+      localStorage.setItem(SEARCH_PURPOSES, JSON.stringify(updatedPurpose));
+    } catch (e) {
+      console.log(e);
+      initLocalStorage(SEARCH_PURPOSES);
     }
-    const onChangeSelectPurpose = (e: SelectChangeEvent<string>) => {
-        setSelectedPurpose(e.target.value)
+  };
+  useEffect(() => {
+    if (!initDefaultLocalStorage) return;
+    setInitDefaultLocalStorage(false);
+    const localStoragePurposeString = localStorage.getItem(SEARCH_PURPOSES);
+    if (!localStoragePurposeString) {
+      initLocalStorage(SEARCH_PURPOSES);
+      return;
     }
-    const onChangeFilterText = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFilterText(e.target.value)
+    try {
+      const JsonPurposeString = JSON.parse(localStoragePurposeString);
+      if (!isPurposeArrayType(JsonPurposeString)) throw Error;
+      setPurposes(JsonPurposeString);
+      setSearchPurposes(JsonPurposeString);
+    } catch (e) {
+      initLocalStorage(SEARCH_PURPOSES);
+      console.log(e);
     }
-    const onClickFilterText = () => {
-        if (!filterText) {
-            setSearchPurposes(purposes)
-            return
-        }
-        setSearchPurposes(purposes.filter((p) => p.title.toLowerCase().includes(filterText.toLowerCase())))
+  }, [initDefaultLocalStorage]);
+  useEffect(() => {
+    if (!initDefaultLocalStorage) return;
+    setInitDefaultLocalStorage(false);
+    try {
+      const localStorageThoughtString = localStorage.getItem(SEARCH_THOUGHTS);
+      if (!localStorageThoughtString) throw Error;
+      const localStorageThought = JSON.parse(localStorageThoughtString);
+      if (!isThoughtArrayType(localStorageThought)) throw Error;
+      setThoughts(localStorageThought);
+    } catch (e) {
+      initLocalStorage(SEARCH_THOUGHTS);
+      console.log(e);
     }
-    const getSearchResult = async(offset: number= 0) => {
-        if (!searchText || !selectedPurpose) return
-        const bingResult = await fetchBing(searchText, offset)
-        setSearchResult(bingResult)
-        setCurrentTab(0)
-        setOffset(offset)
-    }
-    const getSearchOpenAi = async () => {
-        if (!searchText || !selectedPurpose) return
-        const fetchOpenAiResult = await fetchOpenAi("true", searchText, searchText)
-        setOpenAiResult(fetchOpenAiResult)
-        setCurrentTab(2)
-        onClickUrl("https://chatgpt.com/", 0, fetchOpenAiResult[0].keyword, fetchOpenAiResult[0].snippet, searchText)
-    }
-    const insertInitialValue = () => {
-        try {
-            localStorage.setItem(SEARCH_PURPOSES, JSON.stringify(initialSearchPurpose))
-            localStorage.setItem(CURRENT_SEARCH_PURPOSE, JSON.stringify(initialCurrentSearch))
-            localStorage.setItem(SEARCH_THOUGHTS, JSON.stringify(initialSearchThought))
-        } catch (e) {
-            console.log(e)
-            initLocalStorage(SEARCH_PURPOSES)
-            initLocalStorage(CURRENT_SEARCH_PURPOSE)
-            initLocalStorage(SEARCH_THOUGHTS)
-        }
-        setInitDefaultLocalStorage(true)
-    }
-    // right side event
-    const onChangeTab = (_: React.SyntheticEvent, newValue: number) => {
-        setCurrentTab(newValue)
-    }
-    const onClickUrl = (url: string, resultIndex: number, title: string, snippet: string, query1: string) => {
-        if (!currentPurpose) return
-        const now = Date.now()
-        const clickedSearch = {keyword: query1, resultIndex, url, title, snippet, searchAt: now}
-        const updatedCurrentPurpose = {
-            ...currentPurpose,
-            searchResult: [...currentPurpose?.searchResult ?? [], clickedSearch]
-        }
-        const updatedPurpose = purposes.map((p)=>{
-            if (p.key === selectedPurpose) return updatedCurrentPurpose
-            return p
-        })
-        setPurposes(updatedPurpose)
-        try {
-            localStorage.setItem(SEARCH_PURPOSES, JSON.stringify(updatedPurpose))
-        } catch (e) {
-            console.log(e)
-            initLocalStorage(SEARCH_PURPOSES)
-        }
-    }
-    useEffect(() => {
-        if (!initDefaultLocalStorage) return
-        setInitDefaultLocalStorage(false)
-        const localStoragePurposeString = localStorage.getItem(SEARCH_PURPOSES)
-        if (!localStoragePurposeString) {
-            initLocalStorage(SEARCH_PURPOSES)
-            return
-        }
-        try {
-            const JsonPurposeString = JSON.parse(localStoragePurposeString)
-            if (!isPurposeArrayType(JsonPurposeString)) throw Error
-            setPurposes(JsonPurposeString)
-            setSearchPurposes(JsonPurposeString)
-        } catch (e) {
-            initLocalStorage(SEARCH_PURPOSES)
-            console.log(e)
-        }
-    }, [initDefaultLocalStorage])
-    useEffect(() => {
-        if (!initDefaultLocalStorage) return
-        setInitDefaultLocalStorage(false)
-        try {
-            const localStorageThoughtString = localStorage.getItem(SEARCH_THOUGHTS)
-            if (!localStorageThoughtString) throw Error
-            const localStorageThought = JSON.parse(localStorageThoughtString)
-            if (!isThoughtArrayType(localStorageThought)) throw Error
-            setThoughts(localStorageThought)
-        } catch(e) {
-            initLocalStorage(SEARCH_THOUGHTS)
-            console.log(e)
-        }
-    }, [initDefaultLocalStorage])
-    return (
-        <Box sx={container}>
-            <Box sx={containerSection}>
-                <h1>検索する <Button size="small" variant="contained" onClick={insertInitialValue}>お試しデータを追加する</Button></h1>
-                <TextField
-                    value={searchText}
-                    onChange={onChangeSearchInput}
-                    placeholder="検索キーワードを入力"
-                    sx={textField}
-                />
-                <Box sx={purposeSection}>
-                    <h3>目的を入力する</h3>
-                    <Box>
-                        <TextField
-                            value={inputPurpose}
-                            placeholder="検索目的を入力"
-                            onChange={onChangeInputPurpose}
-                            sx={textFieldSmall}
-                        />
-                        <Button
-                            onClick={onClickSearchInput}
-                            sx={{mt: "10px"}}
-                        >
-                            目的を追加する
-                        </Button>
-                    </Box>
-                    <Box>
-                        <TextField
-                            value={filterText}
-                            placeholder="検索目的をフィルタする"
-                            sx={textFieldSmall}
-                            onChange={onChangeFilterText}
-                        />
-                        <Button
-                            sx={{mt: "10px"}}
-                            onClick={onClickFilterText}
-                        >
-                            目的をフィルターする
-                        </Button>
-                    </Box>
-                    <Select
-                        sx={textField}
-                        value={selectedPurpose}
-                        onChange={onChangeSelectPurpose}
-                    >
-                        {searchPurposes.length
-                        ? searchPurposes.map((purpose) => {
-                            return(
-                            <MenuItem
-                                key={`${purpose.key}`}
-                                value={purpose.key}
-                            >
-                                {purpose.title}
-                            </MenuItem>
-                            )
-                        })
-                        : <MenuItem>目的は選択されていません</MenuItem>
-                        }
-                    </Select>
-                </Box>
-                <Box sx={searchButtons}>
-                    <Button
-                        variant="contained"
-                        onClick={() => {
-                            setQuery(searchText)
-                            getSearchResult(0)
-                        }}
-                        disabled={!currentPurpose || !searchText}
-                        sx={{width: "45%"}}
-                    >
-                        Bing
-                    </Button>
-                    <Button
-                        variant="contained"
-                        color="success"
-                        onClick={() => {
-                            setQuery(searchText)
-                            getSearchOpenAi()
-                        }}
-                        disabled={!currentPurpose || !searchText}
-                        sx={{width: "45%"}}
-                    >
-                        ChatGPT
-                    </Button>
-                </Box>
-                <Link to="/usage">使い方</Link>
-            </Box>
-            <Box sx={containerSection}>
-                <h1 style={{marginBottom: "0px"}}>検索結果</h1>
-                <Box>
-                    <Tabs value={currentTab} onChange={onChangeTab}>
-                        <Tab label={`Bing検索 ${searchResult.length}`}/>
-                        <Tab label={`検索足跡検索 ${currentThoughts.length}`} />
-                        <Tab label={`ChatGPT検索 ${openAiResult.length}`} />
-                    </Tabs>
-                </Box>
-                { currentTab === 0 ?
-                    <>
-                    { searchResult.length
-                        ?
-                        <>
-                        {currentTab === 0
-                            ?
-                            <Box>
-                                {searchResult.map((result) => {
-                                    return (
-                                        <Box key={`${result.title}_${result.url}`}>
-                                            <h4>
-                                                <a
-                                                    href={result.url}
-                                                    target="_blank"
-                                                    onClick={() => {
-                                                        onClickUrl(result.url, result.resultIndex, result.keyword, result.snippet, query)
-                                                    }}
-                                                >
-                                                    {result.resultIndex + offset + 1} : {result.title}
-                                                </a>
-                                                <br/>
-                                                <small>{result.url}</small>
-                                            </h4>
-                                            <p>{result.snippet.slice(0, 100)}...</p>
-                                        </Box>
-                                    )
-                                })}
-                                <Box sx={searchPageSection}>
-                                    { [0, 10, 20, 30, 40, 50].map((pageNumber) => {
-                                        return (
-                                            <Button
-                                                size="small"
-                                                variant="outlined"
-                                                onClick={() => getSearchResult(pageNumber)}
-                                                key={`searchNumber_${pageNumber}`}
-                                            >
-                                                {pageNumber}
-                                            </Button>
-                                        )
-                                    })
-                                    }
-                                </Box>
-                            </Box>
-                            : <></>
-                        }
-                        </>
-                        : <p>検索結果はありません</p>
-                    }
-                    </>
-                    :
-                    currentTab === 1
-                    ?
-                    <>
-                        {currentThoughts.length
-                        ?
-                        <Box>
-                            { currentThoughts.map((thought) => {
-                                return (
-                                    <Box key={`${thought.key}`}>
-                                        <h4>
-                                            <a href={`/thoughts/${thought.key}`} target="_blank">
-                                                {thought.purpose.title}
-                                            </a>
-                                        </h4>
-                                        <p>{thought.searches.find((s) => s.memo)?.memo ?? "メモはありません"}</p>
-                                    </Box>
-                                )
-                            }) }
-                        </Box>
-                        : <p>検索足跡はありません</p>
-                        }
-                    </>
-                    :
-                    <>
-                        {openAiResult.map((result) => {
-                            return (
-                                <Box key={`${result.title}_${result.url}`}>
-                                    <Markdown>{result.snippet}</Markdown>
-                                </Box>
-                            )
-                        })}
-                    </>
-                }
-            </Box>
+  }, [initDefaultLocalStorage]);
+  return (
+    <Box sx={container}>
+      <Box sx={containerSection}>
+        <h1>
+          検索する{" "}
+          <Button size="small" variant="contained" onClick={insertInitialValue}>
+            お試しデータを追加する
+          </Button>
+        </h1>
+        <TextField
+          value={searchText}
+          onChange={onChangeSearchInput}
+          placeholder="検索キーワードを入力"
+          sx={textField}
+        />
+        <Box sx={purposeSection}>
+          <h3>目的を入力する</h3>
+          <Box>
+            <TextField
+              value={inputPurpose}
+              placeholder="検索目的を入力"
+              onChange={onChangeInputPurpose}
+              sx={textFieldSmall}
+            />
+            <Button onClick={onClickSearchInput} sx={{ mt: "10px" }}>
+              目的を追加する
+            </Button>
+          </Box>
+          <Box>
+            <TextField
+              value={filterText}
+              placeholder="検索目的をフィルタする"
+              sx={textFieldSmall}
+              onChange={onChangeFilterText}
+            />
+            <Button sx={{ mt: "10px" }} onClick={onClickFilterText}>
+              目的をフィルターする
+            </Button>
+          </Box>
+          <Select
+            sx={textField}
+            value={selectedPurpose}
+            onChange={onChangeSelectPurpose}
+          >
+            {searchPurposes.length ? (
+              searchPurposes.map((purpose) => {
+                return (
+                  <MenuItem key={`${purpose.key}`} value={purpose.key}>
+                    {purpose.title}
+                  </MenuItem>
+                );
+              })
+            ) : (
+              <MenuItem>目的は選択されていません</MenuItem>
+            )}
+          </Select>
         </Box>
-    )
-}
+        <Box sx={searchButtons}>
+          <Button
+            variant="contained"
+            onClick={() => {
+              setQuery(searchText);
+              getSearchResult(0);
+            }}
+            disabled={!currentPurpose || !searchText}
+            sx={{ width: "45%" }}
+          >
+            Bing
+          </Button>
+          <Button
+            variant="contained"
+            color="success"
+            onClick={() => {
+              setQuery(searchText);
+              getSearchOpenAi();
+            }}
+            disabled={!currentPurpose || !searchText}
+            sx={{ width: "45%" }}
+          >
+            ChatGPT
+          </Button>
+        </Box>
+        <Link to="/usage">使い方</Link>
+      </Box>
+      <Box sx={containerSection}>
+        <h1 style={{ marginBottom: "0px" }}>検索結果</h1>
+        <Box>
+          <Tabs value={currentTab} onChange={onChangeTab}>
+            <Tab label={`Bing検索 ${searchResult.length}`} />
+            <Tab label={`検索足跡検索 ${currentThoughts.length}`} />
+            <Tab label={`ChatGPT検索 ${openAiResult.length}`} />
+          </Tabs>
+        </Box>
+        {currentTab === 0 ? (
+          <>
+            {searchResult.length ? (
+              <>
+                {currentTab === 0 ? (
+                  <Box>
+                    {searchResult.map((result) => {
+                      return (
+                        <Box key={`${result.title}_${result.url}`}>
+                          <h4>
+                            <a
+                              href={result.url}
+                              target="_blank"
+                              onClick={() => {
+                                onClickUrl(
+                                  result.url,
+                                  result.resultIndex,
+                                  result.snippet,
+                                  query,
+                                  result.cachedUrl ?? "",
+                                  result.title
+                                );
+                              }}
+                            >
+                              {result.resultIndex + offset + 1} : {result.title}
+                            </a>
+                            <br />
+                            <small>{result.url}</small>
+                          </h4>
+                          <p>{result.snippet.slice(0, 100)}...</p>
+                        </Box>
+                      );
+                    })}
+                    <Box sx={searchPageSection}>
+                      {[0, 10, 20, 30, 40, 50].map((pageNumber) => {
+                        return (
+                          <Button
+                            size="small"
+                            variant="outlined"
+                            onClick={() => getSearchResult(pageNumber)}
+                            key={`searchNumber_${pageNumber}`}
+                          >
+                            {pageNumber}
+                          </Button>
+                        );
+                      })}
+                    </Box>
+                  </Box>
+                ) : (
+                  <></>
+                )}
+              </>
+            ) : (
+              <p>検索結果はありません</p>
+            )}
+          </>
+        ) : currentTab === 1 ? (
+          <>
+            {currentThoughts.length ? (
+              <Box>
+                {currentThoughts.map((thought) => {
+                  return (
+                    <Box key={`${thought.key}`}>
+                      <h4>
+                        <a href={`/thoughts/${thought.key}`} target="_blank">
+                          {thought.purpose.title}
+                        </a>
+                      </h4>
+                      <p>
+                        {thought.searches.find((s) => s.memo)?.memo ??
+                          "メモはありません"}
+                      </p>
+                    </Box>
+                  );
+                })}
+              </Box>
+            ) : (
+              <p>検索足跡はありません</p>
+            )}
+          </>
+        ) : (
+          <>
+            {openAiResult.map((result) => {
+              return (
+                <Box key={`${result.title}_${result.url}`}>
+                  <Markdown>{result.snippet}</Markdown>
+                </Box>
+              );
+            })}
+          </>
+        )}
+      </Box>
+    </Box>
+  );
+};
 
-export default Top
+export default Top;
