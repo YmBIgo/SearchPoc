@@ -4,6 +4,7 @@ import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import SearchIcon from '@mui/icons-material/Search';
 import EditIcon from '@mui/icons-material/Edit';
 import SchoolIcon from '@mui/icons-material/School';
+import DOMPurify from "dompurify";
 
 import { Thought, isThoughtArrayType } from "../../types/thought"
 import { initLocalStorage } from "../../helper/localstorage"
@@ -34,10 +35,20 @@ const searchResultItem = {
     padding: "10px"
 }
 
+const endpoint = "https://k47io3f7exao7prtrzaqqknx7y0nkqml.lambda-url.us-west-1.on.aws/"
+
+
 const ThoughtComponent = () => {
     const [thought, setThought] = useState<Thought | null>(null)
     const [currentSearch, setCurrentSearch] = useState<SearchResult>()
+    const [urlBody, setUrlBody] = useState<string>("")
     const { id } = useParams<{[id: string]: string}>()
+    const fetchUrl = async(url: string) => {
+        if (!url) return
+        const result = await fetch(endpoint + "?openUrl=" + encodeURIComponent(url))
+        const textResult = await result.text()
+        setUrlBody(DOMPurify.sanitize(textResult, { FORBID_TAGS : ['script', 'meta', 'a'] }))
+    }
     useEffect(() => {
         try {
             const localStorageThoughtString = localStorage.getItem(SEARCH_THOUGHTS)
@@ -48,7 +59,7 @@ const ThoughtComponent = () => {
             if (!currentThought) return
             setThought(currentThought)
             setCurrentSearch(currentThought.searches[0])
-            console.log(currentThought)
+            fetchUrl(currentThought.searches[0].cachedUrl)
         } catch(e) {
             initLocalStorage(SEARCH_THOUGHTS)
             console.log(e)
@@ -75,9 +86,9 @@ const ThoughtComponent = () => {
                             <Markdown>{currentSearch?.snippet}</Markdown>
                         </Box>
                     :   <Box>
-                            <iframe
+                            <Box
                                 id="fetchContent"
-                                style={
+                                sx={
                                     {
                                         width:"100%",
                                         height:"350px",
@@ -86,8 +97,9 @@ const ThoughtComponent = () => {
                                         padding: "10px"
                                     }
                                 }
-                                src={currentSearch?.cachedUrl}
-                            />
+                            >
+                                    <div dangerouslySetInnerHTML={{__html: urlBody}}/>
+                            </Box>
                             <br/>
                             <a
                                 href={currentSearch?.url}
@@ -110,6 +122,7 @@ const ThoughtComponent = () => {
                                 <ListItemButton
                                     sx={searchResultItem}
                                     onClick={() => {
+                                        fetchUrl(search?.cachedUrl ?? "")
                                         setCurrentSearch(search)
                                     }}
                                 >

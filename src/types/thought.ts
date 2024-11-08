@@ -5,6 +5,7 @@ export type Thought = {
     key: string;
     searches: SearchResult[];
     purpose: Purpose;
+    memo?: string;
     createdAt: number;
     updatedAt: number;
 }

@@ -26,6 +26,9 @@ const Header = () => {
                 <Link to="/" style={{color: "white"}} id="searchEngine2">検索エンジンPoc</Link>
             </Typography>
             <Button color="inherit">
+                <Link to="https://google-poc.s3.us-west-1.amazonaws.com/Usage.pdf" style={{color: "white"}}>使い方PDF</Link>
+            </Button>
+            <Button color="inherit">
                 <Link to="/usage" style={{color: "white"}}>使い方</Link>
             </Button>
             <Button color="inherit">

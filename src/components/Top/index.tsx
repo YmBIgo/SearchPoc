@@ -499,6 +499,7 @@ const Top = () => {
             ChatGPT
           </Button>
         </Box>
+        <a href="https://google-poc.s3.us-west-1.amazonaws.com/Usage.pdf">使い方PDF</a>
         <Link to="/usage">使い方</Link>
       </Box>
       <Box sx={containerSection}>
