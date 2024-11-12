@@ -235,6 +235,7 @@ const Top = () => {
   return (
     <Box sx={container}>
       <Box sx={containerSection}>
+        <h1 style={{ marginBottom: "0px" }}>Search</h1>
         <TextField
           value={searchText}
           onChange={onChangeSearchInput}
