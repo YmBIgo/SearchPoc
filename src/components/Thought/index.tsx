@@ -59,7 +59,7 @@ const ThoughtComponent = () => {
         const flattenSearch = thought?.searches?.map((cs) => {
             let url = cs.url
             if (cs.url.startsWith("https://chatgpt.com")) url = cs.snippet
-            return `キーワード：「${cs.keyword}」\nURL：${url}\nメモ：${cs.memo}`
+            return `Keyword : 「${cs.keyword}」\nURL：${url}\nMemo：${cs.memo}`
         }).join(", ") ?? ""
         const result = await fetch(endpoint + "?aiArticle="+flattenSearch)
         let textResult = ""
@@ -95,16 +95,16 @@ const ThoughtComponent = () => {
     if (!thought) return <CircularProgress/>
     return (
         <Box sx={container}>
-            <h1>検索足跡 : {thought.purpose.title}</h1>
-            <Button href="#chatGPT" variant="contained">ChatGPTに記事を書いてもらう</Button>
+            <h1>Search History : {thought.purpose.title}</h1>
+            <Button href="#chatGPT" variant="contained">Use ChatGPT to write article</Button>
             <br/><br/>
             <hr/>
-            <h3>どうやって解決するの？</h3>
+            <h3>How to solve it?</h3>
             <Box sx={itemContent}>
                 <Box sx={itemLeft}>
                     <p>
                         <SearchIcon sx={{mr: "10px", mb: "-8px"}}/>
-                        検索キーワード : {currentSearch?.keyword}
+                        Search Keyword : {currentSearch?.keyword}
                     </p>
                     { currentSearch?.url.startsWith("https://chatgpt.com")
                     ?
@@ -134,17 +134,17 @@ const ThoughtComponent = () => {
                                 href={currentSearch?.url}
                                 target="_blank"
                             >
-                                開かなかったり見えない場合はこちらをクリック
+                                If you can not see page please click here
                             </a>
                         </Box>
                     }
                     <p>
                         <EditIcon sx={{mr: "10px",mb: "-5px"}}/>
-                        メモ：{currentSearch?.memo}
+                        memo : {currentSearch?.memo}
                     </p>
                 </Box>
                 <Box sx={itemRight}>
-                    <p>参考にしたウェブサイト</p>
+                    <p>websites you refer</p>
                     <List>
                         {thought.searches.map((search) => {
                             return (
@@ -157,7 +157,7 @@ const ThoughtComponent = () => {
                                 >
                                     <Box>
                                         <InsertDriveFileIcon sx={{color: "#888", mr: "10px", mb: "-5px"}}/>
-                                        タイトル :
+                                        title :
                                         {search.title}
                                     </Box>
                                 </ListItemButton>
@@ -168,13 +168,14 @@ const ThoughtComponent = () => {
             </Box>
             <hr/>
             <Box>
-                <h3 id="chatGPT">ChatGPTに聞いてみる</h3>
+                <h3 id="chatGPT">Ask ChatGPT</h3>
                 <Button variant="contained" onClick={fetchArticle}>
-                    ChatGPTに記事を書かせる</Button>
+                    Use ChatGPT to write article
+                </Button>
                 <br/><br/>
                 <Tabs value={currentTab} onChange={handleTabChange}>
-                    <Tab label="見た目"></Tab>
-                    <Tab label="MarkDown"></Tab>
+                    <Tab label="Display Mode"></Tab>
+                    <Tab label="MarkDown Mode"></Tab>
                 </Tabs>
                 <Box sx={{border: "1px solid black", padding: "10px"}}>
                     {isLoading && <CircularProgress/>}

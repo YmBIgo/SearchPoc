@@ -23,22 +23,22 @@ const Header = () => {
                 <MenuIcon />
             </IconButton>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                <Link to="/" style={{color: "white"}} id="searchEngine2">検索エンジンPoc</Link>
+                <Link to="/" style={{color: "white"}} id="searchEngine2">Poodle</Link>
             </Typography>
-            <Button color="inherit">
+            {/* <Button color="inherit">
                 <Link to="https://google-poc.s3.us-west-1.amazonaws.com/Usage.pdf" style={{color: "white"}}>使い方PDF</Link>
+            </Button> */}
+            <Button color="inherit">
+                <Link to="/usage" style={{color: "white"}}>Usage</Link>
             </Button>
             <Button color="inherit">
-                <Link to="/usage" style={{color: "white"}}>使い方</Link>
+                <Link to="/thoughts" style={{color: "white"}}>Search History</Link>
             </Button>
             <Button color="inherit">
-                <Link to="/thoughts" style={{color: "white"}}>検索足跡</Link>
+                <Link to="/summarize" style={{color: "white"}}>Summarize</Link>
             </Button>
             <Button color="inherit">
-                <Link to="/summarize" style={{color: "white"}}>まとめる</Link>
-            </Button>
-            <Button color="inherit">
-                <Link to="/" style={{color: "white"}}>検索する</Link>
+                <Link to="/" style={{color: "white"}}>Search</Link>
             </Button>
             </Toolbar>
         </AppBar>

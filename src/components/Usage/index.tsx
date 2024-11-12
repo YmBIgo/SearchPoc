@@ -7,49 +7,48 @@ const contaner = {
 const Usage = () => {
     return (
         <Box sx={contaner}>
-            <h1><a href="https://google-poc.s3.us-west-1.amazonaws.com/Usage.pdf">使い方説明PDFもあります！</a></h1>
             <h1>What is it ?</h1>
             <hr/>
             <p style={{lineHeight: "25px"}}>
-                このサイトは、検索履歴からQiitaなど向けの記事を自動生成してくれる検索エンジンのPocです。
+                This site Poodle is Search engine accelerate your speed to write technical articles.
                 <br/>
-                知名度が低く採用活動に困っている ITベンチャー向けに、業務中の検索履歴を使って爆速で技術記事を書く環境を用意いたします。
+                We provide environment which accelerate your speed to write articles, especially for IT Startups.
             </p>
             <h1>What is different?</h1>
             <hr/>
             <p style={{lineHeight: "25px"}}>
-                通常 Qiitaの記事を書くのには、手作業だと１〜２時間かかります。それが高度な内容になればなるほど、時間はかかっていくものです。
+                Usually we spend more than 1 hour to write your technical articles. It is taking more time when contents become difficult.
                 <br/>
-                この検索エンジンは、そんな時間のかかるQiitaの記事作成を爆速にします。
+                This search engine accelerate this writing process of your technical articles.
                 <br/>
-                業務中の調べ事。その検索履歴をこの検索エンジンは覚えてくれて、その検索履歴から ChatGPT が自動でQiita記事を書いてくれるので、記事作成にかかる自由時間の工数は１０〜２０分に短縮されます。
+                In your work, this search engine would remember your search history. And using this search history, ChatGPT will auto-generate article, so time spent for writing articles become one third.
                 <br/>
-                業務中にこの検索エンジンを使って、あなたの業務中のノウハウを爆速で Qiita記事にしましょう！
+                Let use this search engine for work, and accelerate your process to write articles.
             </p>
             <h1>Usage</h1>
             <hr/>
-            <h3>1 : 検索する</h3>
+            <h3>1 : Search</h3>
             <p style={{lineHeight: "25px"}}>
-                検索する前に、あなたがなぜ検索するかを選択か入力する必要があります（目的）
+                Before Search, you have to write why you search.
                 <br/>
-                これにはそこまで時間はかかりません。メモと思って目的が何だったか残しましょう。
+                This would not spend so many time. Just write down your thoughts.
             </p>
-            <h3>2 : 検索結果をまとめる</h3>
+            <h3>2 : Summarize search result</h3>
             <p>
-                検索が済んだら、ヘッダーの「まとめる」からまとめる検索目的を選んで、検索した検索履歴一覧から、妥当だった検索結果を選びメモを残す作業をしてもらいます。
+                When your search done, click header "Summarize" and select your search purpose. Choose which search history is valid.
             </p>
-            <h3>3 : ChatGPTに検索履歴から記事を自動生成してもらう</h3>
+            <h3>3 : Using ChatGPT to auto-generate article</h3>
             <p>
-                ここまで終わったら、ヘッダーの「検索足跡」から２でまとめた検索履歴を選び、「ChatGPTに記事を書いてもらう」を押します
+                Until now, click header "Search History" and select search history you generate at 2. And Press "Use ChatGPT to write article".
                 <br/>
-                これで、記事が自動生成されます。
+                And article is auto-generated.
             </p>
-            <h3>4 : 検索足跡が検索結果に出てくる</h3>
+            <h3>4 : Your Search History is shown in search result</h3>
             <p>
-                あなたがまとめた検索足跡は次の検索の時に出てきますので、同じ内容を再び検索する必要はなくなります。
+                Your search result is shown in your search result, so you don't have to search the same thing next time.
             </p>
             <hr/>
-            <p>Kazuya Kurihara @2024/10/20</p>
+            <p>Kazuya Kurihara @2024/11/13</p>
         </Box>
     )
 }

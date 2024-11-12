@@ -153,14 +153,14 @@ const Summarize = () => {
     return (
         <>
             <h1 style={{marginBottom: "10px"}}>
-                [検索足跡をまとめる] 目的 : {purpose.title}
+                [Summarize Search History] Purpose : {purpose.title}
             </h1>
             <p>
-                役に立った検索履歴を選択してください
+                Select useful search history.
             </p>
             <Box sx={container}>
                 <Box sx={containerSection}>
-                    <h3>検索履歴 {selectedSearchResult.length}/{purpose.searchResult.length} 選択中</h3>
+                    <h3>Search history {selectedSearchResult.length}/{purpose.searchResult.length} Selecting...</h3>
                     <List>
                         {purpose.searchResult.map((sr) => {
                             const date = new Date(sr?.searchAt ?? Date.now()).toISOString()
@@ -172,12 +172,12 @@ const Summarize = () => {
                                     <Box sx={searchHistoryListItemRight}>
                                         <h3 style={{marginBottom: "5px"}}>
                                             <InsertDriveFileIcon sx={{color: "#888", mr: "10px", mb: "-5px"}}/>
-                                            タイトル : {sr.title}
+                                            Title : {sr.title}
                                             <br/><br/>
                                             <SearchIcon sx={{mr: "10px", mb: "-8px"}}/>
                                             { sr.url.startsWith("https://chatgpt.com/")
                                             ? <>ChatGPT</>
-                                            : <>検索キーワード</>
+                                            : <>Search Keyword</>
                                             } : {sr.keyword}
                                             <br/>
                                         </h3>
@@ -189,10 +189,10 @@ const Summarize = () => {
                                             <AccordionSummary
                                             expandIcon={<ArrowDropDownIcon />}
                                             >
-                                                詳細を見る
+                                                Show Details
                                             </AccordionSummary>
                                             <AccordionDetails>
-                                                スニペット : {
+                                                Snippet : {
                                                     sr.url.startsWith("https://chatgpt.com")
                                                     ? sr.snippet.slice(0, 500)
                                                     : sr.snippet.slice(0, 100)
@@ -206,20 +206,20 @@ const Summarize = () => {
                     </List>
                 </Box>
                 <Box sx={containerSection}>
-                    <h3>選択された検索足跡</h3>
+                    <h3>Selected Search History</h3>
                     <List>
                         {selectedSearchResult.map((ssr) => {
                             return (
                                 <ListItemButton sx={searchResultItem}>
                                     <Box>
                                         <InsertDriveFileIcon sx={{color: "#888", mr: "10px", mb: "-5px"}}/>
-                                        タイトル : {ssr.title}
+                                        Title : {ssr.title}
                                     </Box>
                                     <Box>
                                         <SearchIcon sx={{mr: "10px", mb: "-8px"}}/>
                                         { ssr.url.startsWith("https://chatgpt.com/")
                                         ? <>ChatGPT</>
-                                        : <>検索キーワード</>
+                                        : <>Search Keyword</>
                                         } : {ssr.keyword}
                                     </Box>
                                     <Box>
@@ -229,7 +229,7 @@ const Summarize = () => {
                                         <TextField
                                             sx={sendTextField}
                                             onChange={(e) => onChangeSearchMemo(e, ssr)}
-                                            placeholder="必要ならメモを入力しましょう"
+                                            placeholder="Take Memo in order for ChatGPT to write well article"
                                         />
                                     </Box>
                                 </ListItemButton>
@@ -243,7 +243,7 @@ const Summarize = () => {
                 variant="contained"
                 onClick={onClickSend}
             >
-                送信する
+                Send
             </Button>
         </>
     )
