@@ -57,7 +57,9 @@ const ThoughtComponent = () => {
         setIsLoading(true)
         setChatGPTArticle("")
         const flattenSearch = thought?.searches?.map((cs) => {
-            return `キーワード：「${cs.keyword}」\nURL：${cs.url}\nメモ：${cs.memo}`
+            let url = cs.url
+            if (cs.url.startsWith("https://chatgpt.com")) url = cs.snippet
+            return `キーワード：「${cs.keyword}」\nURL：${url}\nメモ：${cs.memo}`
         }).join(", ") ?? ""
         const result = await fetch(endpoint + "?aiArticle="+flattenSearch)
         let textResult = ""
