@@ -40,6 +40,9 @@ const Header = () => {
             <Button color="inherit">
                 <Link to="/" style={{color: "white"}}>検索する</Link>
             </Button>
+            <Button color="inherit">
+                <a href="http://searchengine2en.s3-website-us-west-1.amazonaws.com/" target="_blank">English</a>
+            </Button>
             </Toolbar>
         </AppBar>
     </Box>
