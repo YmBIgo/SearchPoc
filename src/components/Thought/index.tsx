@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Box, CircularProgress, List, ListItemButton } from "@mui/material"
+import { Box, Button, CircularProgress, List, ListItemButton, Tab, Tabs } from "@mui/material"
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import SearchIcon from '@mui/icons-material/Search';
 import EditIcon from '@mui/icons-material/Edit';
@@ -43,11 +43,36 @@ const ThoughtComponent = () => {
     const [currentSearch, setCurrentSearch] = useState<SearchResult>()
     const [urlBody, setUrlBody] = useState<string>("")
     const { id } = useParams<{[id: string]: string}>()
+    const [chatGPTArticle, setChatGPTArticle] = useState<string>("")
+    const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [currentTab, setCurrentTab] = useState(0)
+
     const fetchUrl = async(url: string) => {
         if (!url) return
         const result = await fetch(endpoint + "?openUrl=" + encodeURIComponent(url))
         const textResult = await result.text()
         setUrlBody(DOMPurify.sanitize(textResult, { FORBID_TAGS : ['script', 'meta', 'a'] }))
+    }
+    const fetchArticle = async() => {
+        setIsLoading(true)
+        setChatGPTArticle("")
+        const flattenSearch = thought?.searches?.map((cs) => {
+            return `キーワード：「${cs.keyword}」\nURL：${cs.url}\nメモ：${cs.memo}`
+        }).join(", ") ?? ""
+        const result = await fetch(endpoint + "?aiArticle="+flattenSearch)
+        let textResult = ""
+        try {
+            textResult = await result.text()
+            const parsedTextResult = JSON.parse(textResult)
+            textResult = parsedTextResult.value[0]
+        } catch (e) {
+            console.log(e)
+        }
+        setChatGPTArticle(textResult)
+        setIsLoading(false)
+    }
+    const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
+        setCurrentTab(newValue)
     }
     useEffect(() => {
         try {
@@ -69,8 +94,10 @@ const ThoughtComponent = () => {
     return (
         <Box sx={container}>
             <h1>検索足跡 : {thought.purpose.title}</h1>
-            <h3>どうやって解決するの？</h3>
+            <Button href="#chatGPT" variant="contained">ChatGPTに記事を書いてもらう</Button>
+            <br/><br/>
             <hr/>
+            <h3>どうやって解決するの？</h3>
             <Box sx={itemContent}>
                 <Box sx={itemLeft}>
                     <p>
@@ -135,6 +162,28 @@ const ThoughtComponent = () => {
                             )
                         })}
                     </List>
+                </Box>
+            </Box>
+            <hr/>
+            <Box>
+                <h3 id="chatGPT">ChatGPTに聞いてみる</h3>
+                <Button variant="contained" onClick={fetchArticle}>
+                    ChatGPTに記事を書かせる</Button>
+                <br/><br/>
+                <Tabs value={currentTab} onChange={handleTabChange}>
+                    <Tab label="見た目"></Tab>
+                    <Tab label="MarkDown"></Tab>
+                </Tabs>
+                <Box sx={{border: "1px solid black", padding: "10px"}}>
+                    {isLoading && <CircularProgress/>}
+                    { currentTab === 0
+                        ? <Markdown>{chatGPTArticle}</Markdown>
+                        : <Box>
+                                {chatGPTArticle.split("\n").map((text) => {
+                                    return <>{text}<br/></>
+                                })}
+                            </Box>
+                    }
                 </Box>
             </Box>
         </Box>
