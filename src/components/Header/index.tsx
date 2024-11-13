@@ -26,6 +26,9 @@ const Header = () => {
                 <Link to="/" style={{color: "white"}} id="searchEngine2">CoffeeCup</Link>
             </Typography>
             <Button color="inherit">
+                <Link to="/search" style={{color: "white"}}>検索する</Link>
+            </Button>
+            <Button color="inherit">
                 <Link to="https://google-poc.s3.us-west-1.amazonaws.com/Usage.pdf" style={{color: "white"}}>使い方PDF</Link>
             </Button>
             <Button color="inherit">
@@ -36,9 +39,6 @@ const Header = () => {
             </Button>
             <Button color="inherit">
                 <Link to="/summarize" style={{color: "white"}}>まとめる</Link>
-            </Button>
-            <Button color="inherit">
-                <Link to="/" style={{color: "white"}}>LP</Link>
             </Button>
             <Button color="inherit">
                 <a href="http://searchengine2en.s3-website-us-west-1.amazonaws.com/" target="_blank" style={{color: "white"}}>English</a>

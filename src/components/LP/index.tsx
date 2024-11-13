@@ -11,7 +11,7 @@ const section1 = {
     backgroundColor: "white"
 }
 const section2 = {
-    padding: "20px",
+    padding: "20px 20px 40px",
     backgroundColor: "#757ce824"
 }
 const section2Main = {

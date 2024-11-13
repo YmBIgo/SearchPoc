@@ -35,6 +35,8 @@ function App() {
         <Route path="/usage" element={<Usage/>}/>
         <Route path="/" element={<LP/>}/>
       </Routes>
+      <hr/>
+      <p>Kazuya Kurihara @2024 <a href="https://x.com/mugcup55929" target="_blank">Twitter</a></p>
     </div>
   )
 }
