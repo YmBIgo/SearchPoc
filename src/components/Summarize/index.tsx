@@ -127,11 +127,11 @@ const Summarize = () => {
             if (!isPurposeArrayType(localStoragePurposes)) throw Error
             const filteredPurpose = localStoragePurposes.filter((p) => !(p.key === id))
             localStorage.setItem(SEARCH_PURPOSES, JSON.stringify(filteredPurpose))
-            navigate("/")
+            navigate("/search")
         } catch(e) {
             console.log(e)
             initLocalStorage(SEARCH_THOUGHTS)
-            navigate("/")
+            navigate("/search")
         }
     }
     useEffect(() => {
@@ -229,7 +229,7 @@ const Summarize = () => {
                                         <TextField
                                             sx={sendTextField}
                                             onChange={(e) => onChangeSearchMemo(e, ssr)}
-                                            placeholder="必要ならメモを入力しましょう"
+                                            placeholder="ChatGPTに記事を書かせるために説明を加えましょう"
                                         />
                                     </Box>
                                 </ListItemButton>
