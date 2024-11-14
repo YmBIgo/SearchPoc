@@ -24,6 +24,7 @@ import { Thought, isThoughtArrayType } from "../../types/thought";
 import { Link } from "react-router-dom";
 import { fetchOpenAi } from "../../fetch/chatgpt";
 import Markdown from "react-markdown";
+import { mediaQuery, useMediaQuery } from "../../hooks/useMediaQuery";
 
 const container = {
   display: "flex",
@@ -234,6 +235,7 @@ const initialSearchThought = [
 ];
 
 const Top = () => {
+  const isSp = useMediaQuery(mediaQuery.sp)
   // left side states
   const [searchText, setSearchText] = useState("");
   const [purposes, setPurposes] = useState<Purpose[]>([]);
@@ -419,6 +421,16 @@ const Top = () => {
       console.log(e);
     }
   }, [initDefaultLocalStorage]);
+  if (isSp) {
+    return(
+      <Box>
+        <p>SP未対応です<br/>PCでお使いください</p>
+        <Button variant="contained">
+          <Link to="/" style={{color: "white"}}>トップに戻る</Link>
+        </Button>
+      </Box>
+    )
+  }
   return (
     <Box sx={container}>
       <Box sx={containerSection}>

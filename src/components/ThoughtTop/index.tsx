@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import {
     Box,
+    Button,
     List,
     ListItemButton
 } from "@mui/material"
@@ -11,6 +12,7 @@ import { SEARCH_THOUGHTS } from "../../const/localstorage"
 import { initLocalStorage } from "../../helper/localstorage"
 import { Link } from "react-router-dom";
 import { Edit } from "@mui/icons-material";
+import { mediaQuery, useMediaQuery } from "../../hooks/useMediaQuery";
 
 const container = {
     marginTop: "10px"
@@ -24,6 +26,7 @@ const listItem = {
 }
 
 const ThoughtTop = () => {
+    const isSp = useMediaQuery(mediaQuery.sp)
     const [thoughts, setThoughts] = useState<Thought[]>([])
     useEffect(() => {
         try {
@@ -37,6 +40,16 @@ const ThoughtTop = () => {
             console.log(e)
         }
     }, [])
+    if (isSp) {
+        return(
+          <Box>
+            <p>SP未対応です<br/>PCでお使いください</p>
+            <Button variant="contained">
+              <Link to="/" style={{color: "white"}}>トップに戻る</Link>
+            </Button>
+          </Box>
+        )
+    }
     return (
         <Box sx={container}>
             <h1>検索足跡一覧</h1>
