@@ -54,6 +54,11 @@ const LP = () => {
                 <Button variant="contained">
                     <Link to="/search" style={{color: "white"}}>今すぐ無料で試す！</Link>
                 </Button>
+                <Button variant="contained" color="info" sx={{marginLeft: "10px"}}>
+                    <Link to="/usage" style={{color: "white"}}>
+                        詳しい使い方はこちら
+                    </Link>
+                </Button>
             </Box>
             <Box sx={section1}>
                 <h2>日常の検索を、組織の資産に</h2>
@@ -99,10 +104,13 @@ const LP = () => {
                     </Box>
                     <Box sx={section3Memo}>
                         <h3 style={{fontSize: "30px", textAlign: "center"}}>ノウハウ 2倍蓄積</h3>
-                        <p>
+                        <p style={{position: "relative", color: "#BBBBBB80"}}>
                             コンフルを使ってもたまらなかった知見ノウハウが、たまるようになります
                             <br/>
                             業務の知見をためる組織にして、属人化しない組織にしましょう
+                            <p style={{position: "absolute", top: "15px", left: "calc(50% - 40px)", color: "black"}}>
+                                <strong>Coming soon...</strong>
+                            </p>
                         </p>
                     </Box>
                     <Box sx={section3Memo}>
@@ -115,13 +123,54 @@ const LP = () => {
                     </Box>
                 </Box>
             </Box>
-            <hr/>
+            <Box sx={section2}>
+                <h2 style={{textAlign: "center"}}>使い方３ステップ</h2>
+                <br/>
+                <Box sx={section2Main}>
+                    <Box sx={section2Memo}>
+                        <h3>１業務中この検索エンジンを使う</h3>
+                        <small>消費時間：通常の業務時間</small>
+                        <p>
+                            ChatGPT に記事を爆速で書かせるために、この検索エンジンを使いましょう。検索には目的入力が必須です。
+                        </p>
+                        <Button variant="contained">
+                            <Link to="/search" style={{color: "white"}}>
+                                検索ページ
+                            </Link>
+                        </Button>
+                    </Box>
+                    <Box sx={section2Memo}>
+                        <h3>２検索履歴をまとめる</h3>
+                        <small>消費時間：1記事につき5分</small>
+                        <p>
+                            １の結果は検索履歴として保存されるので、履歴の中から目的に沿ったものを選びましょう。
+                        </p>
+                        <Button variant="contained">
+                            <Link to="/summarize" style={{color: "white"}}>
+                                検索履歴をまとめるページ
+                            </Link>
+                        </Button>
+                    </Box>
+                    <Box sx={section2Memo}>
+                        <h3>３ChatGPTに記事を書かせる</h3>
+                        <small>消費時間：1記事につき5〜10分</small>
+                        <p>
+                            ２でまとめれば、検索足跡ページから、ChatGPTに記事を書かせることができるようになります。
+                        </p>
+                        <Button variant="contained">
+                            <Link to="/thoughts" style={{color: "white"}}>
+                                記事自動生成の検索足跡ページ
+                            </Link>
+                        </Button>
+                    </Box>
+                </Box>
+            </Box>
             <Box sx={section4}>
                 <h2 style={{textAlign: "center", borderBottom: "2px solid #757ce864", width: "46%", margin: "0 27%", paddingBottom: "10px"}}>この検索エンジンの主な機能</h2>
                 <p style={{lineHeight: "46px"}}>
                     <strong>検索履歴の自動記事化</strong> - 検索履歴をもとに、組織向けのQiita記事を自動生成。知見の共有とノウハウの蓄積を手軽に実現
                     <br/>
-                    <strong>ノウハウの蓄積</strong> - 業務中に得た検索情報を蓄積し、組織内で共有。エンジニアのスキルが属人化することを防ぎます
+                    <strong>ノウハウの蓄積（実装予定）</strong> - 業務中に得た検索情報を蓄積し、組織内で共有。エンジニアのスキルが属人化することを防ぎます
                     <br/>
                     <strong>履歴検索機能</strong> - 過去の検索履歴を検索可能に。同じ検索方法を繰り返さないことで、組織全体の技術力を底上げ
                 </p>

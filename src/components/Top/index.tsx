@@ -305,6 +305,7 @@ const Top = () => {
   };
   const getSearchResult = async (offset: number = 0) => {
     if (!searchText || !selectedPurpose) return;
+    setSelectedPurpose("")
     const bingResult = await fetchBing(searchText, offset);
     setSearchResult(bingResult);
     setCurrentTab(0);
@@ -312,6 +313,7 @@ const Top = () => {
   };
   const getSearchOpenAi = async () => {
     if (!searchText || !selectedPurpose) return;
+    setSelectedPurpose("")
     const fetchOpenAiResult = await fetchOpenAi("true", searchText, searchText);
     setOpenAiResult(fetchOpenAiResult);
     setCurrentTab(2);
