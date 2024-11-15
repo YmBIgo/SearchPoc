@@ -8,6 +8,9 @@ import {
   SelectChangeEvent,
   Tabs,
   Tab,
+  InputLabel,
+  FormControl,
+  CircularProgress,
 } from "@mui/material";
 
 import { fetchBing } from "../../fetch/bing";
@@ -252,6 +255,8 @@ const Top = () => {
   const [openAiResult, setOpenAiResult] = useState<SearchResult[]>([]);
   const [thoughts, setThoughts] = useState<Thought[]>([]);
   const [currentTab, setCurrentTab] = useState<number>(0);
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [error, setError] = useState<string>("")
   const currentThoughts = searchText
     ? thoughts.filter((t) => {
         return t.purpose.title
@@ -307,16 +312,38 @@ const Top = () => {
   };
   const getSearchResult = async (offset: number = 0) => {
     if (!searchText || !selectedPurpose) return;
+    setError("")
+    setIsLoading(true)
     setSelectedPurpose("")
-    const bingResult = await fetchBing(searchText, offset);
+    let bingResult: SearchResult[] = []
+    try {
+      bingResult = await fetchBing(searchText, offset);
+    } catch(e) {
+      console.log(e)
+      setIsLoading(false)
+      setError(JSON.stringify(e))
+      return
+    }
+    setIsLoading(false)
     setSearchResult(bingResult);
     setCurrentTab(0);
     setOffset(offset);
   };
   const getSearchOpenAi = async () => {
     if (!searchText || !selectedPurpose) return;
+    setError("")
+    setIsLoading(true)
     setSelectedPurpose("")
-    const fetchOpenAiResult = await fetchOpenAi("true", searchText, searchText);
+    let fetchOpenAiResult: SearchResult[] = [];
+    try {
+      fetchOpenAiResult = await fetchOpenAi("true", searchText, searchText);
+    } catch(e) {
+      console.log(e)
+      setIsLoading(false)
+      setError(JSON.stringify(e))
+      return
+    }
+    setIsLoading(false)
     setOpenAiResult(fetchOpenAiResult);
     setCurrentTab(2);
     onClickUrl(
@@ -448,6 +475,7 @@ const Top = () => {
         />
         <Box sx={purposeSection}>
           <h3>目的を入力する</h3>
+          {!selectedPurpose.length && <p style={{color: "red", margin: 0}}>「検索目的を入力」の後で、一番下で「検索目的」を選択してください</p>}
           <Box>
             <TextField
               value={inputPurpose}
@@ -470,23 +498,23 @@ const Top = () => {
               目的をフィルターする
             </Button>
           </Box>
-          <Select
-            sx={textField}
-            value={selectedPurpose}
-            onChange={onChangeSelectPurpose}
-          >
-            {searchPurposes.length ? (
-              searchPurposes.map((purpose) => {
+          <FormControl>
+            <InputLabel>{selectedPurpose.length ? "" : "検索目的を選択してください"}</InputLabel>
+            <Select
+              sx={textField}
+              value={selectedPurpose}
+              onChange={onChangeSelectPurpose}
+            >
+              { searchPurposes.map((purpose) => {
                 return (
                   <MenuItem key={`${purpose.key}`} value={purpose.key}>
                     {purpose.title}
                   </MenuItem>
                 );
               })
-            ) : (
-              <MenuItem>目的は選択されていません</MenuItem>
-            )}
-          </Select>
+             }
+            </Select>
+          </FormControl>
         </Box>
         <Box sx={searchButtons}>
           <Button
@@ -513,8 +541,11 @@ const Top = () => {
             ChatGPT
           </Button>
         </Box>
+        <p>
         <a href="https://google-poc.s3.us-west-1.amazonaws.com/Usage.pdf">使い方PDF</a>
+        {"　"}
         <Link to="/usage">使い方</Link>
+        </p>
       </Box>
       <Box sx={containerSection}>
         <h1 style={{ marginBottom: "0px" }}>検索結果</h1>
@@ -525,7 +556,11 @@ const Top = () => {
             <Tab label={`ChatGPT検索 ${openAiResult.length}`} />
           </Tabs>
         </Box>
-        {currentTab === 0 ? (
+        { error
+        ? <p>Error Occur! {error}</p>
+        : isLoading
+        ? <CircularProgress/>
+        : currentTab === 0 ? (
           <>
             {searchResult.length ? (
               <>
