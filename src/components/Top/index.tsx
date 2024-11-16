@@ -246,10 +246,12 @@ const Top = () => {
   const [inputPurpose, setInputPurpose] = useState("");
   const [filterText, setFilterText] = useState("");
   const [selectedPurpose, setSelectedPurpose] = useState("");
+  const [searchSelectPurpose, setSearchSelectPurpose] = useState<string>("")
   const [query, setQuery] = useState("");
   const [offset, setOffset] = useState(0);
   const [initDefaultLocalStorage, setInitDefaultLocalStorage] = useState(true);
   const currentPurpose = purposes.find((p) => p.key === selectedPurpose);
+  const currentSearchPurpose = purposes.find((p) => p.key === searchSelectPurpose)
   // right side states
   const [searchResult, setSearchResult] = useState<SearchResult[]>([]);
   const [openAiResult, setOpenAiResult] = useState<SearchResult[]>([]);
@@ -295,6 +297,7 @@ const Top = () => {
   };
   const onChangeSelectPurpose = (e: SelectChangeEvent<string>) => {
     setSelectedPurpose(e.target.value);
+    setSearchSelectPurpose(e.target.value)
   };
   const onChangeFilterText = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilterText(e.target.value);
@@ -311,10 +314,11 @@ const Top = () => {
     );
   };
   const getSearchResult = async (offset: number = 0) => {
-    if (!searchText || !selectedPurpose) return;
+    if (!searchText || !searchSelectPurpose) return;
     setError("")
     setIsLoading(true)
-    setSelectedPurpose("")
+    setSearchSelectPurpose("")
+    // setSelectedPurpose("")
     let bingResult: SearchResult[] = []
     try {
       bingResult = await fetchBing(searchText, offset);
@@ -330,10 +334,11 @@ const Top = () => {
     setOffset(offset);
   };
   const getSearchOpenAi = async () => {
-    if (!searchText || !selectedPurpose) return;
+    if (!searchText || !searchSelectPurpose) return;
     setError("")
     setIsLoading(true)
-    setSelectedPurpose("")
+    setSearchSelectPurpose("")
+    // setSelectedPurpose("")
     let fetchOpenAiResult: SearchResult[] = [];
     try {
       fetchOpenAiResult = await fetchOpenAi("true", searchText, searchText);
@@ -475,7 +480,7 @@ const Top = () => {
         />
         <Box sx={purposeSection}>
           <h3>目的を入力する</h3>
-          {!selectedPurpose.length && <p style={{color: "red", margin: 0}}>「検索目的を入力」の後で、一番下で「検索目的」を選択してください</p>}
+          {!searchSelectPurpose.length && <p style={{color: "red", margin: 0}}>「検索目的を入力」の後で、一番下で「検索目的」を選択してください</p>}
           <Box>
             <TextField
               value={inputPurpose}
@@ -499,10 +504,10 @@ const Top = () => {
             </Button>
           </Box>
           <FormControl>
-            <InputLabel>{selectedPurpose.length ? "" : "検索目的を選択してください"}</InputLabel>
+            <InputLabel>{searchSelectPurpose.length ? "" : "検索目的を選択してください"}</InputLabel>
             <Select
               sx={textField}
-              value={selectedPurpose}
+              value={searchSelectPurpose}
               onChange={onChangeSelectPurpose}
             >
               { searchPurposes.map((purpose) => {
@@ -523,7 +528,7 @@ const Top = () => {
               setQuery(searchText);
               getSearchResult(0);
             }}
-            disabled={!currentPurpose || !searchText}
+            disabled={!currentSearchPurpose || !searchText}
             sx={{ width: "45%" }}
           >
             Bing
@@ -535,7 +540,7 @@ const Top = () => {
               setQuery(searchText);
               getSearchOpenAi();
             }}
-            disabled={!currentPurpose || !searchText}
+            disabled={!currentSearchPurpose || !searchText}
             sx={{ width: "45%" }}
           >
             ChatGPT
