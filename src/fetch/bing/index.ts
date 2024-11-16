@@ -3,9 +3,10 @@ import { ResponseMapper } from "./responseMapper";
 
 const endpoint = "https://k47io3f7exao7prtrzaqqknx7y0nkqml.lambda-url.us-west-1.on.aws/"
 
-export async function fetchBing(query: string, offset: number = 0, mkt: string = "ja-JP"): Promise<SearchResult[]> {
-    const url = endpoint + `?query=${query}&offset=${offset}&lang=${mkt}`
-    const response = await fetch(url, {method: "GET"})
+export async function fetchBing(query: string, offset: number = 0,  mkt: string = "ja-JP"): Promise<SearchResult[]> {
+    const body = JSON.stringify({query, offset})
+    const url = endpoint + `&lang=${mkt}`
+    const response = await fetch(url, {method: "POST", body})
     const result = await response.json()
     const responseMapper = new ResponseMapper(result, query)
     const data = responseMapper.convert()

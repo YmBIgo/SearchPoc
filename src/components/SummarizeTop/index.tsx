@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import {
     Box,
+    Button,
     List,
     ListItemButton
 } from "@mui/material"
@@ -10,12 +11,14 @@ import { Purpose, isPurposeArrayType } from "../../types/purpose"
 import { SEARCH_PURPOSES } from "../../const/localstorage"
 import { initLocalStorage } from "../../helper/localstorage"
 import { Link } from "react-router-dom";
+import { mediaQuery, useMediaQuery } from "../../hooks/useMediaQuery";
 
 const container = {
     marginTop: "10px"
 }
 
 const SummarizeTop = () => {
+    const isSp = useMediaQuery(mediaQuery.sp)
     const [purposes, setPurposes] = useState<Purpose[]>([])
     useEffect(() => {
         try {
@@ -29,6 +32,16 @@ const SummarizeTop = () => {
             initLocalStorage(SEARCH_PURPOSES)
         }
     }, [])
+    if (isSp) {
+        return(
+          <Box>
+            <p>SP未対応です<br/>PCでお使いください</p>
+            <Button variant="contained">
+              <Link to="/" style={{color: "white"}}>トップに戻る</Link>
+            </Button>
+          </Box>
+        )
+    }
     return (
         <Box sx={container}>
             <h1>Select search purpose which you want to summarize</h1>

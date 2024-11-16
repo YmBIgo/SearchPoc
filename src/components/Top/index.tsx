@@ -8,6 +8,9 @@ import {
   SelectChangeEvent,
   Tabs,
   Tab,
+  InputLabel,
+  FormControl,
+  CircularProgress,
 } from "@mui/material";
 
 import { fetchBing } from "../../fetch/bing";
@@ -24,6 +27,7 @@ import { Thought, isThoughtArrayType } from "../../types/thought";
 import { Link } from "react-router-dom";
 import { fetchOpenAi } from "../../fetch/chatgpt";
 import Markdown from "react-markdown";
+import { mediaQuery, useMediaQuery } from "../../hooks/useMediaQuery";
 
 const container = {
   display: "flex",
@@ -71,6 +75,7 @@ const searchButtons = {
 };
 
 const Top = () => {
+  const isSp = useMediaQuery(mediaQuery.sp)
   // left side states
   const [searchText, setSearchText] = useState("");
   const [purposes, setPurposes] = useState<Purpose[]>([]);
@@ -78,15 +83,19 @@ const Top = () => {
   const [inputPurpose, setInputPurpose] = useState("");
   const [filterText, setFilterText] = useState("");
   const [selectedPurpose, setSelectedPurpose] = useState("");
+  const [searchSelectPurpose, setSearchSelectPurpose] = useState<string>("")
   const [query, setQuery] = useState("");
   const [offset, setOffset] = useState(0);
   const [initDefaultLocalStorage, setInitDefaultLocalStorage] = useState(true);
   const currentPurpose = purposes.find((p) => p.key === selectedPurpose);
+  const currentSearchPurpose = purposes.find((p) => p.key === searchSelectPurpose)
   // right side states
   const [searchResult, setSearchResult] = useState<SearchResult[]>([]);
   const [openAiResult, setOpenAiResult] = useState<SearchResult[]>([]);
   const [thoughts, setThoughts] = useState<Thought[]>([]);
   const [currentTab, setCurrentTab] = useState<number>(0);
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [error, setError] = useState<string>("")
   const currentThoughts = searchText
     ? thoughts.filter((t) => {
         return t.purpose.title
@@ -125,6 +134,7 @@ const Top = () => {
   };
   const onChangeSelectPurpose = (e: SelectChangeEvent<string>) => {
     setSelectedPurpose(e.target.value);
+    setSearchSelectPurpose(e.target.value)
   };
   const onChangeFilterText = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilterText(e.target.value);
@@ -141,15 +151,41 @@ const Top = () => {
     );
   };
   const getSearchResult = async (offset: number = 0) => {
-    if (!searchText || !selectedPurpose) return;
-    const bingResult = await fetchBing(searchText, offset, "en-US");
+    if (!searchText || !searchSelectPurpose) return;
+    setError("")
+    setIsLoading(true)
+    setSearchSelectPurpose("")
+    // setSelectedPurpose("")
+    let bingResult: SearchResult[] = []
+    try {
+      bingResult = await fetchBing(searchText, offset, "en-US");
+    } catch(e) {
+      console.log(e)
+      setIsLoading(false)
+      setError(JSON.stringify(e))
+      return
+    }
+    setIsLoading(false)
     setSearchResult(bingResult);
     setCurrentTab(0);
     setOffset(offset);
   };
   const getSearchOpenAi = async () => {
-    if (!searchText || !selectedPurpose) return;
-    const fetchOpenAiResult = await fetchOpenAi("true", searchText, searchText);
+    if (!searchText || !searchSelectPurpose) return;
+    setError("")
+    setIsLoading(true)
+    setSearchSelectPurpose("")
+    // setSelectedPurpose("")
+    let fetchOpenAiResult: SearchResult[] = [];
+    try {
+      fetchOpenAiResult = await fetchOpenAi("true", searchText, searchText);
+    } catch(e) {
+      console.log(e)
+      setIsLoading(false)
+      setError(JSON.stringify(e))
+      return
+    }
+    setIsLoading(false)
     setOpenAiResult(fetchOpenAiResult);
     setCurrentTab(2);
     onClickUrl(
@@ -232,6 +268,16 @@ const Top = () => {
       console.log(e);
     }
   }, [initDefaultLocalStorage]);
+  if (isSp) {
+    return(
+      <Box>
+        <p>SP未対応です<br/>PCでお使いください</p>
+        <Button variant="contained">
+          <Link to="/" style={{color: "white"}}>トップに戻る</Link>
+        </Button>
+      </Box>
+    )
+  }
   return (
     <Box sx={container}>
       <Box sx={containerSection}>
@@ -244,6 +290,7 @@ const Top = () => {
         />
         <Box sx={purposeSection}>
           <h3>Add Search Purpose</h3>
+          {!searchSelectPurpose.length && <p style={{color: "red", margin: 0}}>Firstly input "Add purpose", then select purpose</p>}
           <Box>
             <TextField
               value={inputPurpose}
@@ -266,23 +313,22 @@ const Top = () => {
               Filter Purpose
             </Button>
           </Box>
-          <Select
-            sx={textField}
-            value={selectedPurpose}
-            onChange={onChangeSelectPurpose}
-          >
-            {searchPurposes.length ? (
-              searchPurposes.map((purpose) => {
+          <FormControl>
+            <InputLabel>{searchSelectPurpose.length ? "" : "Select Purpose"}</InputLabel>
+            <Select
+              sx={textField}
+              value={searchSelectPurpose}
+              onChange={onChangeSelectPurpose}
+            >
+              { searchPurposes.map((purpose) => {
                 return (
                   <MenuItem key={`${purpose.key}`} value={purpose.key}>
                     {purpose.title}
                   </MenuItem>
                 );
-              })
-            ) : (
-              <MenuItem>Purpose is not selected</MenuItem>
-            )}
-          </Select>
+              })}
+            </Select>
+          </FormControl>
         </Box>
         <Box sx={searchButtons}>
           <Button
@@ -291,7 +337,7 @@ const Top = () => {
               setQuery(searchText);
               getSearchResult(0);
             }}
-            disabled={!currentPurpose || !searchText}
+            disabled={!currentSearchPurpose || !searchText}
             sx={{ width: "45%" }}
           >
             Bing
@@ -303,7 +349,7 @@ const Top = () => {
               setQuery(searchText);
               getSearchOpenAi();
             }}
-            disabled={!currentPurpose || !searchText}
+            disabled={!currentSearchPurpose || !searchText}
             sx={{ width: "45%" }}
           >
             ChatGPT
@@ -320,7 +366,11 @@ const Top = () => {
             <Tab label={`ChatGPT Search ${openAiResult.length}`} />
           </Tabs>
         </Box>
-        {currentTab === 0 ? (
+        { error
+        ? <p>Error Occur! {error}</p>
+        : isLoading
+        ? <CircularProgress/>
+        : currentTab === 0 ? (
           <>
             {searchResult.length ? (
               <>

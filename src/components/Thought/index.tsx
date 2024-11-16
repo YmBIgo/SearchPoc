@@ -61,7 +61,11 @@ const ThoughtComponent = () => {
             if (cs.url.startsWith("https://chatgpt.com")) url = cs.snippet
             return `Keyword : 「${cs.keyword}」\nURL：${url}\nMemo：${cs.memo}`
         }).join(", ") ?? ""
-        const result = await fetch(endpoint + "?aiArticle="+flattenSearch)
+        const body = JSON.stringify({ aiArticle: flattenSearch })
+        const result = await fetch(endpoint, {
+            method: "POST",
+            body
+        })
         let textResult = ""
         try {
             textResult = await result.text()

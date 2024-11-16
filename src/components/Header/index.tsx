@@ -23,11 +23,8 @@ const Header = () => {
                 <MenuIcon />
             </IconButton>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                <Link to="/" style={{color: "white"}} id="searchEngine2">Poodle</Link>
+                <Link to="/" style={{color: "white"}} id="searchEngine2">CoffeeCup</Link>
             </Typography>
-            {/* <Button color="inherit">
-                <Link to="https://google-poc.s3.us-west-1.amazonaws.com/Usage.pdf" style={{color: "white"}}>使い方PDF</Link>
-            </Button> */}
             <Button color="inherit">
                 <Link to="/usage" style={{color: "white"}}>Usage</Link>
             </Button>
@@ -39,6 +36,9 @@ const Header = () => {
             </Button>
             <Button color="inherit">
                 <Link to="/" style={{color: "white"}}>Search</Link>
+            </Button>
+            <Button color="inherit">
+                <a href="http://coffeecup.jp" style={{color: "white"}}>Japanese</a>
             </Button>
             </Toolbar>
         </AppBar>

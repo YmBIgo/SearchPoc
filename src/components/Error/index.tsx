@@ -7,11 +7,11 @@ const container = {
 
 const Error = () => {
     const navigate = useNavigate()
-    navigate("/")
+    navigate("/search")
     return (
         <Box sx={container}>
             <h1>404</h1>
-            <p>Please jump to <Link to="/">Top Page</Link></p>
+            <p>Please jump to <Link to="/search">Top Page</Link></p>
         </Box>
     )
 }

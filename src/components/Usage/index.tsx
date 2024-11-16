@@ -47,8 +47,6 @@ const Usage = () => {
             <p>
                 Your search result is shown in your search result, so you don't have to search the same thing next time.
             </p>
-            <hr/>
-            <p>Kazuya Kurihara @2024/11/13</p>
         </Box>
     )
 }

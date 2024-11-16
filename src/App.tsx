@@ -10,6 +10,7 @@ import ThoughtTop from "./components/ThoughtTop";
 import Usage from "./components/Usage";
 import { CURRENT_SEARCH_PURPOSE, SEARCH_PURPOSES, SEARCH_THOUGHTS } from "./const/localstorage";
 import { initLocalStorage } from "./helper/localstorage";
+import LP from "./components/LP";
 
 function App() {
   useEffect(() => {
@@ -25,14 +26,17 @@ function App() {
     <div className="App">
       <Header/>
       <Routes>
-        <Route path="/" element={<Top/>}/>
+        <Route path="/search" element={<Top/>}/>
         <Route path="/index" element={<Top/>}/>
         <Route path="/summarize" element={<SummarizeTop/>} />
         <Route path="/summarize/:id" element={<Summarize/>}/>
         <Route path="/thoughts/:id" element={<Thought/>}/>
         <Route path="/thoughts" element={<ThoughtTop/>}/>
         <Route path="/usage" element={<Usage/>}/>
+        <Route path="/" element={<LP/>}/>
       </Routes>
+      <hr/>
+      <p>Kazuya Kurihara @2024 <a href="https://x.com/mugcup55929" target="_blank">Twitter</a></p>
     </div>
   )
 }
