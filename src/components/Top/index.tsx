@@ -271,9 +271,9 @@ const Top = () => {
   if (isSp) {
     return(
       <Box>
-        <p>SP未対応です<br/>PCでお使いください</p>
+        <p>SmartPhone not supported.<br/>Use Desktop.</p>
         <Button variant="contained">
-          <Link to="/" style={{color: "white"}}>トップに戻る</Link>
+          <Link to="/" style={{color: "white"}}>Top Page</Link>
         </Button>
       </Box>
     )

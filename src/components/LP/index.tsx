@@ -81,46 +81,52 @@ const LP = () => {
         return(
             <Box>
                 <Box sx={section0}>
-                    <h1>検索履歴を“価値”に変える<br/>検索エンジン</h1>
-                    <p>検索してまとめるだけで、組織のナレッジを記事に自動変換。エンジニアの知識共有とノウハウの蓄積を次のレベルへ。</p>
+                    <h1>Search Engine<br/>which converts "Search History" to "Value"</h1>
+                    <p>
+                        Automatically convert organizational knowledge into articles by simply searching and summarizing.
+                        <br/>
+                        Taking engineers' knowledge sharing and know-how accumulation to the next level.
+                    </p>
                     <br/>
                     <Button variant="contained">
-                        <Link to="/search" style={{color: "white"}}>今すぐ無料で試す！</Link>
+                        <Link to="/search" style={{color: "white"}}>Try it for free</Link>
                     </Button>
                     <Button variant="contained" color="info" sx={{marginLeft: "10px"}}>
                         <Link to="/usage" style={{color: "white"}}>
-                            詳しい使い方はこちら
+                            Usage here
                         </Link>
                     </Button>
                 </Box>
                 <Box sx={section1}>
-                    <h2>日常の検索を、組織の資産に</h2>
-                    <p>この検索エンジンは、業務中の検索履歴を活用し、エンジニアの知見を組織内に蓄積する新しいツールです。ChatGPTによる自動記事生成により、ナレッジ共有が驚くほど簡単に、そして技術広報のスピードも劇的に上がります。</p>
+                    <h2>Make everyday searches an asset to your organization</h2>
+                    <p>
+                        This search engine is a new tool that utilizes search history during work to accumulate engineers' knowledge within the organization.
+                        <br/>
+                        Automatic article generation by ChatGPT makes knowledge sharing incredibly easy and dramatically increases the speed of technical PR.
+                    </p>
                 </Box>
                 <Box sx={section2SP}>
-                    <h2 style={{textAlign: "center"}}>エンジニア組織で、<br/>こんな「課題」や「悩み」ありませんか？</h2>
+                    <h2 style={{textAlign: "center"}}>
+                        Do you have any of these “issues” or “problems”
+                        <br/>
+                        in your engineering organization?
+                    </h2>
                     <br/>
                     <Box sx={section2MainSP}>
                         <Box sx={section2MemoSP}>
                             <span style={{fontSize: "30px"}}>#</span>
                             <br/>
-                            採用活動のために、エンジニアに記事を書かせたいが
-                            <br/>
-                            記事作成に時間が取れず、なかなか定着しない
+                            Would like to have an engineer write an article for a recruiting campaign and accumulate know-how, but it's hard to do so.
                         </Box>
                         <Box sx={section2MemoSP}>
                             <span style={{fontSize: "30px"}}>##</span>
                             <br/>
-                            エンジニアの転職リスクがあるので、
-                            <br/>
-                            ノウハウをためたいが、なかなかたまらない。
+                            There is a risk of engineers changing jobs, so want to accumulate know-how, but it's not easy.
                         </Box>
                         <Box sx={section2MemoSP}>
                             <span style={{fontSize: "30px"}}>###</span>
                             <br/>
-                            エンジニアの能力を標準化したいが、
-                            <br/>
-                            暗黙知の部分が多くなかなか能力を標準化できない
+                            Would like to standardize the competence of engineers, though It is difficult to standardize competence due to the large amount of tacit knowledge.
                         </Box>
                     </Box>
                 </Box>
@@ -128,113 +134,113 @@ const LP = () => {
                     <h2 style={{textAlign: "center", borderBottom: "2px solid #757ce864", width: "64%", margin: "0 18%", paddingBottom: "10px"}}>この検索エンジンなら。</h2>
                     <Box sx={section3MainSP}>
                         <Box sx={section3MemoSP}>
-                            <h3 style={{fontSize: "30px", textAlign: "center"}}>記事作成 3倍速</h3>
+                            <h3 style={{fontSize: "30px", textAlign: "center"}}>Article creation 3x faster</h3>
                             <p>
-                                質の高い記事作成にかかる自由時間を削減します
+                                Reduces the free time required to create quality articles
                                 <br/>
-                                質の高い記事作成を、業務のついででAIの助けも借りて、３倍速にしましょう
+                                Triple the speed of quality article writing with the help of AI while on the job!
                             </p>
                         </Box>
                         <Box sx={section3MemoSP}>
-                            <h3 style={{fontSize: "30px", textAlign: "center"}}>ノウハウ 2倍蓄積</h3>
+                            <h3 style={{fontSize: "30px", textAlign: "center"}}>Know-how Double accumulation</h3>
                             <p style={{position: "relative", color: "#BBBBBB80"}}>
-                                コンフルを使ってもたまらなかった知見ノウハウが、たまるようになります
+                                Knowledge and know-how that did not accumulate even with confluence will start to accumulate.
                                 <br/>
-                                業務の知見をためる組織にして、属人化しない組織にしましょう
-                                <p style={{position: "absolute", top: "10px", left: "calc(50% - 40px)", color: "black"}}>
+                                Make the organization an organization that holds business knowledge and does not make it a genus.
+                                <p style={{position: "absolute", top: "15px", left: "calc(50% - 40px)", color: "black"}}>
                                     <strong>Coming soon...</strong>
                                 </p>
                             </p>
                         </Box>
                         <Box sx={section3MemoSP}>
-                            <h3 style={{fontSize: "30px", textAlign: "center"}}>類似検索の効率 1.5倍</h3>
+                            <h3 style={{fontSize: "30px", textAlign: "center"}}>Efficiency of similarity search 1.5 times</h3>
                             <p>
-                                一度調べた検索の足跡を再度見れるので、同じことを検索して迷う無駄をなくします
+                                You can see the footprints of your searches again, so you don't waste time searching for the same thing and getting lost.
                                 <br/><br/>
-                                類似する内容の検索を高速化させましょう
+                                Speed up your search for similar content!
                             </p>
                         </Box>
                     </Box>
                 </Box>
                 <Box sx={section2SP}>
-                    <h2 style={{textAlign: "center"}}>使い方３ステップ</h2>
+                    <h2 style={{textAlign: "center"}}>Usage 3 steps</h2>
                     <br/>
                     <Box sx={section2MainSP}>
                         <Box sx={section2MemoSP}>
-                            <h3>１業務中この検索エンジンを使う</h3>
-                            <small>消費時間：通常の業務時間</small>
+                            <h3>1 : Use this search engine in work</h3>
+                            <small>Consumption Time: Normal business hours</small>
                             <p>
-                                ChatGPT に記事を爆速で書かせるために、この検索エンジンを使いましょう。検索には目的入力が必須です。
+                            Use this search engine to make ChatGPT a blast to write articles. You must enter a purpose for your search.
                             </p>
                             <Button variant="contained">
                                 <Link to="/search" style={{color: "white"}}>
-                                    検索ページ
+                                    Search Page
                                 </Link>
                             </Button>
                         </Box>
                         <Box sx={section2MemoSP}>
-                            <h3>２検索履歴をまとめる</h3>
-                            <small>消費時間：1記事につき5分</small>
+                            <h3>2 : Summarize Search History</h3>
+                            <small>Time consumption: 5 minutes per article</small>
                             <p>
-                                １の結果は検索履歴として保存されるので、履歴の中から目的に沿ったものを選びましょう。
+                                The results of 1 are saved as search history, so choose the one that meets your purpose from the history.
                             </p>
                             <Button variant="contained">
                                 <Link to="/summarize" style={{color: "white"}}>
-                                    検索履歴をまとめるページ
+                                    Summarize Page
                                 </Link>
                             </Button>
                         </Box>
                         <Box sx={section2MemoSP}>
-                            <h3>３ChatGPTに記事を書かせる</h3>
-                            <small>消費時間：1記事につき5〜10分</small>
+                            <h3>3 : Let ChatGPT write the article</h3>
+                            <small>Time consumption: 5-10 minutes per article</small>
                             <p>
-                                ２でまとめれば、検索足跡ページから、ChatGPTに記事を書かせることができるようになります。
+                                Summarize your search history in 2 will allow ChatGPT to write articles from the search footprint page.
                             </p>
                             <Button variant="contained">
                                 <Link to="/thoughts" style={{color: "white"}}>
-                                    記事自動生成の検索足跡ページ
+                                    Search footprint page for automatic article generation
                                 </Link>
                             </Button>
                         </Box>
                     </Box>
                 </Box>
                 <Box sx={section4SP}>
-                    <h2 style={{textAlign: "center", borderBottom: "2px solid #757ce864", width: "46%", margin: "0 27%", paddingBottom: "10px"}}>この検索エンジンの主な機能</h2>
+                    <h2 style={{textAlign: "center", borderBottom: "2px solid #757ce864", width: "46%", margin: "0 27%", paddingBottom: "10px"}}>Main features of this search engine</h2>
                     <p style={{lineHeight: "39px"}}>
-                        <strong>検索履歴の自動記事化</strong> - 検索履歴をもとに、組織向けのQiita記事を自動生成。知見の共有とノウハウの蓄積を手軽に実現
+                        <strong>Automatic article conversion of search history</strong> - Automatic generation of technical articles for your organization based on search history. Easy to share knowledge and accumulate know-how.
                         <br/>
-                        <strong>ノウハウの蓄積（実装予定）</strong> - 業務中に得た検索情報を蓄積し、組織内で共有。エンジニアのスキルが属人化することを防ぎます
+                        <strong>Accumulation of know-how (to be implemented)</strong> - Accumulate search information obtained during work and share it within the organization. Prevents the skills of engineers from becoming idiosyncratic.
                         <br/>
-                        <strong>履歴検索機能</strong> - 過去の検索履歴を検索可能に。同じ検索方法を繰り返さないことで、組織全体の技術力を底上げ
+                        <strong>History search function</strong> - Enables retrieval of past search history. Raises the technical capabilities of the entire organization by not repeating the same search method.
                     </p>
                 </Box>
                 <Box sx={section4SP}>
-                    <h2 style={{textAlign: "center", borderBottom: "2px solid #757ce864", width: "80%", margin: "0 10%", paddingBottom: "10px"}}>この検索エンジンがもたらす変化</h2>
+                    <h2 style={{textAlign: "center", borderBottom: "2px solid #757ce864", width: "80%", margin: "0 10%", paddingBottom: "10px"}}>Changes brought about by this search engine</h2>
                     <p style={{lineHeight: "39px"}}>
-                        <strong>採用活動の効率化</strong> - この検索エンジンによって、エンジニアの記事作成が3倍効率化。採用活動の一環としても、質の高い情報発信が可能に
+                        <strong>Streamlining recruitment activities</strong> - This search engine triples the efficiency of engineers in creating articles. High-quality information can now be disseminated as part of the recruitment process.
                         <br/>
-                        <strong>ノウハウの共有と標準化</strong> - 転職が多いエンジニアでも、この検索エンジンを使えばノウハウが自動的に蓄積され、次世代への引き継ぎがスムーズに
+                        <strong>Know-how sharing and standardization</strong> - Even engineers who change jobs frequently can use this search engine to automatically accumulate know-how and smoothly pass it on to the next generation.
                     </p>
                 </Box>
                 <Box sx={section4SP}>
-                    <h2 style={{textAlign: "center", borderBottom: "2px solid #757ce864", width: "46%", margin: "0 27%", paddingBottom: "10px"}}>利用方法は簡単</h2>
+                    <h2 style={{textAlign: "center", borderBottom: "2px solid #757ce864", width: "46%", margin: "0 27%", paddingBottom: "10px"}}>Easy to use</h2>
                     <ol style={{lineHeight: "46px"}}>
-                        <li>検索目的を入力して、検索時に検索履歴を自動的に記録</li>
-                        <li>業務の最後に履歴を整理し、重要な情報を選択</li>
-                        <li>まとめた検索履歴ページで、ChatGPTに記事作成を依頼</li>
+                        <li>Enter search purpose and automatically record search history when searching</li>
+                        <li>Organize history and select important information at the end of the workday</li>
+                        <li>Ask ChatGPT to create an article on the summarized search history page.</li>
                     </ol>
                 </Box>
                 <Box sx={section0}>
-                    <h1>検索を未来の資産に変える</h1>
+                    <h1>Turn your search into a future asset</h1>
                     <Box>
                         <Button variant="contained">
                             <Link to="/search" style={{color: "white"}}>
-                                無料で検索してみる！
+                                Try it free
                             </Link>
                         </Button>
                         <Button variant="contained" color="info" sx={{marginLeft: "10px"}}>
                             <Link to="/usage" style={{color: "white"}}>
-                                詳しい使い方はこちら
+                                Usage here
                             </Link>
                         </Button>
                     </Box>
@@ -245,46 +251,52 @@ const LP = () => {
     return(
         <Box>
             <Box sx={section0}>
-                <h1>検索履歴を“価値”に変える、検索エンジン</h1>
-                <p>検索してまとめるだけで、組織のナレッジを記事に自動変換。エンジニアの知識共有とノウハウの蓄積を次のレベルへ。</p>
+                <h1>Search Engine which converts "Search History" to "Value"</h1>
+                <p>
+                    Automatically convert organizational knowledge into articles by simply searching and summarizing.
+                    <br/>
+                    Taking engineers' knowledge sharing and know-how accumulation to the next level.
+                </p>
                 <br/>
                 <Button variant="contained">
-                    <Link to="/search" style={{color: "white"}}>今すぐ無料で試す！</Link>
+                    <Link to="/search" style={{color: "white"}}>Try it free</Link>
                 </Button>
                 <Button variant="contained" color="info" sx={{marginLeft: "10px"}}>
                     <Link to="/usage" style={{color: "white"}}>
-                        詳しい使い方はこちら
+                        Usage here
                     </Link>
                 </Button>
             </Box>
             <Box sx={section1}>
-                <h2>日常の検索を、組織の資産に</h2>
-                <p>この検索エンジンは、業務中の検索履歴を活用し、エンジニアの知見を組織内に蓄積する新しいツールです。ChatGPTによる自動記事生成により、ナレッジ共有が驚くほど簡単に、そして技術広報のスピードも劇的に上がります。</p>
+                <h2>Make everyday searches an asset to your organization</h2>
+                <p>
+                    This search engine is a new tool that utilizes search history during work to accumulate engineers' knowledge within the organization.
+                    <br/>
+                    Automatic article generation by ChatGPT makes knowledge sharing incredibly easy and dramatically increases the speed of technical PR.
+                </p>
             </Box>
             <Box sx={section2}>
-                <h2 style={{textAlign: "center"}}>エンジニア組織で、<br/>こんな「課題」や「悩み」ありませんか？</h2>
+                <h2 style={{textAlign: "center"}}>
+                    Do you have any of these “issues” or “problems”
+                    <br/>
+                    in your engineering organization?
+                </h2>
                 <br/>
                 <Box sx={section2Main}>
                     <Box sx={section2Memo}>
                         <span style={{fontSize: "30px"}}>#</span>
                         <br/>
-                        採用活動のために、エンジニアに記事を書かせたいが
-                        <br/>
-                        記事作成に時間が取れず、なかなか定着しない
+                        Would like to have an engineer write an article for a recruiting campaign and accumulate know-how, but it's hard to do so.
                     </Box>
                     <Box sx={section2Memo}>
                         <span style={{fontSize: "30px"}}>##</span>
                         <br/>
-                        エンジニアの転職リスクがあるので、
-                        <br/>
-                        ノウハウをためたいが、なかなかたまらない。
+                        There is a risk of engineers changing jobs, so want to accumulate know-how, but it's not easy.
                     </Box>
                     <Box sx={section2Memo}>
                         <span style={{fontSize: "30px"}}>###</span>
                         <br/>
-                        エンジニアの能力を標準化したいが、
-                        <br/>
-                        暗黙知の部分が多くなかなか能力を標準化できない
+                        Would like to standardize the competence of engineers, though It is difficult to standardize competence due to the large amount of tacit knowledge.
                     </Box>
                 </Box>
             </Box>
@@ -292,113 +304,113 @@ const LP = () => {
                 <h2 style={{textAlign: "center", borderBottom: "2px solid #757ce864", width: "46%", margin: "0 27%", paddingBottom: "10px"}}>この検索エンジンなら。</h2>
                 <Box sx={section3Main}>
                     <Box sx={section3Memo}>
-                        <h3 style={{fontSize: "30px", textAlign: "center"}}>記事作成 3倍速</h3>
+                        <h3 style={{fontSize: "30px", textAlign: "center"}}>Article creation 3x faster</h3>
                         <p>
-                            質の高い記事作成にかかる自由時間を削減します
+                            Reduces the free time required to create quality articles
                             <br/>
-                            質の高い記事作成を、業務のついででAIの助けも借りて、３倍速にしましょう
+                            Triple the speed of quality article writing with the help of AI while on the job!
                         </p>
                     </Box>
                     <Box sx={section3Memo}>
-                        <h3 style={{fontSize: "30px", textAlign: "center"}}>ノウハウ 2倍蓄積</h3>
+                        <h3 style={{fontSize: "30px", textAlign: "center"}}>Know-how 2x accumulation</h3>
                         <p style={{position: "relative", color: "#BBBBBB80"}}>
-                            コンフルを使ってもたまらなかった知見ノウハウが、たまるようになります
+                            Knowledge and know-how that did not accumulate even with confluence will start to accumulate.
                             <br/>
-                            業務の知見をためる組織にして、属人化しない組織にしましょう
+                            Make the organization an organization that holds business knowledge and does not make it a genus.
                             <p style={{position: "absolute", top: "15px", left: "calc(50% - 40px)", color: "black"}}>
                                 <strong>Coming soon...</strong>
                             </p>
                         </p>
                     </Box>
                     <Box sx={section3Memo}>
-                        <h3 style={{fontSize: "30px", textAlign: "center"}}>類似検索の効率 1.5倍</h3>
+                        <h3 style={{fontSize: "30px", textAlign: "center"}}>Efficiency of similarity search 1.5 times</h3>
                         <p>
-                            一度調べた検索の足跡を再度見れるので、同じことを検索して迷う無駄をなくします
+                            You can see the footprints of your searches again, so you don't waste time searching for the same thing and getting lost.
                             <br/><br/>
-                            類似する内容の検索を高速化させましょう
+                            Speed up your search for similar content!
                         </p>
                     </Box>
                 </Box>
             </Box>
             <Box sx={section2}>
-                <h2 style={{textAlign: "center"}}>使い方３ステップ</h2>
+                <h2 style={{textAlign: "center"}}>Usage 3 steps</h2>
                 <br/>
                 <Box sx={section2Main}>
                     <Box sx={section2Memo}>
-                        <h3>１業務中この検索エンジンを使う</h3>
-                        <small>消費時間：通常の業務時間</small>
+                        <h3>1 : Use this search engine in work</h3>
+                        <small>Consumption Time: Normal business hours</small>
                         <p>
-                            ChatGPT に記事を爆速で書かせるために、この検索エンジンを使いましょう。検索には目的入力が必須です。
+                                Use this search engine to make ChatGPT a blast to write articles. You must enter a purpose for your search.
                         </p>
                         <Button variant="contained">
                             <Link to="/search" style={{color: "white"}}>
-                                検索ページ
+                                Search Page
                             </Link>
                         </Button>
                     </Box>
                     <Box sx={section2Memo}>
-                        <h3>２検索履歴をまとめる</h3>
-                        <small>消費時間：1記事につき5分</small>
+                        <h3>2 : Summarize Search History</h3>
+                        <small>Time consumption: 5 minutes per article</small>
                         <p>
-                            １の結果は検索履歴として保存されるので、履歴の中から目的に沿ったものを選びましょう。
+                            The results of 1 are saved as search history, so choose the one that meets your purpose from the history.
                         </p>
                         <Button variant="contained">
                             <Link to="/summarize" style={{color: "white"}}>
-                                検索履歴をまとめるページ
+                                Summarize Page
                             </Link>
                         </Button>
                     </Box>
                     <Box sx={section2Memo}>
-                        <h3>３ChatGPTに記事を書かせる</h3>
-                        <small>消費時間：1記事につき5〜10分</small>
+                        <h3>3 : Let ChatGPT write the article</h3>
+                        <small>Time consumption: 5-10 minutes per article</small>
                         <p>
-                            ２でまとめれば、検索足跡ページから、ChatGPTに記事を書かせることができるようになります。
+                            Summarize your search history in 2 will allow ChatGPT to write articles from the search footprint page.
                         </p>
                         <Button variant="contained">
                             <Link to="/thoughts" style={{color: "white"}}>
-                                記事自動生成の検索足跡ページ
+                                Search footprint page for automatic article generation
                             </Link>
                         </Button>
                     </Box>
                 </Box>
             </Box>
             <Box sx={section4}>
-                <h2 style={{textAlign: "center", borderBottom: "2px solid #757ce864", width: "46%", margin: "0 27%", paddingBottom: "10px"}}>この検索エンジンの主な機能</h2>
+                <h2 style={{textAlign: "center", borderBottom: "2px solid #757ce864", width: "46%", margin: "0 27%", paddingBottom: "10px"}}>Main features of this search engine</h2>
                 <p style={{lineHeight: "46px"}}>
-                    <strong>検索履歴の自動記事化</strong> - 検索履歴をもとに、組織向けのQiita記事を自動生成。知見の共有とノウハウの蓄積を手軽に実現
+                    <strong>Automatic article conversion of search history</strong> - Automatic generation of technical articles for your organization based on search history. Easy to share knowledge and accumulate know-how.
                     <br/>
-                    <strong>ノウハウの蓄積（実装予定）</strong> - 業務中に得た検索情報を蓄積し、組織内で共有。エンジニアのスキルが属人化することを防ぎます
+                    <strong>Accumulation of know-how (to be implemented)</strong> - Accumulate search information obtained during work and share it within the organization. Prevents the skills of engineers from becoming idiosyncratic.
                     <br/>
-                    <strong>履歴検索機能</strong> - 過去の検索履歴を検索可能に。同じ検索方法を繰り返さないことで、組織全体の技術力を底上げ
+                    <strong>History search function</strong> - Enables retrieval of past search history. Raises the technical capabilities of the entire organization by not repeating the same search method.
                 </p>
             </Box>
             <Box sx={section4}>
-                <h2 style={{textAlign: "center", borderBottom: "2px solid #757ce864", width: "46%", margin: "0 27%", paddingBottom: "10px"}}>この検索エンジンがもたらす変化</h2>
+                <h2 style={{textAlign: "center", borderBottom: "2px solid #757ce864", width: "46%", margin: "0 27%", paddingBottom: "10px"}}>Changes brought about by this search engine</h2>
                 <p style={{lineHeight: "46px"}}>
-                    <strong>採用活動の効率化</strong> - この検索エンジンによって、エンジニアの記事作成が3倍効率化。採用活動の一環としても、質の高い情報発信が可能に
+                    <strong>Streamlining recruitment activities</strong> - This search engine triples the efficiency of engineers in creating articles. High-quality information can now be disseminated as part of the recruitment process.
                     <br/>
-                    <strong>ノウハウの共有と標準化</strong> - 転職が多いエンジニアでも、この検索エンジンを使えばノウハウが自動的に蓄積され、次世代への引き継ぎがスムーズに
+                    <strong>Know-how sharing and standardization</strong> - Even engineers who change jobs frequently can use this search engine to automatically accumulate know-how and smoothly pass it on to the next generation.
                 </p>
             </Box>
             <Box sx={section4}>
-                <h2 style={{textAlign: "center", borderBottom: "2px solid #757ce864", width: "46%", margin: "0 27%", paddingBottom: "10px"}}>利用方法は簡単</h2>
+                <h2 style={{textAlign: "center", borderBottom: "2px solid #757ce864", width: "46%", margin: "0 27%", paddingBottom: "10px"}}>Easy to use</h2>
                 <ol style={{lineHeight: "46px"}}>
-                    <li>検索目的を入力するだけで、検索時に検索履歴を自動的に記録</li>
-                    <li>業務の最後に履歴を整理し、重要な情報を選択</li>
-                    <li>まとめた検索履歴ページで、ChatGPTに記事作成を依頼</li>
+                    <li>Enter search purpose and automatically record search history when searching</li>
+                    <li>Organize history and select important information at the end of the workday</li>
+                    <li>Ask ChatGPT to create an article on the summarized search history page.</li>
                 </ol>
             </Box>
             <Box sx={section0}>
-                <h1>検索を未来の資産に変える</h1>
+                <h1>Turn your search into a future asset</h1>
                 <Box>
                     <Button variant="contained">
                         <Link to="/search" style={{color: "white"}}>
-                            無料で検索してみる！
+                            Try it free
                         </Link>
                     </Button>
                     <Button variant="contained" color="info" sx={{marginLeft: "10px"}}>
                         <Link to="/usage" style={{color: "white"}}>
-                            詳しい使い方はこちら
+                            Usage here
                         </Link>
                     </Button>
                 </Box>

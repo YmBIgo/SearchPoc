@@ -35,10 +35,10 @@ const Header = () => {
                 <Link to="/summarize" style={{color: "white"}}>Summarize</Link>
             </Button>
             <Button color="inherit">
-                <Link to="/" style={{color: "white"}}>Search</Link>
+                <Link to="/search" style={{color: "white"}}>Search</Link>
             </Button>
             <Button color="inherit">
-                <a href="http://coffeecup.jp" style={{color: "white"}}>Japanese</a>
+                <a href="http://coffeecup.jp" style={{color: "white"}}>日本語</a>
             </Button>
             </Toolbar>
         </AppBar>
