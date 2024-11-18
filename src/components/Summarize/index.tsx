@@ -10,7 +10,9 @@ import {
     AccordionDetails,
     AccordionSummary,
     Button,
-    TextField
+    TextField,
+    Tooltip,
+    TextareaAutosize
 } from "@mui/material"
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import SearchIcon from '@mui/icons-material/Search';
@@ -64,13 +66,11 @@ const sendTextFieldArea = {
     width: "100%",
     mt: "10px"
 }
-const sendTextField = {
-    width: "100%"
-}
 
 const Summarize = () => {
     const [purpose, setPurpose] = useState<Purpose | null>(null)
     const [selectedSearchResult, setSelectedSearchResult] = useState<SearchResult[]>([])
+    const [isTitleEditing, setIsTitleEditing] = useState(false)
     const { id } = useParams<{id: string}>()
     const navigate = useNavigate()
     // left side event
@@ -88,6 +88,29 @@ const Summarize = () => {
             )
             )
         })
+    }
+    const onClickSpanTitle = () => {
+        setIsTitleEditing(true)
+        setTimeout(() => document.getElementById("purposeTitle")?.focus(), 200)
+    }
+    const onClickTextTitle = (e: React.MouseEvent<HTMLDivElement> | React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | Element>) => {
+        try {
+            const localStoragePurposeString = localStorage.getItem(SEARCH_PURPOSES)
+            if (!localStoragePurposeString) throw Error
+            const localStoragePurposes: Purpose[] = JSON.parse(localStoragePurposeString)
+            if (!isPurposeArrayType(localStoragePurposes)) throw Error
+            const currentPurpose = localStoragePurposes
+                .map((p) => {
+                    if (p.key === id) return {...p, title: (e.target as HTMLInputElement).value}
+                    return p
+                })
+            localStorage.setItem(SEARCH_PURPOSES, JSON.stringify(currentPurpose))
+            const currentSelectedPurpose = currentPurpose.find((p) => p.key === id)
+            if (!currentSelectedPurpose) return
+            setPurpose(currentSelectedPurpose)
+        } catch(e) {
+            console.log(e)
+        }
     }
     // right side event
     const onChangeSearchMemo = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> ,searchResult: SearchResult) => {
@@ -127,11 +150,11 @@ const Summarize = () => {
             if (!isPurposeArrayType(localStoragePurposes)) throw Error
             const filteredPurpose = localStoragePurposes.filter((p) => !(p.key === id))
             localStorage.setItem(SEARCH_PURPOSES, JSON.stringify(filteredPurpose))
-            navigate("/search")
+            navigate("/thoughts")
         } catch(e) {
             console.log(e)
             initLocalStorage(SEARCH_THOUGHTS)
-            navigate("/search")
+            navigate("/thoughts")
         }
     }
     useEffect(() => {
@@ -153,7 +176,37 @@ const Summarize = () => {
     return (
         <>
             <h1 style={{marginBottom: "10px"}}>
-                [検索足跡をまとめる] 目的 : {purpose.title}
+                [検索足跡をまとめる] 目的 :
+                { isTitleEditing
+                    ?
+                    <TextField
+                        defaultValue={purpose.title}
+                        sx={{mt: "-10px", width: "300px", ml: "10px"}}
+                        onClick={(e) =>{
+                            onClickTextTitle(e)
+                            setIsTitleEditing(false)
+                        }}
+                        onBlur={(e) => {
+                            onClickTextTitle(e)
+                            setIsTitleEditing(false)
+                        }}
+                        id="purposeTitle"
+                    />
+                    :
+                    <Tooltip title="クリックすると編集できます">
+                        <span
+                            style={{
+                                marginLeft: "10px",
+                                border: "1px solid #DDD",
+                                padding: "10px 20px",
+                                borderRadius: "5px"
+                            }}
+                            onClick={onClickSpanTitle}
+                        >
+                            {purpose.title}
+                        </span>
+                    </Tooltip>
+                }
             </h1>
             <p>
                 役に立った検索履歴を選択してください
@@ -226,10 +279,12 @@ const Summarize = () => {
                                         URL：{ssr.url}
                                     </Box>
                                     <Box sx={sendTextFieldArea}>
-                                        <TextField
-                                            sx={sendTextField}
+                                        <TextareaAutosize
+                                            minRows={3}
+                                            maxRows={5}
+                                            style={{width: "100%", height: "46px"}}
                                             onChange={(e) => onChangeSearchMemo(e, ssr)}
-                                            placeholder="ChatGPTに記事を書かせるために説明を加えましょう"
+                                            placeholder="ChatGPTに記事を書かせるために詳しい説明を加えましょう"
                                         />
                                     </Box>
                                 </ListItemButton>

@@ -36,7 +36,7 @@ function App() {
         <Route path="/" element={<LP/>}/>
       </Routes>
       <hr/>
-      <p>Kazuya Kurihara @2024 <a href="https://x.com/mugcup55929" target="_blank">Twitter</a></p>
+      <p>Kazuya Kurihara @2024 <a href="https://x.com/mugcup55929" target="_blank">Twitter</a>{"　"}<a href="mailto:coffeecupjapan@yahoo.co.jp">メール</a></p>
     </div>
   )
 }

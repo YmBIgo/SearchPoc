@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Box, Button, CircularProgress, List, ListItemButton, Tab, Tabs } from "@mui/material"
+import { Box, Button, CircularProgress, List, ListItemButton, Tab, Tabs, TextareaAutosize } from "@mui/material"
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import SearchIcon from '@mui/icons-material/Search';
 import EditIcon from '@mui/icons-material/Edit';
@@ -43,6 +43,7 @@ const ThoughtComponent = () => {
     const [currentSearch, setCurrentSearch] = useState<SearchResult>()
     const [urlBody, setUrlBody] = useState<string>("")
     const { id } = useParams<{[id: string]: string}>()
+    const [chatGPTTitle, setChatGPTTitle] = useState("")
     const [chatGPTArticle, setChatGPTArticle] = useState<string>("")
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [currentTab, setCurrentTab] = useState(0)
@@ -53,6 +54,30 @@ const ThoughtComponent = () => {
         const textResult = await result.text()
         setUrlBody(DOMPurify.sanitize(textResult, { FORBID_TAGS : ['script', 'meta', 'a'] }))
     }
+    const fetchTitle = async() => {
+        setIsLoading(true)
+        setChatGPTArticle("")
+        const flattenSearch = thought?.searches?.map((cs) => {
+            let url = cs.url
+            if (cs.url.startsWith("https://chatgpt.com")) url = cs.url +  "メモ" + cs.snippet
+            return `キーワード：「${cs.keyword}」\nURL：${url}\nメモ：${cs.memo}`
+        }).join(", ") ?? ""
+        const body = JSON.stringify({ aiTitle: flattenSearch })
+        const result = await fetch(endpoint, {
+            method: "POST",
+            body
+        })
+        let textResult = ""
+        try {
+            textResult = await result.text()
+            const parsedTextResult = JSON.parse(textResult)
+            textResult = parsedTextResult.value[0]
+        } catch (e) {
+            console.log(e)
+        }
+        setChatGPTTitle(textResult)
+        setIsLoading(false)
+    }
     const fetchArticle = async() => {
         setIsLoading(true)
         setChatGPTArticle("")
@@ -61,7 +86,8 @@ const ThoughtComponent = () => {
             if (cs.url.startsWith("https://chatgpt.com")) url = cs.snippet
             return `キーワード：「${cs.keyword}」\nURL：${url}\nメモ：${cs.memo}`
         }).join(", ") ?? ""
-        const body = JSON.stringify({ aiArticle: flattenSearch })
+        const aiMain = "構成：" + chatGPTTitle + "\n\nメモ一覧：" + flattenSearch
+        const body = JSON.stringify({ aiArticle: aiMain })
         const result = await fetch(endpoint, {
             method: "POST",
             body
@@ -100,7 +126,7 @@ const ThoughtComponent = () => {
     return (
         <Box sx={container}>
             <h1>検索足跡 : {thought.purpose.title}</h1>
-            <Button href="#chatGPT" variant="contained">ChatGPTに記事を書いてもらう</Button>
+            <Button href="#chatGPT">ChatGPTに記事を書いてもらう（下の方にボタンがあります）</Button>
             <br/><br/>
             <hr/>
             <h3>どうやって解決するの？</h3>
@@ -172,8 +198,34 @@ const ThoughtComponent = () => {
             </Box>
             <hr/>
             <Box>
-                <h3 id="chatGPT">ChatGPTに聞いてみる</h3>
-                <Button variant="contained" onClick={fetchArticle}>
+                <h3 id="chatGPT">段階１：ChatGPTに構成を考えてもらう（３０秒〜１分かかります）</h3>
+                <Button variant="contained" onClick={fetchTitle}>
+                    ChatGPTに構成を考えてもらう</Button>
+                <br/>
+                { chatGPTTitle
+                    ?
+                    <p style={{color: "red"}}>
+                        <strong>ChatGPT も時には完璧でないので、構成を推敲しましょう！</strong>
+                    </p>
+                    : <br/>
+                }
+
+                { isLoading
+                ?
+                <CircularProgress/>
+                : 
+                <TextareaAutosize
+                        style={{width: "90%", height: "164px"}}
+                        value={chatGPTTitle}
+                        onChange={(e) => setChatGPTTitle(e.target.value)}
+                    >
+
+                    </TextareaAutosize>
+                }
+            </Box>
+            <Box>
+                <h3 id="chatGPT">段階２ChatGPTに聞いてみる（３０秒〜１分かかります）</h3>
+                <Button variant="contained" onClick={fetchArticle} disabled={!chatGPTTitle}>
                     ChatGPTに記事を書かせる</Button>
                 <br/><br/>
                 <Tabs value={currentTab} onChange={handleTabChange}>
