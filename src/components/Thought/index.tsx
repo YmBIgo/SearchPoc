@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Box, Button, CircularProgress, List, ListItemButton, Tab, Tabs } from "@mui/material"
+import { Box, Button, CircularProgress, List, ListItemButton, Tab, Tabs, TextareaAutosize } from "@mui/material"
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import SearchIcon from '@mui/icons-material/Search';
 import EditIcon from '@mui/icons-material/Edit';
@@ -37,12 +37,12 @@ const searchResultItem = {
 
 const endpoint = "https://k47io3f7exao7prtrzaqqknx7y0nkqml.lambda-url.us-west-1.on.aws/"
 
-
 const ThoughtComponent = () => {
     const [thought, setThought] = useState<Thought | null>(null)
     const [currentSearch, setCurrentSearch] = useState<SearchResult>()
     const [urlBody, setUrlBody] = useState<string>("")
     const { id } = useParams<{[id: string]: string}>()
+    const [chatGPTTitle, setChatGPTTitle] = useState("")
     const [chatGPTArticle, setChatGPTArticle] = useState<string>("")
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [currentTab, setCurrentTab] = useState(0)
@@ -53,6 +53,30 @@ const ThoughtComponent = () => {
         const textResult = await result.text()
         setUrlBody(DOMPurify.sanitize(textResult, { FORBID_TAGS : ['script', 'meta', 'a'] }))
     }
+    const fetchTitle = async() => {
+        setIsLoading(true)
+        setChatGPTArticle("")
+        const flattenSearch = thought?.searches?.map((cs) => {
+            let url = cs.url
+            if (cs.url.startsWith("https://chatgpt.com")) url = cs.url +  "メモ" + cs.snippet
+            return `キーワード：「${cs.keyword}」\nURL：${url}\nメモ：${cs.memo}`
+        }).join(", ") ?? ""
+        const body = JSON.stringify({ aiTitle: flattenSearch })
+        const result = await fetch(endpoint, {
+            method: "POST",
+            body
+        })
+        let textResult = ""
+        try {
+            textResult = await result.text()
+            const parsedTextResult = JSON.parse(textResult)
+            textResult = parsedTextResult.value[0]
+        } catch (e) {
+            console.log(e)
+        }
+        setChatGPTTitle(textResult)
+        setIsLoading(false)
+    }
     const fetchArticle = async() => {
         setIsLoading(true)
         setChatGPTArticle("")
@@ -61,7 +85,8 @@ const ThoughtComponent = () => {
             if (cs.url.startsWith("https://chatgpt.com")) url = cs.snippet
             return `Keyword : 「${cs.keyword}」\nURL：${url}\nMemo：${cs.memo}`
         }).join(", ") ?? ""
-        const body = JSON.stringify({ aiArticle: flattenSearch })
+        const aiMain = "Structure : " + chatGPTTitle + "\n\nMemos：" + flattenSearch
+        const body = JSON.stringify({ aiArticle: aiMain })
         const result = await fetch(endpoint, {
             method: "POST",
             body
@@ -172,8 +197,35 @@ const ThoughtComponent = () => {
             </Box>
             <hr/>
             <Box>
-                <h3 id="chatGPT">Ask ChatGPT</h3>
-                <Button variant="contained" onClick={fetchArticle}>
+                <h3 id="chatGPT">Step 1 : Have ChatGPT come up with a structure. (Takes 30 seconds to 1 minute)</h3>
+                <Button variant="contained" onClick={fetchTitle}>
+                    Have ChatGPT come up with a structure.
+                </Button>
+                <br/>
+                { chatGPTTitle
+                    ?
+                    <p style={{color: "red"}}>
+                        <strong>ChatGPT is sometimes not perfect either, so let's elaborate on the structure!</strong>
+                    </p>
+                    : <br/>
+                }
+
+                { isLoading
+                ?
+                <CircularProgress/>
+                :
+                <TextareaAutosize
+                        style={{width: "90%", height: "164px"}}
+                        value={chatGPTTitle}
+                        onChange={(e) => setChatGPTTitle(e.target.value)}
+                    >
+
+                    </TextareaAutosize>
+                }
+            </Box>
+            <Box>
+                <h3 id="chatGPT">Step 2 : Ask ChatGPT to write article (Takes 30 seconds to 1 minute)</h3>
+                <Button variant="contained" onClick={fetchArticle} disabled={!chatGPTTitle}>
                     Use ChatGPT to write article
                 </Button>
                 <br/><br/>

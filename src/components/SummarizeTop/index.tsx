@@ -45,6 +45,17 @@ const SummarizeTop = () => {
     return (
         <Box sx={container}>
             <h1>Select search purpose which you want to summarize</h1>
+            <p>
+                Only topics related to React, JavaScript, TypeScript, Go, Python, HTML, CSS can auto-generate article.
+                <br/><br/>
+                Press the search objective you want to article, submit your e-mail address, and we will reply with the generated article.
+                <br/><br/>
+                <small>
+                    It may take up to 3 days.
+                    <br/>
+                    We may not be able to answer your questions depending on the content.
+                </small>
+            </p>
             <hr/>
             <List>
                 {purposes.map((p) => {

@@ -133,6 +133,7 @@ const Top = () => {
     setInputPurpose(e.target.value);
   };
   const onChangeSelectPurpose = (e: SelectChangeEvent<string>) => {
+    if (e.target.value === "0") return
     setSelectedPurpose(e.target.value);
     setSearchSelectPurpose(e.target.value)
   };
@@ -197,6 +198,24 @@ const Top = () => {
       fetchOpenAiResult[0].keyword,
     );
   };
+  const onClickDeletePurpose = (e: React.MouseEvent<HTMLButtonElement>,purposeKey: string) => {
+    e.stopPropagation()
+    try {
+      const localStoragePurposeString = localStorage.getItem(SEARCH_PURPOSES)
+      if (!localStoragePurposeString) throw Error
+      const localStoragePurposes: Purpose[] = JSON.parse(localStoragePurposeString)
+      if (!isPurposeArrayType(localStoragePurposes)) throw Error
+      const newStoragePurpose = localStoragePurposes
+        .filter((p) => p.key !== purposeKey)
+      setPurposes(newStoragePurpose)
+      setSearchPurposes(newStoragePurpose.filter((p) =>
+        p.title.toLowerCase().includes(filterText.toLowerCase())
+      ))
+      localStorage.setItem(SEARCH_PURPOSES, JSON.stringify(newStoragePurpose))
+    } catch (e) {
+      console.log(e)
+    }
+  }
   // right side event
   const onChangeTab = (_: React.SyntheticEvent, newValue: number) => {
     setCurrentTab(newValue);
@@ -298,7 +317,11 @@ const Top = () => {
               onChange={onChangeInputPurpose}
               sx={textFieldSmall}
             />
-            <Button onClick={onClickSearchInput} sx={{ mt: "10px" }}>
+            <Button
+              onClick={onClickSearchInput} sx={{ mt: "10px", ml: "10px" }}
+              variant="contained"
+              disabled={!inputPurpose}
+            >
               Add Purpose
             </Button>
           </Box>
@@ -309,7 +332,12 @@ const Top = () => {
               sx={textFieldSmall}
               onChange={onChangeFilterText}
             />
-            <Button sx={{ mt: "10px" }} onClick={onClickFilterText}>
+            <Button
+              sx={{ mt: "10px", ml: "10px" }}
+              onClick={onClickFilterText}
+              variant="contained"
+              disabled={!filterText}
+            >
               Filter Purpose
             </Button>
           </Box>
@@ -320,13 +348,41 @@ const Top = () => {
               value={searchSelectPurpose}
               onChange={onChangeSelectPurpose}
             >
-              { searchPurposes.map((purpose) => {
+              { searchPurposes.slice(0, 5).map((purpose) => {
                 return (
                   <MenuItem key={`${purpose.key}`} value={purpose.key}>
-                    {purpose.title}
+                    <Box sx={{display: "flex", justifyContent:"space-between", width: "100%"}}>
+                      <Box
+                        sx={{
+                          textOverflow: "ellipsis",
+                          width: "80%",
+                          overflow: "hidden",
+                          whiteSpace: "nowrap"
+                        }}>
+                          {purpose.title}
+                      </Box>
+                      { purpose.key !== selectedPurpose &&
+                        <Button
+                          variant="contained"
+                          color="error"
+                          size="small"
+                          sx={{textAlign: "right"}}
+                          onClick={(e) => {
+                            onClickDeletePurpose(e, purpose.key)
+                          }}
+                        >
+                          Delete
+                        </Button>
+                      }
+                    </Box>
                   </MenuItem>
                 );
               })}
+              { searchPurposes.length > 5 &&
+                <MenuItem value="0">
+                  Filter and Select purpose you want to search
+                </MenuItem>
+              }
             </Select>
           </FormControl>
         </Box>

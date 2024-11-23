@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material"
+import { Accordion, AccordionDetails, AccordionSummary, Box, Button } from "@mui/material"
 import { Link } from "react-router-dom"
 import { mediaQuery, useMediaQuery } from "../../hooks/useMediaQuery"
 
@@ -81,9 +81,9 @@ const LP = () => {
         return(
             <Box>
                 <Box sx={section0}>
-                    <h1>Search Engine<br/>which converts "Search History" to "Value"</h1>
+                    <h1>Search Engine<br/>which can auto-generate articles</h1>
                     <p>
-                        Automatically convert organizational knowledge into articles by simply searching and summarizing.
+                        Automatically convert search histories into articles.
                         <br/>
                         Taking engineers' knowledge sharing and know-how accumulation to the next level.
                     </p>
@@ -100,7 +100,7 @@ const LP = () => {
                 <Box sx={section1}>
                     <h2>Make everyday searches an asset to your organization</h2>
                     <p>
-                        This search engine is a new tool that utilizes search history during work to accumulate engineers' knowledge within the organization.
+                        This search engine is a new tool that utilizes search history during work to auto-generate techical articles.
                         <br/>
                         Automatic article generation by ChatGPT makes knowledge sharing incredibly easy and dramatically increases the speed of technical PR.
                     </p>
@@ -121,7 +121,9 @@ const LP = () => {
                         <Box sx={section2MemoSP}>
                             <span style={{fontSize: "30px"}}>##</span>
                             <br/>
-                            There is a risk of engineers changing jobs, so want to accumulate know-how, but it's not easy.
+                            Since eager to change job, want to write articles,
+                            <br/>
+                            But Cannot find time to do so.
                         </Box>
                         <Box sx={section2MemoSP}>
                             <span style={{fontSize: "30px"}}>###</span>
@@ -163,7 +165,7 @@ const LP = () => {
                     </Box>
                 </Box>
                 <Box sx={section2SP}>
-                    <h2 style={{textAlign: "center"}}>Usage 3 steps</h2>
+                    <h2 style={{textAlign: "center"}}>Usage 2 steps</h2>
                     <br/>
                     <Box sx={section2MainSP}>
                         <Box sx={section2MemoSP}>
@@ -179,10 +181,14 @@ const LP = () => {
                             </Button>
                         </Box>
                         <Box sx={section2MemoSP}>
-                            <h3>2 : Summarize Search History</h3>
-                            <small>Time consumption: 5 minutes per article</small>
+                            <h3>2 : Send request to auto-generate article</h3>
+                            <small>Time consumption: 1 minutes per article</small>
                             <p>
-                                The results of 1 are saved as search history, so choose the one that meets your purpose from the history.
+                            Select the search purpose for which you would like to submit an article and submit your request for automatic article generation (you must enter your email address).
+                            <br/>
+                            <a href="mailto:coffeecupjapan@yahoo.co.jp">Admin</a> would auto-generate article using requested data and send back to you.
+                            <br/><br/>
+                            <span style={{color: "red"}}>Only available on React, JavaScript, TypeScript, Go, Python, HTML, CSS </span>
                             </p>
                             <Button variant="contained">
                                 <Link to="/summarize" style={{color: "white"}}>
@@ -190,18 +196,35 @@ const LP = () => {
                                 </Link>
                             </Button>
                         </Box>
-                        <Box sx={section2MemoSP}>
-                            <h3>3 : Let ChatGPT write the article</h3>
-                            <small>Time consumption: 5-10 minutes per article</small>
-                            <p>
-                                Summarize your search history in 2 will allow ChatGPT to write articles from the search footprint page.
-                            </p>
-                            <Button variant="contained">
-                                <Link to="/thoughts" style={{color: "white"}}>
-                                    Search footprint page for automatic article generation
-                                </Link>
-                            </Button>
-                        </Box>
+                        <Accordion>
+                            <AccordionSummary>If you cannot find topic which match your needs.</AccordionSummary>
+                            <AccordionDetails>
+                            <Box sx={section2MemoSP}>
+                                <h3>2 : Summarize Search History</h3>
+                                <small>Time consumption: 5 minutes per article</small>
+                                <p>
+                                The results of 1 are saved as search history, so choose the one that meets your purpose from the history.
+                                </p>
+                                <Button variant="contained">
+                                    <Link to="/summarize" style={{color: "white"}}>
+                                        Page which summarize search history
+                                    </Link>
+                                </Button>
+                            </Box>
+                            <Box sx={section2MemoSP}>
+                                <h3>3 : Let ChatGPT write the article</h3>
+                                <small>Time consumption: 5-10 minutes per article</small>
+                                <p>
+                                    Summarize your search history in 2 will allow ChatGPT to write articles from the search footprint page.
+                                </p>
+                                <Button variant="contained">
+                                    <Link to="/thoughts" style={{color: "white"}}>
+                                        Search footprint page for automatic article generation
+                                    </Link>
+                                </Button>
+                            </Box>
+                            </AccordionDetails>
+                        </Accordion>
                     </Box>
                 </Box>
                 <Box sx={section4SP}>
@@ -251,11 +274,11 @@ const LP = () => {
     return(
         <Box>
             <Box sx={section0}>
-                <h1>Search Engine which converts "Search History" to "Value"</h1>
+                <h1>Search Engine which can auto-generate articles</h1>
                 <p>
-                    Automatically convert organizational knowledge into articles by simply searching and summarizing.
-                    <br/>
-                    Taking engineers' knowledge sharing and know-how accumulation to the next level.
+                Automatically convert search histories into articles.
+                <br/>
+                Taking engineers' knowledge sharing and know-how accumulation to the next level.
                 </p>
                 <br/>
                 <Button variant="contained">
@@ -270,7 +293,7 @@ const LP = () => {
             <Box sx={section1}>
                 <h2>Make everyday searches an asset to your organization</h2>
                 <p>
-                    This search engine is a new tool that utilizes search history during work to accumulate engineers' knowledge within the organization.
+                    This search engine is a new tool that utilizes search history during work to auto-generate techical articles.
                     <br/>
                     Automatic article generation by ChatGPT makes knowledge sharing incredibly easy and dramatically increases the speed of technical PR.
                 </p>
@@ -291,7 +314,9 @@ const LP = () => {
                     <Box sx={section2Memo}>
                         <span style={{fontSize: "30px"}}>##</span>
                         <br/>
-                        There is a risk of engineers changing jobs, so want to accumulate know-how, but it's not easy.
+                        Since eager to change job, want to write articles,
+                        <br/>
+                        But Cannot find time to do so.
                     </Box>
                     <Box sx={section2Memo}>
                         <span style={{fontSize: "30px"}}>###</span>
@@ -301,7 +326,7 @@ const LP = () => {
                 </Box>
             </Box>
             <Box sx={section3}>
-                <h2 style={{textAlign: "center", borderBottom: "2px solid #757ce864", width: "46%", margin: "0 27%", paddingBottom: "10px"}}>この検索エンジンなら。</h2>
+                <h2 style={{textAlign: "center", borderBottom: "2px solid #757ce864", width: "46%", margin: "0 27%", paddingBottom: "10px"}}>If you use this search engine...</h2>
                 <Box sx={section3Main}>
                     <Box sx={section3Memo}>
                         <h3 style={{fontSize: "30px", textAlign: "center"}}>Article creation 3x faster</h3>
@@ -333,14 +358,14 @@ const LP = () => {
                 </Box>
             </Box>
             <Box sx={section2}>
-                <h2 style={{textAlign: "center"}}>Usage 3 steps</h2>
+                <h2 style={{textAlign: "center"}}>Usage 2 steps</h2>
                 <br/>
                 <Box sx={section2Main}>
-                    <Box sx={section2Memo}>
+                    <Box sx={{...section2Memo, width: "45%"}}>
                         <h3>1 : Use this search engine in work</h3>
                         <small>Consumption Time: Normal business hours</small>
                         <p>
-                                Use this search engine to make ChatGPT a blast to write articles. You must enter a purpose for your search.
+                            Use this search engine to make ChatGPT a blast to write articles. You must enter a purpose for your search.
                         </p>
                         <Button variant="contained">
                             <Link to="/search" style={{color: "white"}}>
@@ -348,7 +373,29 @@ const LP = () => {
                             </Link>
                         </Button>
                     </Box>
-                    <Box sx={section2Memo}>
+                    <Box sx={{...section2Memo, width: "45%"}}>
+                        <h3>2 : Send request to auto-generate article</h3>
+                        <small>Time consumption: 1 minutes per article</small>
+                        <p>
+                            Select the search purpose for which you would like to auto-generate an article and submit your request for automatic article generation (you must enter your email address).
+                            <br/>
+                            <a href="mailto:coffeecupjapan@yahoo.co.jp">Admin</a> would auto-generate article using requested data and send back to you.
+                            <br/><br/>
+                            <span style={{color: "red"}}>Only available on React, JavaScript, TypeScript, Go, Python, HTML, CSS </span>
+                        </p>
+                        <Button variant="contained">
+                            <Link to="/summarize" style={{color: "white"}}>
+                                Summarize Page
+                            </Link>
+                        </Button>
+                    </Box>
+                </Box>
+                <br/><br/>
+                <Accordion sx={{ml: "30px"}}>
+                    <AccordionSummary>If you are searching topics which is not supported</AccordionSummary>
+                    <AccordionDetails>
+                    <Box sx={section2Main}>
+                    <Box sx={{...section2Memo, width: "45%"}}>
                         <h3>2 : Summarize Search History</h3>
                         <small>Time consumption: 5 minutes per article</small>
                         <p>
@@ -360,7 +407,7 @@ const LP = () => {
                             </Link>
                         </Button>
                     </Box>
-                    <Box sx={section2Memo}>
+                    <Box sx={{...section2Memo, width: "45%"}}>
                         <h3>3 : Let ChatGPT write the article</h3>
                         <small>Time consumption: 5-10 minutes per article</small>
                         <p>
@@ -373,6 +420,9 @@ const LP = () => {
                         </Button>
                     </Box>
                 </Box>
+                <br/>
+                </AccordionDetails>
+                </Accordion>
             </Box>
             <Box sx={section4}>
                 <h2 style={{textAlign: "center", borderBottom: "2px solid #757ce864", width: "46%", margin: "0 27%", paddingBottom: "10px"}}>Main features of this search engine</h2>
