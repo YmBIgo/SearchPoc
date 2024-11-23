@@ -1,4 +1,5 @@
-import { Box } from "@mui/material"
+import { Accordion, AccordionDetails, AccordionSummary, Box, Button } from "@mui/material"
+import { Link } from "react-router-dom"
 
 const contaner = {
     marginTop: "10px"
@@ -22,7 +23,7 @@ const Usage = () => {
                 <br/>
                 この検索エンジンは、そんな時間のかかるQiitaの記事作成を爆速にします。
                 <br/>
-                業務中の調べ事。その検索履歴をこの検索エンジンは覚えてくれて、その検索履歴から ChatGPT が自動でQiita記事を書いてくれるので、記事作成にかかる自由時間の工数は１０〜２０分に短縮されます。
+                業務中の調べ事。その検索履歴をこの検索エンジンは覚えてくれて、その検索履歴から ChatGPT が自動でQiita記事を書いてくれるので、記事作成にかかる自由時間の工数は大幅に短縮されます。
                 <br/>
                 業務中にこの検索エンジンを使って、あなたの業務中のノウハウを爆速で Qiita記事にしましょう！
             </p>
@@ -34,20 +35,36 @@ const Usage = () => {
                 <br/>
                 これにはそこまで時間はかかりません。メモと思って目的が何だったか残しましょう。
             </p>
-            <h3>2 : 検索結果をまとめる</h3>
+            <h3>2 : 記事作成要望を送る</h3>
+            <p>
+                検索が終わったら、<Button size="small" variant="contained"><Link to="/summarize" style={{color: "white"}}>このページ</Link></Button> から検索目的を選んで、記事作成要望を出しましょう！
+                <br/><br/>
+                <span style={{color: "red", lineHeight: "24px"}}>
+                    <strong>
+                        現在は、React, JavaScript, TypeScript, Go, Python, HTML, CSS のみ対応しています
+                    </strong>
+                </span>
+            </p>
+            <Accordion>
+            <AccordionSummary>上記が難しい場合はこちらを参照</AccordionSummary>
+            <AccordionDetails>
+            <h3>3 : 検索結果をまとめる</h3>
             <p>
                 検索が済んだら、ヘッダーの「まとめる」からまとめる検索目的を選んで、検索した検索履歴一覧から、妥当だった検索結果を選びメモを残す作業をしてもらいます。
             </p>
-            <h3>3 : ChatGPTに検索履歴から記事を自動生成してもらう</h3>
+            <h3>4 : ChatGPTに検索履歴から記事を自動生成してもらう</h3>
             <p>
                 ここまで終わったら、ヘッダーの「検索足跡」から２でまとめた検索履歴を選び、「ChatGPTに記事を書いてもらう」を押します
                 <br/>
                 これで、記事が自動生成されます。
             </p>
-            <h3>4 : 検索足跡が検索結果に出てくる</h3>
+            <h3>5 : 検索足跡が検索結果に出てくる</h3>
             <p>
                 あなたがまとめた検索足跡は次の検索の時に出てきますので、同じ内容を再び検索する必要はなくなります。
             </p>
+            </AccordionDetails>
+            </Accordion>
+            <br/>
         </Box>
     )
 }

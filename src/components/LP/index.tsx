@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material"
+import { Accordion, AccordionDetails, AccordionSummary, Box, Button } from "@mui/material"
 import { Link } from "react-router-dom"
 import { mediaQuery, useMediaQuery } from "../../hooks/useMediaQuery"
 
@@ -81,8 +81,8 @@ const LP = () => {
         return(
             <Box>
                 <Box sx={section0}>
-                    <h1>検索履歴を“価値”に変える<br/>検索エンジン</h1>
-                    <p>検索してまとめるだけで、組織のナレッジを記事に自動変換。エンジニアの知識共有とノウハウの蓄積を次のレベルへ。</p>
+                    <h1>技術記事を自動生成できる<br/>検索エンジン</h1>
+                    <p>検索するだけで、調べたナレッジを記事に自動変換。<br/>エンジニアの知識共有とノウハウの蓄積を次のレベルへ。</p>
                     <br/>
                     <Button variant="contained">
                         <Link to="/search" style={{color: "white"}}>今すぐ無料で試す！</Link>
@@ -95,7 +95,7 @@ const LP = () => {
                 </Box>
                 <Box sx={section1}>
                     <h2>日常の検索を、組織の資産に</h2>
-                    <p>この検索エンジンは、業務中の検索履歴を活用し、エンジニアの知見を組織内に蓄積する新しいツールです。ChatGPTによる自動記事生成により、ナレッジ共有が驚くほど簡単に、そして技術広報のスピードも劇的に上がります。</p>
+                    <p>この検索エンジンは、業務中の検索履歴を活用し、自動で技術記事を生成する新しいツールです。<br/>ChatGPTによる自動記事生成により、ナレッジ共有が驚くほど簡単に、そして技術広報のスピードも劇的に上がります。</p>
                 </Box>
                 <Box sx={section2SP}>
                     <h2 style={{textAlign: "center"}}>エンジニア組織で、<br/>こんな「課題」や「悩み」ありませんか？</h2>
@@ -111,9 +111,9 @@ const LP = () => {
                         <Box sx={section2MemoSP}>
                             <span style={{fontSize: "30px"}}>##</span>
                             <br/>
-                            エンジニアの転職リスクがあるので、
+                            転職などをしたいからアウトプットをしたいが、
                             <br/>
-                            ノウハウをためたいが、なかなかたまらない。
+                            なかなか時間が取れない。
                         </Box>
                         <Box sx={section2MemoSP}>
                             <span style={{fontSize: "30px"}}>###</span>
@@ -157,7 +157,7 @@ const LP = () => {
                     </Box>
                 </Box>
                 <Box sx={section2SP}>
-                    <h2 style={{textAlign: "center"}}>使い方３ステップ</h2>
+                    <h2 style={{textAlign: "center"}}>使い方２ステップ</h2>
                     <br/>
                     <Box sx={section2MainSP}>
                         <Box sx={section2MemoSP}>
@@ -173,10 +173,14 @@ const LP = () => {
                             </Button>
                         </Box>
                         <Box sx={section2MemoSP}>
-                            <h3>２検索履歴をまとめる</h3>
-                            <small>消費時間：1記事につき5分</small>
+                            <h3>２記事自動生成を要望を送信する</h3>
+                            <small>消費時間：1記事につき1分</small>
                             <p>
-                                １の結果は検索履歴として保存されるので、履歴の中から目的に沿ったものを選びましょう。
+                                記事にしたい検索目的を選んで、記事自動生成要望を送信しましょう（メールアドレスの入力が必須です）。
+                                <br/>
+                                <a href="mailto:coffeecupjapan@yahoo.co.jp">管理者</a>が記事を自動生成して返信いたします
+                                <br/><br/>
+                                <span style={{color: "red"}}>React, JavaScript, TypeScript, Go, Python, HTML, CSS 以外は対応していません</span>
                             </p>
                             <Button variant="contained">
                                 <Link to="/summarize" style={{color: "white"}}>
@@ -184,18 +188,35 @@ const LP = () => {
                                 </Link>
                             </Button>
                         </Box>
-                        <Box sx={section2MemoSP}>
-                            <h3>３ChatGPTに記事を書かせる</h3>
-                            <small>消費時間：1記事につき5〜10分</small>
-                            <p>
-                                ２でまとめれば、検索足跡ページから、ChatGPTに記事を書かせることができるようになります。
-                            </p>
-                            <Button variant="contained">
-                                <Link to="/thoughts" style={{color: "white"}}>
-                                    記事自動生成の検索足跡ページ
-                                </Link>
-                            </Button>
-                        </Box>
+                        <Accordion>
+                            <AccordionSummary>自動生成できるトピックがない場合は、こちらを参照</AccordionSummary>
+                            <AccordionDetails>
+                            <Box sx={section2MemoSP}>
+                                <h3>２検索履歴をまとめる</h3>
+                                <small>消費時間：1記事につき5分</small>
+                                <p>
+                                    １の結果は検索履歴として保存されるので、履歴の中から目的に沿ったものを選びましょう。
+                                </p>
+                                <Button variant="contained">
+                                    <Link to="/summarize" style={{color: "white"}}>
+                                        検索履歴をまとめるページ
+                                    </Link>
+                                </Button>
+                            </Box>
+                            <Box sx={section2MemoSP}>
+                                <h3>３ChatGPTに記事を書かせる</h3>
+                                <small>消費時間：1記事につき5〜10分</small>
+                                <p>
+                                    ２でまとめれば、検索足跡ページから、ChatGPTに記事を書かせることができるようになります。
+                                </p>
+                                <Button variant="contained">
+                                    <Link to="/thoughts" style={{color: "white"}}>
+                                        記事自動生成の検索足跡ページ
+                                    </Link>
+                                </Button>
+                            </Box>
+                            </AccordionDetails>
+                        </Accordion>
                     </Box>
                 </Box>
                 <Box sx={section4SP}>
@@ -245,8 +266,8 @@ const LP = () => {
     return(
         <Box>
             <Box sx={section0}>
-                <h1>検索履歴を“価値”に変える、検索エンジン</h1>
-                <p>検索してまとめるだけで、組織のナレッジを記事に自動変換。エンジニアの知識共有とノウハウの蓄積を次のレベルへ。</p>
+                <h1>技術記事を自動生成できる、検索エンジン</h1>
+                <p>検索するだけで、調べたナレッジを記事に自動変換。エンジニアの知識共有とノウハウの蓄積を次のレベルへ。</p>
                 <br/>
                 <Button variant="contained">
                     <Link to="/search" style={{color: "white"}}>今すぐ無料で試す！</Link>
@@ -259,7 +280,11 @@ const LP = () => {
             </Box>
             <Box sx={section1}>
                 <h2>日常の検索を、組織の資産に</h2>
-                <p>この検索エンジンは、業務中の検索履歴を活用し、エンジニアの知見を組織内に蓄積する新しいツールです。ChatGPTによる自動記事生成により、ナレッジ共有が驚くほど簡単に、そして技術広報のスピードも劇的に上がります。</p>
+                <p>
+                    この検索エンジンは、業務中の検索履歴を活用し、自動で技術記事を生成する新しいツールです。
+                    <br/>
+                    ChatGPTによる自動記事生成により、ナレッジ共有が驚くほど簡単に、そして技術広報のスピードも劇的に上がります。
+                </p>
             </Box>
             <Box sx={section2}>
                 <h2 style={{textAlign: "center"}}>エンジニア組織で、<br/>こんな「課題」や「悩み」ありませんか？</h2>
@@ -275,9 +300,9 @@ const LP = () => {
                     <Box sx={section2Memo}>
                         <span style={{fontSize: "30px"}}>##</span>
                         <br/>
-                        エンジニアの転職リスクがあるので、
+                        転職などをしたいからアウトプットをしたいが、
                         <br/>
-                        ノウハウをためたいが、なかなかたまらない。
+                        なかなか時間が取れない。
                     </Box>
                     <Box sx={section2Memo}>
                         <span style={{fontSize: "30px"}}>###</span>
@@ -321,10 +346,10 @@ const LP = () => {
                 </Box>
             </Box>
             <Box sx={section2}>
-                <h2 style={{textAlign: "center"}}>使い方３ステップ</h2>
+                <h2 style={{textAlign: "center"}}>使い方２ステップ</h2>
                 <br/>
                 <Box sx={section2Main}>
-                    <Box sx={section2Memo}>
+                    <Box sx={{...section2Memo, width: "45%"}}>
                         <h3>１業務中この検索エンジンを使う</h3>
                         <small>消費時間：通常の業務時間</small>
                         <p>
@@ -336,11 +361,17 @@ const LP = () => {
                             </Link>
                         </Button>
                     </Box>
-                    <Box sx={section2Memo}>
-                        <h3>２検索履歴をまとめる</h3>
-                        <small>消費時間：1記事につき5分</small>
+                    <Box sx={{...section2Memo, width: "45%"}}>
+                        <h3>２記事自動生成を要望を送信する</h3>
+                        <small>消費時間：1記事につき1分</small>
                         <p>
-                            １の結果は検索履歴として保存されるので、履歴の中から目的に沿ったものを選びましょう。
+                            記事にしたい検索目的を選んで、記事自動生成要望を送信しましょう（メールアドレスの入力が必須です）。
+                            <br/>
+                            <a href="mailto:coffeecupjapan@yahoo.co.jp">管理者</a>が記事を自動生成して返信いたします
+                            <br/><br/>
+                            <span style={{color: "red"}}>
+                                React, JavaScript, TypeScript, Go, Python, HTML, CSS 以外は対応していません
+                            </span>
                         </p>
                         <Button variant="contained">
                             <Link to="/summarize" style={{color: "white"}}>
@@ -348,19 +379,40 @@ const LP = () => {
                             </Link>
                         </Button>
                     </Box>
-                    <Box sx={section2Memo}>
-                        <h3>３ChatGPTに記事を書かせる</h3>
-                        <small>消費時間：1記事につき5〜10分</small>
-                        <p>
-                            ２でまとめれば、検索足跡ページから、ChatGPTに記事を書かせることができるようになります。
-                        </p>
-                        <Button variant="contained">
-                            <Link to="/thoughts" style={{color: "white"}}>
-                                記事自動生成の検索足跡ページ
-                            </Link>
-                        </Button>
-                    </Box>
                 </Box>
+                <br/><br/>
+                <Accordion sx={{ml: "30px"}}>
+                    <AccordionSummary>自動生成できるトピックがない場合は、こちらを参照</AccordionSummary>
+                    <AccordionDetails>
+                    <Box sx={section2Main}>
+                        <Box sx={{...section2Memo, width: "45%"}}>
+                            <h3>２検索履歴をまとめる</h3>
+                            <small>消費時間：1記事につき5分</small>
+                            <p>
+                                １の結果は検索履歴として保存されるので、履歴の中から目的に沿ったものを選びましょう。
+                            </p>
+                            <Button variant="contained">
+                                <Link to="/summarize" style={{color: "white"}}>
+                                    検索履歴をまとめるページ
+                                </Link>
+                            </Button>
+                        </Box>
+                        <Box sx={{...section2Memo, width: "45%"}}>
+                            <h3>３ChatGPTに記事を書かせる</h3>
+                            <small>消費時間：1記事につき5〜10分</small>
+                            <p>
+                                ２でまとめれば、検索足跡ページから、ChatGPTに記事を書かせることができるようになります。
+                            </p>
+                            <Button variant="contained">
+                                <Link to="/thoughts" style={{color: "white"}}>
+                                    記事自動生成の検索足跡ページ
+                                </Link>
+                            </Button>
+                        </Box>
+                    </Box>
+                    <br/>
+                    </AccordionDetails>
+                </Accordion>
             </Box>
             <Box sx={section4}>
                 <h2 style={{textAlign: "center", borderBottom: "2px solid #757ce864", width: "46%", margin: "0 27%", paddingBottom: "10px"}}>この検索エンジンの主な機能</h2>

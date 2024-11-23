@@ -67,12 +67,37 @@ const sendTextFieldArea = {
     mt: "10px"
 }
 
+const endpoint = "https://k47io3f7exao7prtrzaqqknx7y0nkqml.lambda-url.us-west-1.on.aws/"
+
 const Summarize = () => {
     const [purpose, setPurpose] = useState<Purpose | null>(null)
     const [selectedSearchResult, setSelectedSearchResult] = useState<SearchResult[]>([])
+    const [email, setEmail] = useState<string>("")
+    const [sendStatus, setSendStatus] = useState<string>("")
     const [isTitleEditing, setIsTitleEditing] = useState(false)
     const { id } = useParams<{id: string}>()
     const navigate = useNavigate()
+    // top
+    const onClickSendEmail = async() => {
+        try {
+            const jsonPurpose = JSON.stringify(purpose)
+            const jsonContent = (purpose?.title ?? "Unknown Purpose") + " : \n" + jsonPurpose
+            const body = JSON.stringify({
+                email,
+                aiEmail: jsonContent
+            })
+            const result = await fetch(endpoint, {
+                method: "POST",
+                body
+            })
+            const jsonResult = await result.json()
+            const status = jsonResult.result
+            setSendStatus(status)
+            setEmail("")
+        } catch (e) {
+            console.log(e)
+        }
+    }
     // left side event
     const onCheckSearchResult = (e: React.ChangeEvent<HTMLInputElement>, searchResult: SearchResult) => {
         if (e.target.checked) {
@@ -208,8 +233,40 @@ const Summarize = () => {
                     </Tooltip>
                 }
             </h1>
+            <Box sx={{border: "1px solid #BBBBBB", padding: "10px", maxWidth: "950px", mt: "20px"}}>
+                <h3>下記のメールを入力し送信することで、検索履歴から生成した記事をお送りできます</h3>
+                <p>
+                    <span style={{color: "red", lineHeight: "24px"}}>
+                        <strong>
+                            現在は、React, JavaScript, TypeScript, Go, Python, HTML, CSS のみ対応しています
+                            <br/>
+                            それ以外の言語はサポートされるのをお待ちください
+                            <br/>
+                            <a href="mailto:coffeecupjapan@yahoo.co.jp">管理者</a>はできる限り３日以内に記事を生成しますが、場合によっては対応できない可能性があることをご承知おきください
+                        </strong>
+                    </span>
+                </p>
+                <TextField
+                    sx={{width: "500px", mb: "10px"}}
+                    placeholder="メールアドレス"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
+                <br/>
+                <Button
+                    variant="contained"
+                    disabled={!email}
+                    onClick={onClickSendEmail}
+                >
+                    送信
+                </Button>
+                {sendStatus === "OK" && <p>送信に成功しました</p>}
+                {sendStatus === "NG" && <p>送信に失敗しました</p>}
+            </Box>
+            <br/>
+            <hr/>
             <p>
-                役に立った検索履歴を選択してください
+                役に立った検索履歴を手動で選んで、手動でChatGPTに記事を自動生成させることもできます。
             </p>
             <Box sx={container}>
                 <Box sx={containerSection}>

@@ -37,7 +37,6 @@ const searchResultItem = {
 
 const endpoint = "https://k47io3f7exao7prtrzaqqknx7y0nkqml.lambda-url.us-west-1.on.aws/"
 
-
 const ThoughtComponent = () => {
     const [thought, setThought] = useState<Thought | null>(null)
     const [currentSearch, setCurrentSearch] = useState<SearchResult>()
