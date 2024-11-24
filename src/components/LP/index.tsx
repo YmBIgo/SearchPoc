@@ -7,6 +7,11 @@ const section0 = {
     textAlign: "center",
     backgroundColor: "#DDDDDD80"
 }
+const sectionCampaign = {
+    backgroundColor: "#333",
+    padding: "20px 30px",
+    color: "white"
+}
 const section1 = {
     padding: "40px 20px",
     backgroundColor: "white"
@@ -91,6 +96,12 @@ const LP = () => {
                         <Link to="/usage" style={{color: "white"}}>
                             詳しい使い方はこちら
                         </Link>
+                    </Button>
+                </Box>
+                <Box sx={sectionCampaign}>
+                    <h1>Amazon3000円プレゼント<br/>キャンペーン行っています！</h1>
+                    <Button variant="contained">
+                        <Link to="/lp" style={{color: "white"}}>詳細はこちら</Link>
                     </Button>
                 </Box>
                 <Box sx={section1}>
@@ -278,6 +289,12 @@ const LP = () => {
                     </Link>
                 </Button>
             </Box>
+            <Box sx={sectionCampaign}>
+                    <h1>Amazon3000円プレゼント<br/>キャンペーン行っています！</h1>
+                    <Button variant="contained">
+                        <Link to="/lp" style={{color: "white"}}>詳細はこちら</Link>
+                    </Button>
+                </Box>
             <Box sx={section1}>
                 <h2>日常の検索を、組織の資産に</h2>
                 <p>

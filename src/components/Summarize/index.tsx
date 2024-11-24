@@ -73,6 +73,7 @@ const Summarize = () => {
     const [purpose, setPurpose] = useState<Purpose | null>(null)
     const [selectedSearchResult, setSelectedSearchResult] = useState<SearchResult[]>([])
     const [email, setEmail] = useState<string>("")
+    const [content, setContent] = useState<string>("")
     const [sendStatus, setSendStatus] = useState<string>("")
     const [isTitleEditing, setIsTitleEditing] = useState(false)
     const { id } = useParams<{id: string}>()
@@ -81,7 +82,10 @@ const Summarize = () => {
     const onClickSendEmail = async() => {
         try {
             const jsonPurpose = JSON.stringify(purpose)
-            const jsonContent = (purpose?.title ?? "Unknown Purpose") + " : \n" + jsonPurpose
+            const jsonContent = (purpose?.title ?? "Unknown Purpose") +
+            " : <br/>" +
+            "記事内容 " + content + " : <br/>" +
+            jsonPurpose
             const body = JSON.stringify({
                 email,
                 aiEmail: jsonContent
@@ -94,6 +98,7 @@ const Summarize = () => {
             const status = jsonResult.result
             setSendStatus(status)
             setEmail("")
+            setContent("")
         } catch (e) {
             console.log(e)
         }
@@ -251,6 +256,15 @@ const Summarize = () => {
                     placeholder="メールアドレス"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                />
+                <br/>
+                <TextareaAutosize
+                    minRows={3}
+                    maxRows={5}
+                    style={{width: "95%", height: "46px", marginBottom: "10px"}}
+                    placeholder="どのような記事を書きたいか入力してください（必須ではない）"
+                    onChange={(e) => setContent(e.target.value)}
+                    value={content}
                 />
                 <br/>
                 <Button

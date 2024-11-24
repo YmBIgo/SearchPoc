@@ -1,5 +1,5 @@
 import {useEffect} from "react"
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 
 import Header from "./components/Header";
 import Top from "./components/Top";
@@ -11,6 +11,9 @@ import Usage from "./components/Usage";
 import { CURRENT_SEARCH_PURPOSE, SEARCH_PURPOSES, SEARCH_THOUGHTS } from "./const/localstorage";
 import { initLocalStorage } from "./helper/localstorage";
 import LP from "./components/LP";
+import LP2 from "./components/LP2";
+import Privacy from "./components/Privacy";
+import Terms from "./components/Terms";
 
 function App() {
   useEffect(() => {
@@ -34,9 +37,20 @@ function App() {
         <Route path="/thoughts" element={<ThoughtTop/>}/>
         <Route path="/usage" element={<Usage/>}/>
         <Route path="/" element={<LP/>}/>
+        <Route path="/lp" element={<LP2/>}/>
+        <Route path="/privacy" element={<Privacy/>}/>
+        <Route path="/terms" element={<Terms/>}/>
       </Routes>
       <hr/>
-      <p>Kazuya Kurihara @2024 <a href="https://x.com/mugcup55929" target="_blank">Twitter</a>{"　"}<a href="mailto:coffeecupjapan@yahoo.co.jp">メール</a></p>
+      <p>Kazuya Kurihara @2024
+        {"　"}
+        <Link to="/privacy">プライバシーポリシー</Link>
+        {"　"}
+        <Link to="/terms">利用規約</Link>
+        {"　"}
+        <a href="https://x.com/mugcup55929" target="_blank">Twitter</a>
+        {"　"}
+        <a href="mailto:coffeecupjapan@yahoo.co.jp">メール</a></p>
     </div>
   )
 }

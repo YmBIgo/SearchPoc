@@ -41,7 +41,7 @@ const Header = () => {
                 <Link to="/summarize" style={{color: "white"}}>まとめる</Link>
             </Button>
             <Button color="inherit">
-                <a href="http://searchengine2en.s3-website-us-west-1.amazonaws.com/" target="_blank" style={{color: "white"}}>English</a>
+                <a href="https://coffee-cup.jp/index.html" target="_blank" style={{color: "white"}}>English</a>
             </Button>
             </Toolbar>
         </AppBar>
