@@ -24,6 +24,7 @@ import { Purpose, isPurposeArrayType } from "../../types/purpose"
 import { Thought, isThoughtArrayType } from "../../types/thought"
 import { SearchResult } from "../../types/searchResult";
 import { UUIDGeneratorNode2 } from "../../helper/random";
+import { Link } from "react-router-dom";
 
 const container = {
     display: "flex",
@@ -76,6 +77,7 @@ const Summarize = () => {
     const [content, setContent] = useState<string>("")
     const [sendStatus, setSendStatus] = useState<string>("")
     const [isTitleEditing, setIsTitleEditing] = useState(false)
+    const [isTermAccepted, setIsTermAccepted] = useState(false)
     const { id } = useParams<{id: string}>()
     const navigate = useNavigate()
     // top
@@ -261,15 +263,19 @@ const Summarize = () => {
                 <TextareaAutosize
                     minRows={3}
                     maxRows={5}
-                    style={{width: "95%", height: "46px", marginBottom: "10px"}}
+                    style={{width: "95%", height: "46px"}}
                     placeholder="どのような記事を書きたいか入力してください（必須ではない）"
                     onChange={(e) => setContent(e.target.value)}
                     value={content}
                 />
-                <br/>
+                <p>
+                    <Checkbox checked={isTermAccepted} onChange={() => setIsTermAccepted(!isTermAccepted)}/>
+                    {"　"}
+                    <Link to="/privacy">プライバシーポリシー</Link>と<Link to="/terms">利用規約</Link>に同意する
+                </p>
                 <Button
                     variant="contained"
-                    disabled={!email}
+                    disabled={!email || !isTermAccepted}
                     onClick={onClickSendEmail}
                 >
                     送信

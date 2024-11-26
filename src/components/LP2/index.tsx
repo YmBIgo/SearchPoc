@@ -89,16 +89,16 @@ const section2Wrapper = {
 const section2 = {
     backgroundColor: "#333",
     height: "240px",
-    width: "150%",
+    width: "calc(80% - 160px)",
     marginLeft: "-20%",
-    marginTop: "100px",
+    marginTop: "30px",
     transform: "rotate(8deg)",
     color: "white",
     padding: "30px calc(20% + 100px)"
 }
 const section2Main = {
     transform: "rotate(-8deg)",
-    marginTop: "-110px"
+    marginTop: "-40px"
 }
 const section2Title = {
     fontSize: "35px",
@@ -131,7 +131,10 @@ const section4 = {
     fontSize: "64px",
     textAlign: "center",
     fontWeight: "bold",
-    paddingBottom: "30px"
+    paddingBottom: "30px",
+    paddingTop:"30px",
+    backgroundColor: "#333",
+    color: "white"
 }
 
 const LP2 = () => {
@@ -171,6 +174,8 @@ const LP2 = () => {
                     <small style={section1ExplainSmall}>
                         当選者が５人決まった当日中に３記事生成すれば、先着から外れても1000円分のAmazonギフトを差し上げます
                         <br/>
+                        React, JavaScript, TypeScript, Go, Python, HTML, CSS 以外は対応していません
+                        <br/>
                         似たような内容を記事として自動生成するのはお控えください
                         <br/>
                         １名様につき１回のみとなります
@@ -178,7 +183,7 @@ const LP2 = () => {
                 </h5>
             </Box>
             <Box sx={section2Wrapper}>
-                <Box sx={{...section2, padding: "50px calc(20% + 20px)"}}>
+                <Box sx={{...section2, padding: "50px calc(20% + 20px)", width: "calc(100% - 70px)"}}>
                     <Box sx={{...section2MainSP, width: "400px"}}>
                         <h3 style={section2Title}>検索エンジン CoffeeCup とは？</h3>
                         <p style={{lineHeight: "24px"}}>
@@ -191,13 +196,13 @@ const LP2 = () => {
                     </Box>
                 </Box>
             </Box>
-            <hr style={section0Hr}/>
+            <hr style={{...section0Hr, marginTop: "50px"}}/>
             <hr style={section0Hr2}/>
             <Box sx={section3}>
                 <Box sx={section1Title}>
                     <h3 id="participate">参加方法</h3>
                 </Box>
-                <Box sx={{...section3Main, flexFlow: "column"}}>
+                <Box sx={{...section3Main, flexFlow: "column", margin: "30px 20px 20px"}}>
                     <Box sx={{...section3MainContent, width: "100%", marginBottom: "30px"}}>
                         <h5 style={section3MainTitle}>１：検索する</h5>
                         <p style={{lineHeight: "30px", textAlign: "left"}}>
@@ -278,6 +283,8 @@ const LP2 = () => {
                     <small style={section1ExplainSmall}>
                         当選者が５人決まった当日中に３記事生成すれば、先着から外れても1000円分のAmazonギフトを差し上げます
                         <br/>
+                        React, JavaScript, TypeScript, Go, Python, HTML, CSS 以外は対応していません
+                        <br/>
                         似たような内容を記事として自動生成するのはお控えください
                         <br/>
                         １名様につき１回のみとなります
@@ -297,12 +304,12 @@ const LP2 = () => {
                         </p>
                         <img
                             src="https://google-poc.s3.us-west-1.amazonaws.com/image/shortcut.png"
-                            style={{width: "400px", marginLeft: "600px", marginTop: "-50px"}}
+                            style={{width: "450px", marginLeft: "387px", marginTop: "-30px"}}
                         />
                     </Box>
                 </Box>
             </Box>
-            <hr style={section0Hr}/>
+            <hr style={{...section0Hr, marginTop: "80px"}}/>
             <hr style={section0Hr2}/>
             <Box sx={section3}>
                 <Box sx={section1Title}>

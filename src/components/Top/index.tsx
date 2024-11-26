@@ -512,7 +512,7 @@ const Top = () => {
               variant="contained"
               disabled={!inputPurpose}
             >
-              目的を追加する
+              目的を追加
             </Button>
           </Box>
           <Box>
@@ -528,9 +528,14 @@ const Top = () => {
               variant="contained"
               disabled={!filterText}
             >
-              目的をフィルターする
+              目的をフィルター
             </Button>
           </Box>
+          {
+            !searchPurposes.length && (
+              <p style={{color: "red",  margin: 0}}>検索目的を入力して、追加してください</p>
+            )
+          }
           <FormControl>
             <InputLabel>{searchSelectPurpose.length ? "" : "検索目的を選択してください"}</InputLabel>
             <Select
