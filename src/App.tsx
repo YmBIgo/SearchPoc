@@ -14,6 +14,7 @@ import LP from "./components/LP";
 import LP2 from "./components/LP2";
 import Privacy from "./components/Privacy";
 import Terms from "./components/Terms";
+import LPBasic from "./components/LPBasic";
 
 function App() {
   useEffect(() => {
@@ -38,6 +39,7 @@ function App() {
         <Route path="/usage" element={<Usage/>}/>
         <Route path="/" element={<LP/>}/>
         <Route path="/lp" element={<LP2/>}/>
+        <Route path="/lp2" element={<LPBasic/>}/>
         <Route path="/privacy" element={<Privacy/>}/>
         <Route path="/terms" element={<Terms/>}/>
       </Routes>

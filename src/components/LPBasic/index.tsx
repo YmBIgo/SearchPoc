@@ -78,17 +78,17 @@ const section1Title = {
 const section1WhyExplain = {
     fontSize: "30px",
     lineHeight: "64px",
-    marginBottom: "0px"
+    marginBottom: "-10px"
 }
 const section1Hr = {
     width: "200px"
 }
 const section1Explain = {
     fontSize: "16px",
-    lineHeight: "26px"
+    lineHeight: "46px"
 }
 const section1ExplainSmall = {
-    color: "#AAAAAA",
+    color: "#AAAAAA"
 }
 // section 2
 const section2Wrapper = {
@@ -145,7 +145,7 @@ const section4 = {
     color: "white"
 }
 
-const LP2 = () => {
+const LPBasic = () => {
     const isSp = useMediaQuery(mediaQuery.sp)
     if(isSp) {
         return(
@@ -176,19 +176,25 @@ const LP2 = () => {
                     <h3 id="why">Why？</h3>
                 </Box>
                 <h5 style={section1WhyExplain}>
-                    あなたの<span style={section03000yen}>履歴書・職務経歴書</span>は技術力をアピールできてますか？
+                    もはや転職には必須となった
                     <br/>
-                    書類だけでは、本当の技術力が伝わるか分からなくて心配・・・
+                    <span style={section03000yen}>「アウトプット」</span>。
                     <br/>
-                    その心配を解消するために、<span style={section03000yen}>技術力の証拠</span>をアピールしませんか？
+                    あなたは、できていますか？
+                    <Box sx={{margin: "46px 0 30px"}}>
+                        「時間が取れない」
+                        <br/>
+                        「何を書けばいいの？」
+                        <br/>
+                        「長続きしなかった」
+                    </Box>
+                    そんなあなたでもアウトプットができるようにするのが、
+                    <br/>
+                    <span style={section03000yen}>検索エンジンCoffeeCup</span>
                     <hr style={section1Hr}/>
-                    この検索エンジンは、あなたの検索履歴から技術記事を自動生成します
-                    <br/>
-                    企業様にアピールしたい技術の記事を<span style={section03000yen}>自動生成</span>して、
-                    <br/>
-                    <span style={section03000yen}>技術的な根拠のある職務経歴書</span>を作りましょう！
+                    あなたは普段のように検索をするだけ。あとは、検索履歴を送信するだけで技術記事をお送りします！
                 </h5>
-                <br/><br/>
+                <br/><br/><br/>
                 <Box sx={section1Title}>
                     <h3 id="overview">概要{"　"}Overview</h3>
                 </Box>
@@ -196,7 +202,7 @@ const LP2 = () => {
                 <h5 style={section1WhyExplain}>
                     エンジニアのあなたが、
                     <br/>
-                    <Link to="/">検索エンジン CoffeeCup</Link>を使い業務の技術を調べ直し、
+                    <Link to="/">検索エンジン CoffeeCup</Link>を使い、業務のノウハウから
                     <br/>
                     技術記事を３つ生成すれば、
                     <br/>
@@ -234,14 +240,11 @@ const LP2 = () => {
                 <Box sx={section1Title}>
                     <h3 id="participate">参加方法</h3>
                 </Box>
-                <br/>
                 <Box sx={{...section3Main, flexFlow: "column", margin: "30px 20px 20px"}}>
                     <Box sx={{...section3MainContent, width: "100%", marginBottom: "30px"}}>
                         <h5 style={section3MainTitle}>１：検索する</h5>
                         <p style={{lineHeight: "30px", textAlign: "left"}}>
-                            <span style={section03000yen}>業務中に調べた技術ノウハウ</span>を、この検索エンジンで調べ直しましょう。
-                            <br/>
-                            BingとChatGPTでの検索が可能です。
+                            BingとChatGPTでの検索が可能です。時間削減できるので、業務での使用が推奨されます
                             <br/>
                             検索するときは、<span style={section03000yen}>必ず検索する目的を入力するか選択する</span>必要があります
                             <br/>
@@ -308,28 +311,34 @@ const LP2 = () => {
             <hr style={section0Hr}/>
             <hr style={section0Hr2}/>
             <Box sx={section1}>
-                <Box sx={section1Title}>
+            <Box sx={section1Title}>
                     <h3 id="why">Why？</h3>
                 </Box>
-                <h5 style={section1WhyExplain}>
-                    あなたの<span style={section03000yen}>履歴書・職務経歴書</span>は技術力をアピールできてますか？
+                <h5 style={{...section1WhyExplain}}>
+                    もはや転職には必須となった <span style={section03000yen}>「アウトプット」</span>。
                     <br/>
-                    書類だけでは、本当の技術力が伝わるか分からなくて心配・・・
+                    あなたは、できていますか？
+                    <Box sx={{margin: "30px 0 10px"}}>
+                        「時間が取れない」
+                        「何を書けばいいの？」
+                        「長続きしなかった」
+                    </Box>
+                    <hr style={{...section1Hr, marginBottom: "30px"}}/>
+                    そんなあなたでも、アウトプットができるようにするのが、
                     <br/>
-                    その心配を解消するために、<span style={section03000yen}>技術力の証拠</span>をアピールしませんか？
-                    <hr style={section1Hr}/>
-                    この検索エンジンは、あなたの検索履歴から記事を自動生成します
+                    <span style={section03000yen}>検索エンジンCoffeeCup</span>です！
                     <br/>
-                    企業様にアピールしたい技術の記事を<span style={section03000yen}>自動生成</span>して、
+                    あなたは普段のように検索をするだけ。
                     <br/>
-                    <span style={section03000yen}>技術的な根拠のある職務経歴書</span>を作りましょう！
+                    あとは、検索履歴を送信するだけで、技術記事をお送りします！
                 </h5>
-                <br/><br/>
+                <br/><br/><br/>
                 <Box sx={section1Title}>
                     <h3 id="overview">概要{"　"}Overview</h3>
                 </Box>
+                <br/>
                 <h5 style={section1WhyExplain}>
-                    ITエンジニアが、<span style={section03000yen}>検索履歴から記事を自動生成</span>する検索エンジン
+                    ITエンジニアが、<span style={section03000yen}>検索履歴から記事を自動生成する検索エンジン</span>
                     <br/>
                     <Link to="/">CoffeeCup</Link>を使い、IT系技術記事を３つ生成すれば、
                     <br/>
@@ -373,11 +382,9 @@ const LP2 = () => {
                 </Box>
                 <Box sx={section3Main}>
                     <Box sx={section3MainContent}>
-                        <h5 style={section3MainTitle}>１：技術を検索しなおす</h5>
+                        <h5 style={section3MainTitle}>１：検索する</h5>
                         <p style={{lineHeight: "30px", textAlign: "left"}}>
-                            <span style={section03000yen}>業務中に調べた技術ノウハウ</span>をこの検索エンジンで調べ直しましょう。
-                            <br/>
-                            BingとChatGPTでの検索が可能です。
+                            BingとChatGPTでの検索が可能です。時間削減できるので、業務での使用が推奨されます
                             <br/>
                             検索するときは、<span style={section03000yen}>必ず検索する目的を入力するか選択する</span>必要があります
                             <br/>
@@ -415,4 +422,4 @@ const LP2 = () => {
     )
 }
 
-export default LP2
+export default LPBasic
