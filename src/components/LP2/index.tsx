@@ -243,7 +243,7 @@ const LP2 = () => {
                             <br/>
                             BingとChatGPTでの検索が可能です。
                             <br/>
-                            検索するときは、<span style={section03000yen}>必ず検索する目的を入力するか選択する</span>必要があります
+                            検索するときは、<span style={section03000yen}>必ず記事のタイトルを入力するか選択する</span>必要があります
                             <br/>
                             <Button variant="contained" sx={{mt: "10px"}}>
                                 <Link to="/search" style={{color: "white"}}>こちらのページから検索</Link>
@@ -253,12 +253,12 @@ const LP2 = () => {
                     <Box sx={{...section3MainContent, width: "100%", marginBottom: "30px"}}>
                         <h5 style={section3MainTitle}>２：自動記事生成を依頼</h5>
                         <p style={{lineHeight: "30px", textAlign: "left"}}>
-                            入力した検索した目的から、記事を作る依頼をしましょう
+                            入力した記事のタイトルから、記事を作る依頼をしましょう
                             <br/>
                             依頼するには、<span style={section03000yen}>メールアドレスと記事の内容のメモを入力</span>する必要があります
                             <br/>
                             <Button variant="contained" sx={{mt: "10px"}}>
-                                <Link to="/summarize" style={{color: "white"}}>こちらから目的を選択し依頼</Link>
+                                <Link to="/summarize" style={{color: "white"}}>こちらから記事のタイトルを選択し依頼</Link>
                             </Button>
                         </p>
                     </Box>
@@ -379,7 +379,7 @@ const LP2 = () => {
                             <br/>
                             BingとChatGPTでの検索が可能です。
                             <br/>
-                            検索するときは、<span style={section03000yen}>必ず検索する目的を入力するか選択する</span>必要があります
+                            検索するときは、<span style={section03000yen}>必ず記事のタイトルを入力するか選択する</span>必要があります
                             <br/>
                             <Button variant="contained" sx={{mt: "10px"}}>
                                 <Link to="/search" style={{color: "white"}}>こちらのページから検索</Link>
@@ -389,12 +389,12 @@ const LP2 = () => {
                     <Box sx={section3MainContent}>
                         <h5 style={section3MainTitle}>２：自動記事生成を依頼</h5>
                         <p style={{lineHeight: "30px", textAlign: "left"}}>
-                            入力した検索した目的から、記事を作る依頼をしましょう
+                            記事のタイトルを選んで、記事を作る依頼をしましょう
                             <br/>
                             依頼するには、<span style={section03000yen}>メールアドレスと記事の内容のメモを入力</span>する必要があります
                             <br/>
                             <Button variant="contained" sx={{mt: "10px"}}>
-                                <Link to="/summarize" style={{color: "white"}}>こちらから目的を選択し依頼</Link>
+                                <Link to="/summarize" style={{color: "white"}}>こちらから記事のタイトルを選択し依頼</Link>
                             </Button>
                         </p>
                     </Box>

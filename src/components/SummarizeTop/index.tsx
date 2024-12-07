@@ -44,11 +44,11 @@ const SummarizeTop = () => {
     }
     return (
         <Box sx={container}>
-            <h1>まとめたい検索目的を選んでください</h1>
+            <h1>記事のタイトルを選んでください</h1>
             <p>
                 React, JavaScript, TypeScript, Go, Python, HTML, CSS は、記事を自動生成できます
                 <br/><br/>
-                記事にしたい検索目的を押して、メールアドレスを送信すれば、生成した記事を返信いたします。
+                記事のタイトルを押して、メールアドレスを送信すれば、生成した記事を返信いたします。
                 <br/><br/>
                 <small>
                     最大で３日かかります

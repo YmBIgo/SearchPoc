@@ -498,12 +498,12 @@ const Top = () => {
           sx={textField}
         />
         <Box sx={purposeSection}>
-          <h3>目的を入力する</h3>
-          {!searchSelectPurpose.length && <p style={{color: "red", margin: 0}}>「検索目的を入力」の後で、一番下で「検索目的」を選択してください</p>}
+          <h3>記事のタイトルを入力する</h3>
+          {!searchSelectPurpose.length && <p style={{color: "red", margin: 0}}>「記事のタイトルを入力」の後で、一番下で「記事のタイトル」を選択してください</p>}
           <Box>
             <TextField
               value={inputPurpose}
-              placeholder="検索目的を入力"
+              placeholder="記事のタイトルを入力"
               onChange={onChangeInputPurpose}
               sx={textFieldSmall}
             />
@@ -512,13 +512,13 @@ const Top = () => {
               variant="contained"
               disabled={!inputPurpose}
             >
-              目的を追加
+              記事のタイトルを追加
             </Button>
           </Box>
           <Box>
             <TextField
               value={filterText}
-              placeholder="検索目的をフィルタする"
+              placeholder="記事のタイトルをフィルタする"
               sx={textFieldSmall}
               onChange={onChangeFilterText}
             />
@@ -528,16 +528,16 @@ const Top = () => {
               variant="contained"
               disabled={!filterText}
             >
-              目的をフィルター
+              フィルターする
             </Button>
           </Box>
           {
             !searchPurposes.length && (
-              <p style={{color: "red",  margin: 0}}>検索目的を入力して、追加してください</p>
+              <p style={{color: "red",  margin: 0}}>記事のタイトルを入力して、追加してください</p>
             )
           }
           <FormControl>
-            <InputLabel>{searchSelectPurpose.length ? "" : "検索目的を選択してください"}</InputLabel>
+            <InputLabel>{searchSelectPurpose.length ? "" : "記事のタイトルを選択してください"}</InputLabel>
             <Select
               sx={textField}
               value={searchSelectPurpose}
@@ -575,7 +575,7 @@ const Top = () => {
               })}
               { searchPurposes.length > 5 &&
                 <MenuItem value="0">
-                  フィルターして選択したい目的を選んでください
+                  フィルターして選択したい記事の内容を選んでください
                 </MenuItem>
               }
             </Select>
@@ -613,7 +613,13 @@ const Top = () => {
         </p>
       </Box>
       <Box sx={containerSection}>
-        <h1 style={{ marginBottom: "0px" }}>検索結果</h1>
+        <h1 style={{ marginBottom: "0px" }}>
+          検索結果
+          {" "}
+          <Button size="small" variant="contained" color="success">
+            <Link to="/summarize" style={{color: "white"}}>記事を自動生成する</Link>
+          </Button>
+        </h1>
         <Box>
           <Tabs value={currentTab} onChange={onChangeTab}>
             <Tab label={`Bing検索 ${searchResult.length}`} />

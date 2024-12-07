@@ -208,7 +208,7 @@ const Summarize = () => {
     return (
         <>
             <h1 style={{marginBottom: "10px"}}>
-                [検索足跡をまとめる] 目的 :
+                [記事を作る] 記事のタイトル :
                 { isTitleEditing
                     ?
                     <TextField

@@ -175,7 +175,7 @@ const LP = () => {
                             <h3>１業務中この検索エンジンを使う</h3>
                             <small>消費時間：通常の業務時間</small>
                             <p>
-                                ChatGPT に記事を爆速で書かせるために、この検索エンジンを使いましょう。検索には目的入力が必須です。
+                                ChatGPT に記事を爆速で書かせるために、この検索エンジンを使いましょう。検索には記事のタイトルの入力が必須です。
                             </p>
                             <Button variant="contained">
                                 <Link to="/search" style={{color: "white"}}>
@@ -187,7 +187,7 @@ const LP = () => {
                             <h3>２記事自動生成を要望を送信する</h3>
                             <small>消費時間：1記事につき1分</small>
                             <p>
-                                記事にしたい検索目的を選んで、記事自動生成要望を送信しましょう（メールアドレスの入力が必須です）。
+                                記事のタイトルを選んで、記事自動生成要望を送信しましょう（メールアドレスの入力が必須です）。
                                 <br/>
                                 <a href="mailto:coffeecupjapan@yahoo.co.jp">管理者</a>が記事を自動生成して返信いたします
                                 <br/><br/>
@@ -195,7 +195,7 @@ const LP = () => {
                             </p>
                             <Button variant="contained">
                                 <Link to="/summarize" style={{color: "white"}}>
-                                    検索履歴をまとめるページ
+                                    記事を作るページ
                                 </Link>
                             </Button>
                         </Box>
@@ -206,7 +206,7 @@ const LP = () => {
                                 <h3>２検索履歴をまとめる</h3>
                                 <small>消費時間：1記事につき5分</small>
                                 <p>
-                                    １の結果は検索履歴として保存されるので、履歴の中から目的に沿ったものを選びましょう。
+                                    １の結果は検索履歴として保存されるので、履歴の中から記事にしたい目的に沿ったものを選びましょう。
                                 </p>
                                 <Button variant="contained">
                                     <Link to="/summarize" style={{color: "white"}}>
@@ -251,7 +251,7 @@ const LP = () => {
                 <Box sx={section4SP}>
                     <h2 style={{textAlign: "center", borderBottom: "2px solid #757ce864", width: "46%", margin: "0 27%", paddingBottom: "10px"}}>利用方法は簡単</h2>
                     <ol style={{lineHeight: "46px"}}>
-                        <li>検索目的を入力して、検索時に検索履歴を自動的に記録</li>
+                        <li>記事のタイトルを入力して、検索時に検索履歴を自動的に記録</li>
                         <li>業務の最後に履歴を整理し、重要な情報を選択</li>
                         <li>まとめた検索履歴ページで、ChatGPTに記事作成を依頼</li>
                     </ol>
@@ -370,7 +370,7 @@ const LP = () => {
                         <h3>１業務中この検索エンジンを使う</h3>
                         <small>消費時間：通常の業務時間</small>
                         <p>
-                            ChatGPT に記事を爆速で書かせるために、この検索エンジンを使いましょう。検索には目的入力が必須です。
+                            ChatGPT に記事を爆速で書かせるために、この検索エンジンを使いましょう。検索には記事のタイトルの入力が必須です。
                         </p>
                         <Button variant="contained">
                             <Link to="/search" style={{color: "white"}}>
@@ -382,7 +382,7 @@ const LP = () => {
                         <h3>２記事自動生成を要望を送信する</h3>
                         <small>消費時間：1記事につき1分</small>
                         <p>
-                            記事にしたい検索目的を選んで、記事自動生成要望を送信しましょう（メールアドレスの入力が必須です）。
+                            記事のタイトルを選んで、記事自動生成要望を送信しましょう（メールアドレスの入力が必須です）。
                             <br/>
                             <a href="mailto:coffeecupjapan@yahoo.co.jp">管理者</a>が記事を自動生成して返信いたします
                             <br/><br/>
@@ -392,7 +392,7 @@ const LP = () => {
                         </p>
                         <Button variant="contained">
                             <Link to="/summarize" style={{color: "white"}}>
-                                検索履歴をまとめるページ
+                                記事を作るページ
                             </Link>
                         </Button>
                     </Box>
@@ -406,7 +406,7 @@ const LP = () => {
                             <h3>２検索履歴をまとめる</h3>
                             <small>消費時間：1記事につき5分</small>
                             <p>
-                                １の結果は検索履歴として保存されるので、履歴の中から目的に沿ったものを選びましょう。
+                                １の結果は検索履歴として保存されるので、履歴の中から記事にしたい目的に沿ったものを選びましょう。
                             </p>
                             <Button variant="contained">
                                 <Link to="/summarize" style={{color: "white"}}>
@@ -452,7 +452,7 @@ const LP = () => {
             <Box sx={section4}>
                 <h2 style={{textAlign: "center", borderBottom: "2px solid #757ce864", width: "46%", margin: "0 27%", paddingBottom: "10px"}}>利用方法は簡単</h2>
                 <ol style={{lineHeight: "46px"}}>
-                    <li>検索目的を入力するだけで、検索時に検索履歴を自動的に記録</li>
+                    <li>記事のタイトルを入力するだけで、検索時に検索履歴を自動的に記録</li>
                     <li>業務の最後に履歴を整理し、重要な情報を選択</li>
                     <li>まとめた検索履歴ページで、ChatGPTに記事作成を依頼</li>
                 </ol>

@@ -38,7 +38,7 @@ const Header = () => {
                 <Link to="/thoughts" style={{color: "white"}}>検索足跡</Link>
             </Button>
             <Button color="inherit">
-                <Link to="/summarize" style={{color: "white"}}>まとめる</Link>
+                <Link to="/summarize" style={{color: "white"}}>記事を作る</Link>
             </Button>
             <Button color="inherit">
                 <a href="https://coffee-cup.jp/index.html" target="_blank" style={{color: "white"}}>English</a>
