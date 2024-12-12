@@ -40,7 +40,7 @@ const section0LeftSmallTitle = {
     fontSize: "32px",
     lineHeight: "51px"
 }
-const section03000yen = {
+const section01000yen = {
     color: "white",
     backgroundColor: "black",
     padding: "5px 10px 0",
@@ -156,9 +156,11 @@ const LP2 = () => {
                         CoffeeCup
                     </h1>
                     <h3 style={{...section0LeftSmallTitle}}>
-                        記事を自動生成して、
+                        無職やめ太郎さんの
                         <br/>
-                        Amazonギフト<span style={section03000yen}>3000円</span>獲得！
+                        <span style={section01000yen}>ワイ記法</span>の記事を
+                        <br/>
+                        自動生成しよう！
                     </h3>
                     <p style={{...section0LeftContent}}>
                         <ModeEditOutlineIcon/> <strong><a href="#why" style={{color:"black"}}>Why?</a></strong>
@@ -176,17 +178,17 @@ const LP2 = () => {
                     <h3 id="why">Why？</h3>
                 </Box>
                 <h5 style={section1WhyExplain}>
-                    あなたの<span style={section03000yen}>履歴書・職務経歴書</span>は技術力をアピールできてますか？
+                    皆さんは技術<span style={section01000yen}>アウトプット</span>できていますか？
                     <br/>
-                    書類だけでは、本当の技術力が伝わるか分からなくて心配・・・
+                    技術記事を書いてみたいけど、なかなか時間が取れない・・・
                     <br/>
-                    その心配を解消するために、<span style={section03000yen}>技術力の証拠</span>をアピールしませんか？
+                    その気持ち、すごく分かります。<span style={section01000yen}>記事を書くの面倒</span>ですよね。
                     <hr style={section1Hr}/>
-                    この検索エンジンは、あなたの検索履歴から技術記事を自動生成します
+                    そんなあなたを、
                     <br/>
-                    企業様にアピールしたい技術の記事を<span style={section03000yen}>自動生成</span>して、
+                    <span style={section01000yen}>最短距離</span>で「<a href="https://qiita.com/Yametaro/items/52ab0303860483120775">ワイ記法</a>」記事を書けるようにするのが、
                     <br/>
-                    <span style={section03000yen}>技術的な根拠のある職務経歴書</span>を作りましょう！
+                    <span style={section01000yen}>検索エンジン CoffeeCup</span>です
                 </h5>
                 <br/><br/>
                 <Box sx={section1Title}>
@@ -194,23 +196,21 @@ const LP2 = () => {
                 </Box>
                 <br/>
                 <h5 style={section1WhyExplain}>
-                    エンジニアのあなたが、
+                    この検索エンジン は、
                     <br/>
-                    <Link to="/">検索エンジン CoffeeCup</Link>を使い業務の技術を調べ直し、
+                    <span style={section01000yen}>検索履歴から記事を自動生成</span>する検索エンジンです。
                     <br/>
-                    技術記事を３つ生成すれば、
+                    あなたがすべきことは、<span style={section01000yen}>ただ日常の検索をするだけ！</span>
                     <br/>
-                    <span style={section03000yen}>先着順5名様の方にAmazonギフト3000円分</span>を差し上げるキャンペーンです
+                    それだけで<a href="https://qiita.com/Yametaro/items/52ab0303860483120775">ワイ記法</a>の記事をあなたに届けます！
                 </h5>
                 <h5 style={section1ExplainSP}>
                     <small style={section1ExplainSmall}>
-                        当選者が５人決まった当日中に３記事生成すれば、先着から外れても1000円分のAmazonギフトを差し上げます
+                        検索するときは、「記事のタイトル」を指定してください
                         <br/>
                         React, JavaScript, TypeScript, Go, Python, HTML, CSS 以外は対応していません
                         <br/>
                         似たような内容を記事として自動生成するのはお控えください
-                        <br/>
-                        １名様につき１回のみとなります
                     </small>
                 </h5>
             </Box>
@@ -239,11 +239,11 @@ const LP2 = () => {
                     <Box sx={{...section3MainContent, width: "100%", marginBottom: "30px"}}>
                         <h5 style={section3MainTitle}>１：検索する</h5>
                         <p style={{lineHeight: "30px", textAlign: "left"}}>
-                            <span style={section03000yen}>業務中に調べた技術ノウハウ</span>を、この検索エンジンで調べ直しましょう。
+                            <span style={section01000yen}>業務中に調べた技術ノウハウ</span>を、この検索エンジンで調べ直しましょう。
                             <br/>
                             BingとChatGPTでの検索が可能です。
                             <br/>
-                            検索するときは、<span style={section03000yen}>必ず記事のタイトルを入力するか選択する</span>必要があります
+                            検索するときは、<span style={section01000yen}>必ず記事のタイトルを入力するか選択する</span>必要があります
                             <br/>
                             <Button variant="contained" sx={{mt: "10px"}}>
                                 <Link to="/search" style={{color: "white"}}>こちらのページから検索</Link>
@@ -255,7 +255,7 @@ const LP2 = () => {
                         <p style={{lineHeight: "30px", textAlign: "left"}}>
                             入力した記事のタイトルから、記事を作る依頼をしましょう
                             <br/>
-                            依頼するには、<span style={section03000yen}>メールアドレスと記事の内容のメモを入力</span>する必要があります
+                            依頼するには、<span style={section01000yen}>メールアドレスと記事の内容のメモを入力</span>する必要があります
                             <br/>
                             <Button variant="contained" sx={{mt: "10px"}}>
                                 <Link to="/summarize" style={{color: "white"}}>こちらから記事のタイトルを選択し依頼</Link>
@@ -267,7 +267,7 @@ const LP2 = () => {
                         <p style={{lineHeight: "30px", textAlign: "left"}}>
                             記事を複数件生成の依頼したら、<a href="mailto:coffeecupjapan@yahoo.co.jp">管理者</a>に記事を３件依頼した旨を連絡ください
                             <br/>
-                            管理者が内容を確認したら、<span style={section03000yen}>記事を３件生成したツイート</span>をしていただければ、先着順で3000円のAmazonギフト券を送ります
+                            管理者が内容を確認したら、<span style={section01000yen}>記事を３件生成したツイート</span>をしていただければ、先着順5名様に1000円のAmazonギフト券を送ります
                         </p>
                     </Box>
                 </Box>
@@ -286,9 +286,9 @@ const LP2 = () => {
                         CoffeeCup
                     </h1>
                     <h3 style={{...section0LeftSmallTitle}}>
-                        記事を自動生成して、
+                        無職やめ太郎さんの<span style={section01000yen}>ワイ記法</span>の
                         <br/>
-                        Amazonギフト<span style={section03000yen}>3000円</span>獲得！
+                        記事を自動生成しよう！
                     </h3>
                     <p style={{...section0LeftContent}}>
                         <ModeEditOutlineIcon/> <strong><a href="#why" style={{color:"black"}}>Why?</a></strong>
@@ -312,38 +312,38 @@ const LP2 = () => {
                     <h3 id="why">Why？</h3>
                 </Box>
                 <h5 style={section1WhyExplain}>
-                    あなたの<span style={section03000yen}>履歴書・職務経歴書</span>は技術力をアピールできてますか？
+                    皆さんは技術の<span style={section01000yen}>アウトプット</span>できていますか？
                     <br/>
-                    書類だけでは、本当の技術力が伝わるか分からなくて心配・・・
+                    技術記事を書いてみたいけど、なかなか時間が取れない・・・
                     <br/>
-                    その心配を解消するために、<span style={section03000yen}>技術力の証拠</span>をアピールしませんか？
+                    その気持ち、すごく分かります。<span style={section01000yen}>記事を書くの面倒</span>ですよね。
                     <hr style={section1Hr}/>
-                    この検索エンジンは、あなたの検索履歴から記事を自動生成します
+                    そんなアウトプットが面倒なあなたを、
                     <br/>
-                    企業様にアピールしたい技術の記事を<span style={section03000yen}>自動生成</span>して、
+                    <span style={section01000yen}>最短距離</span>で「<a href="https://qiita.com/Yametaro/items/52ab0303860483120775">ワイ記法</a>」の記事を書けるようにするのが、
                     <br/>
-                    <span style={section03000yen}>技術的な根拠のある職務経歴書</span>を作りましょう！
+                    <span style={section01000yen}>検索エンジン CoffeeCup</span>です。
                 </h5>
                 <br/><br/>
                 <Box sx={section1Title}>
                     <h3 id="overview">概要{"　"}Overview</h3>
                 </Box>
                 <h5 style={section1WhyExplain}>
-                    ITエンジニアが、<span style={section03000yen}>検索履歴から記事を自動生成</span>する検索エンジン
+                    この検索エンジン CoffeeCup は、
                     <br/>
-                    <Link to="/">CoffeeCup</Link>を使い、IT系技術記事を３つ生成すれば、
+                    <span style={section01000yen}>検索履歴から記事を自動生成</span>する検索エンジンです。
                     <br/>
-                    <span style={section03000yen}>先着順5名様にAmazonギフト3000円分</span>を差し上げるキャンペーンです
+                    あなたがすべきことは、<span style={section01000yen}>ただ日常の検索をするだけ！</span>
+                    <br/>
+                    それだけで<a href="https://qiita.com/Yametaro/items/52ab0303860483120775">ワイ記法</a>の記事をあなたに届けます！
                 </h5>
                 <h5 style={section1Explain}>
                     <small style={section1ExplainSmall}>
-                        当選者が５人決まった当日中に３記事生成すれば、先着から外れても1000円分のAmazonギフトを差し上げます
+                        検索するときは、「記事のタイトル」を指定してください
                         <br/>
                         React, JavaScript, TypeScript, Go, Python, HTML, CSS 以外は対応していません
                         <br/>
                         似たような内容を記事として自動生成するのはお控えください
-                        <br/>
-                        １名様につき１回のみとなります
                     </small>
                 </h5>
             </Box>
@@ -375,11 +375,11 @@ const LP2 = () => {
                     <Box sx={section3MainContent}>
                         <h5 style={section3MainTitle}>１：技術を検索しなおす</h5>
                         <p style={{lineHeight: "30px", textAlign: "left"}}>
-                            <span style={section03000yen}>業務中に調べた技術ノウハウ</span>をこの検索エンジンで調べ直しましょう。
+                            <span style={section01000yen}>業務中に調べた技術ノウハウ</span>をこの検索エンジンで調べ直しましょう。
                             <br/>
                             BingとChatGPTでの検索が可能です。
                             <br/>
-                            検索するときは、<span style={section03000yen}>必ず記事のタイトルを入力するか選択する</span>必要があります
+                            検索するときは、<span style={section01000yen}>必ず記事のタイトルを入力するか選択する</span>必要があります
                             <br/>
                             <Button variant="contained" sx={{mt: "10px"}}>
                                 <Link to="/search" style={{color: "white"}}>こちらのページから検索</Link>
@@ -391,7 +391,7 @@ const LP2 = () => {
                         <p style={{lineHeight: "30px", textAlign: "left"}}>
                             記事のタイトルを選んで、記事を作る依頼をしましょう
                             <br/>
-                            依頼するには、<span style={section03000yen}>メールアドレスと記事の内容のメモを入力</span>する必要があります
+                            依頼するには、<span style={section01000yen}>メールアドレスと記事の内容のメモを入力</span>する必要があります
                             <br/>
                             <Button variant="contained" sx={{mt: "10px"}}>
                                 <Link to="/summarize" style={{color: "white"}}>こちらから記事のタイトルを選択し依頼</Link>
@@ -403,7 +403,7 @@ const LP2 = () => {
                         <p style={{lineHeight: "30px", textAlign: "left"}}>
                             記事を複数件生成の依頼したら、<a href="mailto:coffeecupjapan@yahoo.co.jp">管理者</a>に記事を３件依頼した旨を連絡ください
                             <br/>
-                            管理者が内容を確認したら、<span style={section03000yen}>記事を３件生成したツイート</span>をしていただければ、先着順で3000円のAmazonギフト券を送ります
+                            管理者が内容を確認したら、<span style={section01000yen}>記事を３件生成したツイート</span>をしていただければ、先着順5名様に1000円のAmazonギフト券を送ります
                         </p>
                     </Box>
                 </Box>

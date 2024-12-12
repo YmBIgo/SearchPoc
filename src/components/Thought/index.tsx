@@ -80,13 +80,13 @@ const ThoughtComponent = () => {
     const fetchArticle = async() => {
         setIsLoading(true)
         setChatGPTArticle("")
-        const flattenSearch = thought?.searches?.map((cs) => {
-            let url = cs.url
-            if (cs.url.startsWith("https://chatgpt.com")) url = cs.snippet
-            return `キーワード：「${cs.keyword}」\nURL：${url}\nメモ：${cs.memo}`
-        }).join(", ") ?? ""
-        const aiMain = "構成：" + chatGPTTitle + "\n\nメモ一覧：" + flattenSearch
-        const body = JSON.stringify({ aiArticle: aiMain })
+        // const flattenSearch = thought?.searches?.map((cs) => {
+        //     let url = cs.url
+        //     if (cs.url.startsWith("https://chatgpt.com")) url = cs.snippet
+        //     return `キーワード：「${cs.keyword}」\nURL：${url}\nメモ：${cs.memo}`
+        // }).join(", ") ?? ""
+        const aiMain = "構成：" + chatGPTTitle // + "\n\nメモ一覧：" + flattenSearch
+        const body = JSON.stringify({ aiArticle: aiMain, aiArticleTitle: thought?.purpose.title })
         const result = await fetch(endpoint, {
             method: "POST",
             body

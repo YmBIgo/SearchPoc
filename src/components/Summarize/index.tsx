@@ -249,7 +249,7 @@ const Summarize = () => {
                             <br/>
                             それ以外の言語はサポートされるのをお待ちください
                             <br/>
-                            <a href="mailto:coffeecupjapan@yahoo.co.jp">管理者</a>はできる限り３日以内に記事を生成しますが、場合によっては対応できない可能性があることをご承知おきください
+                            <a href="mailto:coffeecupjapan@yahoo.co.jp">管理者</a>はできる限り１週間以内に記事を生成しますが、場合によっては対応できない可能性があることをご承知おきください
                         </strong>
                     </span>
                 </p>

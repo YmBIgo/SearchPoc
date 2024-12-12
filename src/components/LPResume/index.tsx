@@ -27,7 +27,7 @@ const section0LeftSmallTitle = {
     fontSize: "32px",
     lineHeight: "51px"
 }
-const section03000yen = {
+const section01000yen = {
     color: "white",
     backgroundColor: "black",
     padding: "5px 10px 0",
@@ -160,7 +160,6 @@ export const LP3 = () => {
                 const promise = new Promise<void>((resolve) => {
                     setTimeout(resolve, i * 100)
                 }).then(() => {
-                    console.log(currentPos, i)
                     currentPos.current = currentPos.current + 1
                     setFirstContent(originalFirstContent.slice(0, currentPos.current))
                     setSecondContent(originalSecondContent.slice(0, currentPos.current))
@@ -190,7 +189,7 @@ export const LP3 = () => {
                 <h3 style={{...section0LeftSmallTitle}}>
                         その職務経歴書に、
                         <br/>
-                        <span style={section03000yen}>裏付け</span>を
+                        <span style={section01000yen}>裏付け</span>を
                     </h3>
                     <p style={{...section0LeftContent}}>
                         <ModeEditOutlineIcon/> <strong><a href="#why" style={{color:"black"}}>Why?</a></strong>
@@ -246,32 +245,32 @@ export const LP3 = () => {
                     <h3 id="why">Why？</h3>
                 </Box>
                 <h5 style={section1WhyExplain}>
-                    あなたの<span style={section03000yen}>履歴書・職務経歴書</span>は技術力をアピールできてますか？
+                    あなたの<span style={section01000yen}>履歴書・職務経歴書</span>は技術力をアピールできてますか？
                     <br/>
-                    書類だけで、<span style={section03000yen}>本当の技術力</span>が伝わるか分からない・・・
+                    書類だけで、<span style={section01000yen}>本当の技術力</span>が伝わるか分からない・・・
                     <br/>
-                    その心配を解消するために、<span style={section03000yen}>技術力の証拠</span>をアピールしませんか？
+                    その心配を解消するために、<span style={section01000yen}>技術力の証拠</span>をアピールしませんか？
                     <hr style={section1Hr}/>
-                    この検索エンジンは、あなたの検索履歴から<span style={section03000yen}>技術記事を自動生成</span>します
+                    この検索エンジンは、あなたの検索履歴から<span style={section01000yen}>技術記事を自動生成</span>します
                     <br/>
-                    企業様にアピールしたい技術の記事を<span style={section03000yen}>自動生成</span>して、
+                    企業様にアピールしたい技術の記事を<span style={section01000yen}>自動生成</span>して、
                     <br/>
-                    <span style={section03000yen}>技術的な根拠のある職務経歴書</span>を作りましょう！
+                    <span style={section01000yen}>技術的な根拠のある職務経歴書</span>を作りましょう！
                 </h5>
                 <br/><br/><br/>
                 <Box sx={section1Title}>
                     <h3 id="overview">概要{"　"}Overview</h3>
                 </Box>
                 <h5 style={section1WhyExplain}>
-                    <span style={section03000yen}>検索履歴から記事を自動生成</span>する検索エンジン<Link to="/search">CoffeeCup</Link>とは、
+                    <span style={section01000yen}>検索履歴から記事を自動生成</span>する検索エンジン<Link to="/search">CoffeeCup</Link>とは、
                     <br/>
                     検索履歴から記事を自動生成する検索エンジンです。
                     <hr style={section1Hr}/>
-                    個人の時間で業務で調べた<span style={section03000yen}>検索履歴を思い出し、
+                    個人の時間で業務で調べた<span style={section01000yen}>検索履歴を思い出し、
                     <br/>
                     検索しなおして</span>検索履歴を送信すれば、
                     <br/>
-                    <span style={section03000yen}>３日以内に内容に沿う記事をお送りいたします。</span>
+                    <span style={section01000yen}>１週間以内に内容に沿う記事をお送りいたします。</span>
                 </h5>
                 <h5 style={section1Explain}>
                     <small style={section1ExplainSmall}>
@@ -306,11 +305,11 @@ export const LP3 = () => {
                     <Box sx={{...section3MainContent, width: "100%", marginBottom: "30px"}}>
                         <h5 style={section3MainTitle}>１：技術を検索しなおす</h5>
                         <p style={{lineHeight: "30px", textAlign: "left"}}>
-                            <span style={section03000yen}>業務中に調べた技術ノウハウ</span>をこの検索エンジンで調べ直しましょう。
+                            <span style={section01000yen}>業務中に調べた技術ノウハウ</span>をこの検索エンジンで調べ直しましょう。
                             <br/>
                             BingとChatGPTでの検索が可能です。
                             <br/>
-                            検索するときは、<span style={section03000yen}>必ず記事のタイトルを入力するか選択する</span>必要があります
+                            検索するときは、<span style={section01000yen}>必ず記事のタイトルを入力するか選択する</span>必要があります
                             <br/>
                             <Button variant="contained" sx={{mt: "10px"}}>
                                 <Link to="/search" style={{color: "white"}}>こちらのページから検索</Link>
@@ -322,7 +321,7 @@ export const LP3 = () => {
                         <p style={{lineHeight: "30px", textAlign: "left"}}>
                             記事のタイトルを選んで、記事を作る依頼をしましょう
                             <br/>
-                            依頼するには、<span style={section03000yen}>メールアドレスと記事の内容のメモを入力</span>する必要があります
+                            依頼するには、<span style={section01000yen}>メールアドレスと記事の内容のメモを入力</span>する必要があります
                             <br/>
                             <Button variant="contained" sx={{mt: "10px"}}>
                                 <Link to="/summarize" style={{color: "white"}}>こちらから記事のタイトルを選択し依頼</Link>
@@ -334,7 +333,7 @@ export const LP3 = () => {
                         <p style={{lineHeight: "30px", textAlign: "left"}}>
                             記事を複数件生成の依頼したら、<a href="mailto:coffeecupjapan@yahoo.co.jp">管理者</a>に記事を３件依頼した旨を連絡ください
                             <br/>
-                            管理者が内容を確認したら、<span style={section03000yen}>記事を３件生成したツイート</span>をしていただければ、先着順で3000円のAmazonギフト券を送ります
+                            管理者が内容を確認したら、<span style={section01000yen}>記事を３件生成したツイート</span>をしていただければ、先着順で1000円のAmazonギフト券を送ります
                         </p>
                     </Box>
                 </Box>
@@ -353,7 +352,7 @@ export const LP3 = () => {
                         CoffeeCup
                     </h1>
                 <h3 style={{...section0LeftSmallTitle}}>
-                        その職務経歴書に、<span style={section03000yen}>裏付け</span>を
+                        その職務経歴書に、<span style={section01000yen}>裏付け</span>を
                     </h3>
                     <p style={{...section0LeftContent}}>
                         <ModeEditOutlineIcon/> <strong><a href="#why" style={{color:"black"}}>Why?</a></strong>
@@ -414,32 +413,32 @@ export const LP3 = () => {
                     <h3 id="why">Why？</h3>
                 </Box>
                 <h5 style={section1WhyExplain}>
-                    あなたの<span style={section03000yen}>履歴書・職務経歴書</span>は技術力をアピールできてますか？
+                    あなたの<span style={section01000yen}>履歴書・職務経歴書</span>は技術力をアピールできてますか？
                     <br/>
                     書類だけでは、本当の技術力が伝わるか分からない・・・
                     <br/>
-                    その心配を解消するために、<span style={section03000yen}>技術力の証拠</span>をアピールしませんか？
+                    その心配を解消するために、<span style={section01000yen}>技術力の証拠</span>をアピールしませんか？
                     <hr style={section1Hr}/>
                     この検索エンジンは、あなたの検索履歴から技術記事を自動生成します
                     <br/>
-                    企業様にアピールしたい技術の記事を<span style={section03000yen}>自動生成</span>して、
+                    企業様にアピールしたい技術の記事を<span style={section01000yen}>自動生成</span>して、
                     <br/>
-                    <span style={section03000yen}>技術的な根拠のある職務経歴書</span>を作りましょう！
+                    <span style={section01000yen}>技術的な根拠のある職務経歴書</span>を作りましょう！
                 </h5>
                 <br/><br/><br/>
                 <Box sx={section1Title}>
                     <h3 id="overview">概要{"　"}Overview</h3>
                 </Box>
                 <h5 style={section1WhyExplain}>
-                    <span style={section03000yen}>検索履歴から記事を自動生成</span>する検索エンジン<Link to="/search">CoffeeCup</Link>とは、
+                    <span style={section01000yen}>検索履歴から記事を自動生成</span>する検索エンジン<Link to="/search">CoffeeCup</Link>とは、
                     <br/>
                     検索履歴から記事を自動生成する検索エンジンです。
                     <hr style={section1Hr}/>
-                    個人の時間で業務で調べた<span style={section03000yen}>検索履歴を思い出し、
+                    個人の時間で業務で調べた<span style={section01000yen}>検索履歴を思い出し、
                     <br/>
                     検索しなおして</span>検索履歴を送信すれば、
                     <br/>
-                    <span style={section03000yen}>３日以内に内容に沿う記事をお送りいたします。</span>
+                    <span style={section01000yen}>１週間以内に内容に沿う記事をお送りいたします。</span>
                 </h5>
                 <h5 style={section1Explain}>
                     <small style={section1ExplainSmall}>
@@ -477,11 +476,11 @@ export const LP3 = () => {
                     <Box sx={section3MainContent}>
                         <h5 style={section3MainTitle}>１：技術を検索しなおす</h5>
                         <p style={{lineHeight: "30px", textAlign: "left"}}>
-                            <span style={section03000yen}>業務中に調べた技術ノウハウ</span>をこの検索エンジンで調べ直しましょう。
+                            <span style={section01000yen}>業務中に調べた技術ノウハウ</span>をこの検索エンジンで調べ直しましょう。
                             <br/>
                             BingとChatGPTでの検索が可能です。
                             <br/>
-                            検索するときは、<span style={section03000yen}>必ず記事のタイトルを入力するか選択する</span>必要があります
+                            検索するときは、<span style={section01000yen}>必ず記事のタイトルを入力するか選択する</span>必要があります
                             <br/>
                             <Button variant="contained" sx={{mt: "10px"}}>
                                 <Link to="/search" style={{color: "white"}}>こちらのページから検索</Link>
@@ -493,7 +492,7 @@ export const LP3 = () => {
                         <p style={{lineHeight: "30px", textAlign: "left"}}>
                             記事のタイトルを選んで、記事を作る依頼をしましょう
                             <br/>
-                            依頼するには、<span style={section03000yen}>メールアドレスと記事の内容のメモを入力</span>する必要があります
+                            依頼するには、<span style={section01000yen}>メールアドレスと記事の内容のメモを入力</span>する必要があります
                             <br/>
                             <Button variant="contained" sx={{mt: "10px"}}>
                                 <Link to="/summarize" style={{color: "white"}}>こちらから記事のタイトルを選択し依頼</Link>
@@ -505,7 +504,7 @@ export const LP3 = () => {
                         <p style={{lineHeight: "30px", textAlign: "left"}}>
                             記事を複数件生成の依頼したら、<a href="mailto:coffeecupjapan@yahoo.co.jp">管理者</a>に記事を３件依頼した旨を連絡ください
                             <br/>
-                            管理者が内容を確認したら、<span style={section03000yen}>記事を３件生成したツイート</span>をしていただければ、先着順で3000円のAmazonギフト券を送ります
+                            管理者が内容を確認したら、<span style={section01000yen}>記事を３件生成したツイート</span>をしていただければ、先着順で1000円のAmazonギフト券を送ります
                         </p>
                     </Box>
                 </Box>

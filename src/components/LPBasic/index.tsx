@@ -40,7 +40,7 @@ const section0LeftSmallTitle = {
     fontSize: "32px",
     lineHeight: "51px"
 }
-const section03000yen = {
+const section01000yen = {
     color: "white",
     backgroundColor: "black",
     padding: "5px 10px 0",
@@ -158,7 +158,7 @@ const LPBasic = () => {
                     <h3 style={{...section0LeftSmallTitle}}>
                         記事を自動生成して、
                         <br/>
-                        Amazonギフト<span style={section03000yen}>3000円</span>獲得！
+                        Amazonギフト<span style={section01000yen}>1000円</span>獲得！
                     </h3>
                     <p style={{...section0LeftContent}}>
                         <ModeEditOutlineIcon/> <strong><a href="#why" style={{color:"black"}}>Why?</a></strong>
@@ -178,7 +178,7 @@ const LPBasic = () => {
                 <h5 style={section1WhyExplain}>
                     もはや転職には必須となった
                     <br/>
-                    <span style={section03000yen}>「アウトプット」</span>。
+                    <span style={section01000yen}>「アウトプット」</span>。
                     <br/>
                     あなたは、できていますか？
                     <Box sx={{margin: "46px 0 30px"}}>
@@ -190,7 +190,7 @@ const LPBasic = () => {
                     </Box>
                     そんなあなたでもアウトプットができるようにするのが、
                     <br/>
-                    <span style={section03000yen}>検索エンジンCoffeeCup</span>
+                    <span style={section01000yen}>検索エンジンCoffeeCup</span>
                     <hr style={section1Hr}/>
                     あなたは普段のように検索をするだけ。あとは、検索履歴を送信するだけで技術記事をお送りします！
                 </h5>
@@ -206,7 +206,7 @@ const LPBasic = () => {
                     <br/>
                     技術記事を３つ生成すれば、
                     <br/>
-                    <span style={section03000yen}>先着順5名様の方にAmazonギフト3000円分</span>を差し上げるキャンペーンです
+                    <span style={section01000yen}>先着順5名様の方にAmazonギフト1000円分</span>を差し上げるキャンペーンです
                 </h5>
                 <h5 style={section1ExplainSP}>
                     <small style={section1ExplainSmall}>
@@ -246,7 +246,7 @@ const LPBasic = () => {
                         <p style={{lineHeight: "30px", textAlign: "left"}}>
                             BingとChatGPTでの検索が可能です。時間削減できるので、業務での使用が推奨されます
                             <br/>
-                            検索するときは、<span style={section03000yen}>必ず記事のタイトルを入力するか選択する</span>必要があります
+                            検索するときは、<span style={section01000yen}>必ず記事のタイトルを入力するか選択する</span>必要があります
                             <br/>
                             <Button variant="contained" sx={{mt: "10px"}}>
                                 <Link to="/search" style={{color: "white"}}>こちらのページから検索</Link>
@@ -258,7 +258,7 @@ const LPBasic = () => {
                         <p style={{lineHeight: "30px", textAlign: "left"}}>
                             入力した記事のタイトルから、記事を作る依頼をしましょう
                             <br/>
-                            依頼するには、<span style={section03000yen}>メールアドレスと記事の内容のメモを入力</span>する必要があります
+                            依頼するには、<span style={section01000yen}>メールアドレスと記事の内容のメモを入力</span>する必要があります
                             <br/>
                             <Button variant="contained" sx={{mt: "10px"}}>
                                 <Link to="/summarize" style={{color: "white"}}>こちらから記事のタイトルを選択し依頼</Link>
@@ -270,7 +270,7 @@ const LPBasic = () => {
                         <p style={{lineHeight: "30px", textAlign: "left"}}>
                             記事を複数件生成の依頼したら、<a href="mailto:coffeecupjapan@yahoo.co.jp">管理者</a>に記事を３件依頼した旨を連絡ください
                             <br/>
-                            管理者が内容を確認したら、<span style={section03000yen}>記事を３件生成したツイート</span>をしていただければ、先着順で3000円のAmazonギフト券を送ります
+                            管理者が内容を確認したら、<span style={section01000yen}>記事を３件生成したツイート</span>をしていただければ、先着順で1000円のAmazonギフト券を送ります
                         </p>
                     </Box>
                 </Box>
@@ -291,7 +291,7 @@ const LPBasic = () => {
                     <h3 style={{...section0LeftSmallTitle}}>
                         記事を自動生成して、
                         <br/>
-                        Amazonギフト<span style={section03000yen}>3000円</span>獲得！
+                        Amazonギフト<span style={section01000yen}>1000円</span>獲得！
                     </h3>
                     <p style={{...section0LeftContent}}>
                         <ModeEditOutlineIcon/> <strong><a href="#why" style={{color:"black"}}>Why?</a></strong>
@@ -315,7 +315,7 @@ const LPBasic = () => {
                     <h3 id="why">Why？</h3>
                 </Box>
                 <h5 style={{...section1WhyExplain}}>
-                    もはや転職には必須となった <span style={section03000yen}>「アウトプット」</span>。
+                    もはや転職には必須となった <span style={section01000yen}>「アウトプット」</span>。
                     <br/>
                     あなたは、できていますか？
                     <Box sx={{margin: "30px 0 10px"}}>
@@ -326,7 +326,7 @@ const LPBasic = () => {
                     <hr style={{...section1Hr, marginBottom: "30px"}}/>
                     そんなあなたでも、アウトプットができるようにするのが、
                     <br/>
-                    <span style={section03000yen}>検索エンジンCoffeeCup</span>です！
+                    <span style={section01000yen}>検索エンジンCoffeeCup</span>です！
                     <br/>
                     あなたは普段のように検索をするだけ。
                     <br/>
@@ -338,11 +338,11 @@ const LPBasic = () => {
                 </Box>
                 <br/>
                 <h5 style={section1WhyExplain}>
-                    ITエンジニアが、<span style={section03000yen}>検索履歴から記事を自動生成する検索エンジン</span>
+                    ITエンジニアが、<span style={section01000yen}>検索履歴から記事を自動生成する検索エンジン</span>
                     <br/>
                     <Link to="/">CoffeeCup</Link>を使い、IT系技術記事を３つ生成すれば、
                     <br/>
-                    <span style={section03000yen}>先着順5名様にAmazonギフト3000円分</span>を差し上げるキャンペーンです
+                    <span style={section01000yen}>先着順5名様にAmazonギフト1000円分</span>を差し上げるキャンペーンです
                 </h5>
                 <h5 style={section1Explain}>
                     <small style={section1ExplainSmall}>
@@ -386,7 +386,7 @@ const LPBasic = () => {
                         <p style={{lineHeight: "30px", textAlign: "left"}}>
                             BingとChatGPTでの検索が可能です。時間削減できるので、業務での使用が推奨されます
                             <br/>
-                            検索するときは、<span style={section03000yen}>必ず記事のタイトルを入力するか選択する</span>必要があります
+                            検索するときは、<span style={section01000yen}>必ず記事のタイトルを入力するか選択する</span>必要があります
                             <br/>
                             <Button variant="contained" sx={{mt: "10px"}}>
                                 <Link to="/search" style={{color: "white"}}>こちらのページから検索</Link>
@@ -398,7 +398,7 @@ const LPBasic = () => {
                         <p style={{lineHeight: "30px", textAlign: "left"}}>
                             記事のタイトルを選んで、記事を作る依頼をしましょう
                             <br/>
-                            依頼するには、<span style={section03000yen}>メールアドレスと記事の内容のメモを入力</span>する必要があります
+                            依頼するには、<span style={section01000yen}>メールアドレスと記事の内容のメモを入力</span>する必要があります
                             <br/>
                             <Button variant="contained" sx={{mt: "10px"}}>
                                 <Link to="/summarize" style={{color: "white"}}>こちらから記事のタイトルを選択し依頼</Link>
@@ -410,7 +410,7 @@ const LPBasic = () => {
                         <p style={{lineHeight: "30px", textAlign: "left"}}>
                             記事を複数件生成の依頼したら、<a href="mailto:coffeecupjapan@yahoo.co.jp">管理者</a>に記事を３件依頼した旨を連絡ください
                             <br/>
-                            管理者が内容を確認したら、<span style={section03000yen}>記事を３件生成したツイート</span>をしていただければ、先着順で3000円のAmazonギフト券を送ります
+                            管理者が内容を確認したら、<span style={section01000yen}>記事を３件生成したツイート</span>をしていただければ、先着順で1000円のAmazonギフト券を送ります
                         </p>
                     </Box>
                 </Box>

@@ -38,10 +38,10 @@ function App() {
         <Route path="/thoughts/:id" element={<Thought/>}/>
         <Route path="/thoughts" element={<ThoughtTop/>}/>
         <Route path="/usage" element={<Usage/>}/>
-        <Route path="/" element={<LP/>}/>
-        <Route path="/lp" element={<LP2/>}/>
+        <Route path="/lp_old" element={<LP/>}/>
+        <Route path="/" element={<LP2/>}/>
         <Route path="/lp2" element={<LPBasic/>}/>
-        <Route path="/lp3" element={<LPResume/>}/>
+        <Route path="/lp" element={<LPResume/>}/>
         <Route path="/privacy" element={<Privacy/>}/>
         <Route path="/terms" element={<Terms/>}/>
       </Routes>

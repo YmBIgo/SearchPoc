@@ -74,169 +74,6 @@ const searchButtons = {
   gap: "2%",
 };
 
-const initialCurrentSearch = [
-  {
-    key: "cb875532-5e6c-4f0d-9004-8742b81c4170",
-    title: "React Router How to add Dynamic Path",
-    searchResult: [],
-    createdAt: 1729379775574,
-    updatedAt: 1729379775574,
-  },
-];
-
-const initialSearchPurpose = [
-  {
-    key: "539ca0d5-8b53-454a-a171-815e2bc64bfe",
-    title: "AWS lambda のインターネット接続",
-    searchResult: [],
-    createdAt: 1730903878876,
-    updatedAt: 1730903878876,
-  },
-];
-
-const initialSearchThought = [
-  {
-    key: "f8bb3385-ea44-4687-a58d-d7c20e071d89",
-    searches: [
-      {
-        keyword: "Bing API",
-        resultIndex: 0,
-        url: "https://www.microsoft.com/en-us/bing/apis/bing-web-search-api",
-        title: "Bing API",
-        snippet:
-          "Learn how to use Bing Web Search API to bring intelligent search to your apps and access billions of web documents. Explore the features, benefits, and resources of Bing Web Search API and other Bing APIs.",
-        searchAt: 1730903922807,
-        cachedUrl:
-          "http://cc.bingj.com/cache.aspx?q=Bing+API&d=5055834114702335&mkt=ja-JP&setlang=ja-JP&w=PNJ4-0BG42f7IL8-V_HeOfozjrJC4GHO",
-        memo: "URL が正しい",
-      },
-      {
-        keyword: "Bing API",
-        resultIndex: 1,
-        url: "https://techblog.raccoon.ne.jp/archives/1617156256.html",
-        title: "Bing API",
-        snippet:
-          "Bing Search APIとはMicrosoftの提供する検索エンジンであるBingでの検索結果を取得するためのAPIです。ブラウザからの検索のようにウェブページだけではなく画像やニュースの情報も取得することができます。API利用手順APIを利用する",
-        searchAt: 1730903929040,
-        cachedUrl:
-          "http://cc.bingj.com/cache.aspx?q=Bing+API&d=4613886267442778&mkt=ja-JP&setlang=ja-JP&w=gEQZZU3R-w0yJ22_imePNniBLFBJB0yq",
-        memo: "URL が正しい",
-      },
-    ],
-    purpose: {
-      key: "0abb4138-8faa-426e-9c01-5aae0d6e6c54",
-      title: "Bing API を使う",
-      searchResult: [
-        {
-          keyword: "Bing API",
-          resultIndex: 0,
-          url: "https://www.microsoft.com/en-us/bing/apis/bing-web-search-api",
-          title: "Bing API",
-          snippet:
-            "Learn how to use Bing Web Search API to bring intelligent search to your apps and access billions of web documents. Explore the features, benefits, and resources of Bing Web Search API and other Bing APIs.",
-          searchAt: 1730903922807,
-          cachedUrl:
-            "http://cc.bingj.com/cache.aspx?q=Bing+API&d=5055834114702335&mkt=ja-JP&setlang=ja-JP&w=PNJ4-0BG42f7IL8-V_HeOfozjrJC4GHO",
-        },
-        {
-          keyword: "Bing API",
-          resultIndex: 1,
-          url: "https://techblog.raccoon.ne.jp/archives/1617156256.html",
-          title: "Bing API",
-          snippet:
-            "Bing Search APIとはMicrosoftの提供する検索エンジンであるBingでの検索結果を取得するためのAPIです。ブラウザからの検索のようにウェブページだけではなく画像やニュースの情報も取得することができます。API利用手順APIを利用する",
-          searchAt: 1730903929040,
-          cachedUrl:
-            "http://cc.bingj.com/cache.aspx?q=Bing+API&d=4613886267442778&mkt=ja-JP&setlang=ja-JP&w=gEQZZU3R-w0yJ22_imePNniBLFBJB0yq",
-        },
-      ],
-      createdAt: 1730903858190,
-      updatedAt: 1730903858190,
-    },
-    createdAt: 1730904077354,
-    updatedAt: 1730904077354,
-  },
-  {
-    key: "9433b017-ce09-49f0-9f56-f61f33758c91",
-    searches: [
-      {
-        keyword: "aws lambda internet",
-        resultIndex: 0,
-        url: "https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/configuration-vpc-internet.html",
-        title: "aws lambda internet",
-        snippet:
-          "このページでは、VPC に接続された Lambda 関数にインターネットアクセスを提供する方法について説明します。 [VPC ワークフローの作成] は、サブネット、NAT ゲートウェイ、インターネットゲートウェイ、ルートテーブルエントリなど、Lambda 関数がプライベートサブネットからパブリックインターネットにアクセスするために必要なすべての VPC リソースを作成します。 Amazon VPC コンソール (https://console.aws.amazon.com/vpc/) を開きます。 ダッシュボードで、 [VPC を作成] を選択します。 [Resources to create] (作成するリソース) で、 [VPC and more] (VPC など) を選択します。",
-        searchAt: 1730903889291,
-        cachedUrl:
-          "http://cc.bingj.com/cache.aspx?q=aws+lambda+internet&d=4996984466519234&mkt=ja-JP&setlang=ja-JP&w=hKUwXF6rrP_gXbT6j_Ii_7MDBZ-iPFR0",
-      },
-      {
-        keyword: "aws lambda internet",
-        resultIndex: 1,
-        url: "https://repost.aws/ja/knowledge-center/internet-access-lambda-function",
-        title: "aws lambda internet",
-        snippet:
-          "プライベート サブネット からのインターネットアクセスには、ネットワークアドレス変換 (NAT) が必要です。 Amazon VPC に接続された Lambda 関数にインターネットアクセスを提供するには、そのアウトバウンドトラフィックをパブリック サブネット の NAT ゲートウェイ または NATインスタンス にルーティングします。 詳細については、「インターネットゲートウェイを使用してインターネットに接続する」を参照してください。 セットアップ例については、「例: プライベートサブネットにサーバーがある VPC および NAT」 を参照してください。",
-        searchAt: 1730903892159,
-        cachedUrl:
-          "http://cc.bingj.com/cache.aspx?q=aws+lambda+internet&d=4808611492921494&mkt=ja-JP&setlang=ja-JP&w=uaKL8dlqBvmKtAac4rDnOATsk5H9L2wL",
-      },
-      {
-        keyword: "aws lambda internet",
-        resultIndex: 0,
-        url: "https://chatgpt.com/",
-        title: "aws lambda internet",
-        snippet:
-          "AWS Lambda can access the internet based on whether the function is running inside a Virtual Private Cloud (VPC) and the configuration of that VPC. Here's how internet access works with AWS Lambda:\n\n1. **Not in a VPC:**\n   - By default, AWS Lambda functions have access to the internet if they are not running inside a specific VPC.\n   - This configuration is suitable for most functions that need internet access but do not need access to resources within a VPC, such as databases or other internal services.\n\n2. **Inside a VPC:**\n   - If a Lambda function is associated with a VPC, by default, it does not have internet access. This is because VPCs are, by design, isolated from the internet.\n   - To give a Lambda function internet access while inside a VPC, you need to configure a few elements:\n     - **NAT Gateway/Instance:** Set up a NAT (Network Address Translation) Gateway or NAT Instance in a public subnet. This allows outbound-only access to the internet for resources within private subnets of the VPC.\n     - **Route Table:** Update the route tables for the private subnets where the Lambda function runs to route internet-bound traffic to the NAT Gateway or Instance.\n     - **Security Groups and Network ACLs:** Ensure the security groups and network ACLs are configured to allow necessary traffic. For outbound access, the security group should allow traffic to the internet.\n\n3. **DNS Resolution:**\n   - Ensure that your Lambda function has appropriate DNS settings if it's running in a VPC. This often means enabling DNS resolution within the VPC settings so that internet-facing domain names can be resolved correctly.\n\nRemember that outbound internet access might incur additional costs, particularly when using a NAT Gateway or NAT Instance. The choice between using a NAT Gateway and a NAT Instance often comes down to factors like scalability, cost, and management overhead.",
-        searchAt: 1730903906024,
-        cachedUrl: "",
-      },
-    ],
-    purpose: {
-      key: "539ca0d5-8b53-454a-a171-815e2bc64bfe",
-      title: "AWS lambda のインターネット接続",
-      searchResult: [
-        {
-          keyword: "aws lambda internet",
-          resultIndex: 0,
-          url: "https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/configuration-vpc-internet.html",
-          title: "aws lambda internet",
-          snippet:
-            "このページでは、VPC に接続された Lambda 関数にインターネットアクセスを提供する方法について説明します。 [VPC ワークフローの作成] は、サブネット、NAT ゲートウェイ、インターネットゲートウェイ、ルートテーブルエントリなど、Lambda 関数がプライベートサブネットからパブリックインターネットにアクセスするために必要なすべての VPC リソースを作成します。 Amazon VPC コンソール (https://console.aws.amazon.com/vpc/) を開きます。 ダッシュボードで、 [VPC を作成] を選択します。 [Resources to create] (作成するリソース) で、 [VPC and more] (VPC など) を選択します。",
-          searchAt: 1730903889291,
-          cachedUrl:
-            "http://cc.bingj.com/cache.aspx?q=aws+lambda+internet&d=4996984466519234&mkt=ja-JP&setlang=ja-JP&w=hKUwXF6rrP_gXbT6j_Ii_7MDBZ-iPFR0",
-        },
-        {
-          keyword: "aws lambda internet",
-          resultIndex: 1,
-          url: "https://repost.aws/ja/knowledge-center/internet-access-lambda-function",
-          title: "aws lambda internet",
-          snippet:
-            "プライベート サブネット からのインターネットアクセスには、ネットワークアドレス変換 (NAT) が必要です。 Amazon VPC に接続された Lambda 関数にインターネットアクセスを提供するには、そのアウトバウンドトラフィックをパブリック サブネット の NAT ゲートウェイ または NATインスタンス にルーティングします。 詳細については、「インターネットゲートウェイを使用してインターネットに接続する」を参照してください。 セットアップ例については、「例: プライベートサブネットにサーバーがある VPC および NAT」 を参照してください。",
-          searchAt: 1730903892159,
-          cachedUrl:
-            "http://cc.bingj.com/cache.aspx?q=aws+lambda+internet&d=4808611492921494&mkt=ja-JP&setlang=ja-JP&w=uaKL8dlqBvmKtAac4rDnOATsk5H9L2wL",
-        },
-        {
-          keyword: "aws lambda internet",
-          resultIndex: 0,
-          url: "https://chatgpt.com/",
-          title: "aws lambda internet",
-          snippet:
-            "AWS Lambda can access the internet based on whether the function is running inside a Virtual Private Cloud (VPC) and the configuration of that VPC. Here's how internet access works with AWS Lambda:\n\n1. **Not in a VPC:**\n   - By default, AWS Lambda functions have access to the internet if they are not running inside a specific VPC.\n   - This configuration is suitable for most functions that need internet access but do not need access to resources within a VPC, such as databases or other internal services.\n\n2. **Inside a VPC:**\n   - If a Lambda function is associated with a VPC, by default, it does not have internet access. This is because VPCs are, by design, isolated from the internet.\n   - To give a Lambda function internet access while inside a VPC, you need to configure a few elements:\n     - **NAT Gateway/Instance:** Set up a NAT (Network Address Translation) Gateway or NAT Instance in a public subnet. This allows outbound-only access to the internet for resources within private subnets of the VPC.\n     - **Route Table:** Update the route tables for the private subnets where the Lambda function runs to route internet-bound traffic to the NAT Gateway or Instance.\n     - **Security Groups and Network ACLs:** Ensure the security groups and network ACLs are configured to allow necessary traffic. For outbound access, the security group should allow traffic to the internet.\n\n3. **DNS Resolution:**\n   - Ensure that your Lambda function has appropriate DNS settings if it's running in a VPC. This often means enabling DNS resolution within the VPC settings so that internet-facing domain names can be resolved correctly.\n\nRemember that outbound internet access might incur additional costs, particularly when using a NAT Gateway or NAT Instance. The choice between using a NAT Gateway and a NAT Instance often comes down to factors like scalability, cost, and management overhead.",
-          searchAt: 1730903906024,
-          cachedUrl: "",
-        },
-      ],
-      createdAt: 1730903878876,
-      updatedAt: 1730903878876,
-    },
-    createdAt: 1730904085938,
-    updatedAt: 1730904085938,
-  },
-];
-
 const Top = () => {
   const isSp = useMediaQuery(mediaQuery.sp)
   // left side states
@@ -361,28 +198,6 @@ const Top = () => {
       fetchOpenAiResult[0].keyword,
     );
   };
-  const insertInitialValue = () => {
-    try {
-      localStorage.setItem(
-        SEARCH_PURPOSES,
-        JSON.stringify(initialSearchPurpose)
-      );
-      localStorage.setItem(
-        CURRENT_SEARCH_PURPOSE,
-        JSON.stringify(initialCurrentSearch)
-      );
-      localStorage.setItem(
-        SEARCH_THOUGHTS,
-        JSON.stringify(initialSearchThought)
-      );
-    } catch (e) {
-      console.log(e);
-      initLocalStorage(SEARCH_PURPOSES);
-      initLocalStorage(CURRENT_SEARCH_PURPOSE);
-      initLocalStorage(SEARCH_THOUGHTS);
-    }
-    setInitDefaultLocalStorage(true);
-  };
   const onClickDeletePurpose = (e: React.MouseEvent<HTMLButtonElement>,purposeKey: string) => {
     e.stopPropagation()
     try {
@@ -487,9 +302,9 @@ const Top = () => {
       <Box sx={containerSection}>
         <h1>
           検索する{" "}
-          <Button size="small" variant="contained" onClick={insertInitialValue}>
+          {/* <Button size="small" variant="contained" onClick={insertInitialValue}>
             お試しデータを追加する
-          </Button>
+          </Button> */}
         </h1>
         <TextField
           value={searchText}
@@ -499,7 +314,7 @@ const Top = () => {
         />
         <Box sx={purposeSection}>
           <h3>記事のタイトルを入力する</h3>
-          {!searchSelectPurpose.length && <p style={{color: "red", margin: 0}}>「記事のタイトルを入力」の後で、一番下で「記事のタイトル」を選択してください</p>}
+          {!searchSelectPurpose.length && <p style={{color: "red", margin: 0}}>記事のタイトルを入力し「記事タイトルを追加」を押した後で、一番下で「記事のタイトル」を選択してください</p>}
           <Box>
             <TextField
               value={inputPurpose}
